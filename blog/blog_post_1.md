@@ -14,8 +14,9 @@ scorers, hash commitments, bootstrap code, cost gates and integrity receipts. Th
 that came out the other end is almost a byproduct. That looks like procrastination, and
 for a while it felt like it.
 
-I think it was the right order, and this post is why. It also ended up deciding which
-parts of the work we give away and which parts we sell, which I did not expect going in.
+I think it was the right order, though we did not arrive at it deliberately. We arrived
+at it because a model nearly got past us. This post is that story, and at the end it
+turns into the reason some of this work is public and some of it is not.
 
 ## The problem we actually had
 
@@ -45,42 +46,31 @@ on. A model that's excellent on flat product shots and lost on street photos wou
 So we built three tracks instead, with three test sets and three metrics, and a rule
 against averaging them. A system is as good as its worst required track.
 
-## Three times it caught us out
+## The model that nearly fooled us
 
-Everyone nods along at the abstract case for evaluation, so here are three specific
-occasions when our own numbers were about to walk us off a cliff.
+We had models before we had a benchmark. That is the wrong order, and it is how most of
+these projects actually go.
 
-We ran a corrective training pass on a Florence-2 extraction model once. Recall barely
-moved, 0.6013 to 0.5885, the kind of drift you shrug at. Underneath, precision had
-fallen off a table: 0.5661 to 0.3158. A single blended headline number would have read
-as "roughly flat, ship it". Per-field scoring showed a model that had started guessing
-constantly and getting away with it on aggregate. That failure is also what killed the
-architecture. One autoregressive sequence emitting every field together couples
-attributes that have nothing to do with each other, and gives the model no way to say a
-field doesn't apply. We replaced it with conditional heads and an explicit applicability
-decision, which is what we run today.
+The first serious one was a Florence-2 extraction model: give it a garment image, get
+back a JSON object with every field filled in. It worked well enough to keep going. Then
+we ran a corrective training pass on it, scored the result, and recall had barely moved.
+0.6013 to 0.5885. That is the kind of drift you shrug at.
 
-Then there was the colour result. A commercial VLM looked like it might beat us on that
-field specifically, 0.730 against our 0.630. Genuinely interesting, and exactly the sort
-of result that gets a slide. It was computed on 27 eligible rows. We ran a 400-row
-label-balanced follow-up and the effect vanished. The paired interval came out entirely
-negative. Twenty-seven rows is not a finding, it's a rumour, and the only reason we
-didn't repeat it out loud is that the protocol made us check.
+Precision had fallen off a table. 0.5661 to 0.3158.
 
-The third one still bothers me. Our system scored 0.7169 on an independent,
-human-labelled external set, a real win over the FashionCLIP baseline at 0.6605,
-interval clear of zero. Then the production composite route scored 0.5764 on the same
-images. Fourteen points, gone. Not a modelling regression: the two datasets carve up
-necklines differently, and our mapping silently dropped the difference on the floor.
-Nothing in our internal numbers could have surfaced it, because internally the taxonomy
-always agreed with itself.
+A single blended number would have read as roughly flat, ship it. What per-field scoring
+showed instead was a model that had started guessing constantly and getting away with it
+on average, because the wins on easy fields covered the collapse on hard ones.
 
-Different failure modes, but each time the model was wrong and confident, and the
-evaluation was the only thing in the room that wasn't.
+Two things came out of that. The first was a diagnosis. One autoregressive sequence
+emitting every field at once couples attributes that have nothing to do with each other,
+lets rare labels get crowded out, and gives the model no way to say that a field does
+not apply to this garment. We replaced it with conditional heads and an explicit
+applicability decision, which is what we run today.
 
-So: bad evaluation is worse than none. With no evaluation you know you're guessing and
-you stay cautious. With flattering evaluation you confidently ship the precision
-collapse.
+The second was less comfortable. We had come within one careless glance of shipping that
+model, and nothing in how we were measuring would have stopped us. So we stopped
+building models for a while and built the thing that could tell us when we were wrong.
 
 ## The harness, start to finish
 
@@ -148,7 +138,41 @@ inside.
 That's the harness. It isn't exotic. It's every place we found where a benchmark can lie
 to its owner, closed one at a time.
 
-## What it told us
+## What it caught next
+
+With the harness in place, the pattern repeated. Not dramatically. Mostly it just kept
+quietly declining to let us believe things.
+
+It killed a backbone swap for the price of a coffee. We wanted to know whether a general
+SigLIP-2 encoder could replace the fashion-pretrained one, so we ran both through the
+development gate on identical rows and an identical schedule. SigLIP-2 came out at
+0.6018 development micro-F1 against 0.6163. That decided it, for about eleven cents of
+compute, without anyone needing to have an opinion.
+
+Then it made us publish a loss. The first time we ran the full-body track, FashionCLIP
+with matched supervised heads beat our standalone model, and a hybrid of the two beat
+both:
+
+| System (earlier matched protocol) | Tier 1 | Tier 2 | Tier 3 |
+|---|---:|---:|---:|
+| MODA distilled, standalone | 0.5398 | 0.5260 | 0.4509 |
+| FashionCLIP + linear heads | 0.5985 | 0.6237 | 0.5008 |
+| MODA-FashionCLIP hybrid | **0.6492** | **0.6425** | **0.5353** |
+
+We kept that result rather than burying it. Then we picked the next standalone candidate
+using development data only, built a fresh test split with no product group in common
+with anything we had run before, and evaluated once.
+
+It also stopped us buying a result we wanted. A commercial VLM looked like it might beat
+us on colour specifically, 0.730 against our 0.630, which is exactly the sort of number
+that ends up on a slide. It came from 27 eligible rows. We had put a 100-row checkpoint
+gate in front of the full 1,000-row run precisely so that a small team could afford
+honest baselines, and the model lost the general comparison at that gate, so the
+remaining 900 paid calls were never made. We chased the colour result separately on 400
+balanced rows and it evaporated. The paired interval came out entirely negative.
+Twenty-seven rows is not a finding, it is a rumour.
+
+## Where that leaves the numbers
 
 | Track / primary metric | MODA | Strongest comparator | Paired 95% CI |
 |---|---:|---:|---:|
@@ -157,6 +181,9 @@ to its owner, closed one at a time.
 | DFMM Tier-1 macro-F1 | **0.6917** | FashionCLIP 0.5943 | [+0.0891, +0.1053] |
 | DFMM Tier-2 N/A-F1 | **0.6637** | FashionCLIP 0.6088 | [+0.0433, +0.0657] |
 | DFMM Tier-3 visible macro-F1 | **0.5785** | FashionCLIP 0.4969 | [+0.0723, +0.0905] |
+
+The 0.6917 on the first line of the DFMM rows is that rematch. The earlier loss stays in
+the record because it is the reason you can believe the win.
 
 Here is the exact claim we allow ourselves:
 
@@ -168,25 +195,32 @@ Not world-best, not universal SOTA, not a public-leaderboard result, not human-g
 quality, not production readiness. We could only word it that tightly because the
 harness told us where the edges were.
 
-We lost the full-body track the first time we ran it. FashionCLIP with matched
-supervised heads beat our standalone model, and a hybrid beat both:
-
-| System (earlier matched protocol) | Tier 1 | Tier 2 | Tier 3 |
-|---|---:|---:|---:|
-| MODA distilled, standalone | 0.5398 | 0.5260 | 0.4509 |
-| FashionCLIP + linear heads | 0.5985 | 0.6237 | 0.5008 |
-| MODA–FashionCLIP hybrid | **0.6492** | **0.6425** | **0.5353** |
-
-We kept it. We picked the next standalone candidate on development data only, built the
-fresh product-group-disjoint shadow so the rematch couldn't be contaminated by anything
-we'd learned, and evaluated once. That rematch is the 0.6917 above. The earlier loss
-stays in the record because it's the reason you can believe the win.
-
 Some fields are still weak, and we would rather you read it here than find it in your
 pipeline. Material sits at 0.4148 value-F1 on Fashionpedia. Fabric is 0.6693 and fit
 0.6708 on Shopping100k. Collar style, neckline and rare applicability values all lag. A
 conjunctive win means no track failed. It does not mean every attribute is
 production-grade.
+
+## The one it caught last
+
+The most recent catch is the one that still bothers me, because our own harness could
+not have found it.
+
+We ran the system against an independent, human-labelled external set, 1,110 images that
+nobody on our side had touched. It scored 0.7169 against the FashionCLIP baseline at
+0.6605, interval clear of zero. A genuine win.
+
+Then the production composite route scored 0.5764 on those same images. Fourteen points,
+gone.
+
+It was not a modelling regression. The two datasets carve up necklines differently, and
+our mapping between them quietly dropped the difference on the floor. Nothing in our
+internal numbers could have surfaced that, because internally the taxonomy always agrees
+with itself. It took labels produced by people with no connection to us to make the gap
+visible, which is a fairly pointed argument for external evaluation over more of your
+own.
+
+That one gets its own post, because the details matter more than the headline.
 
 ## What this decides about open and closed
 
@@ -243,8 +277,8 @@ know. That isn't magnanimity. The alternative is finding out from a customer, in
 production, with a taxonomy mismatch quietly eating fourteen points and nothing in our
 own instrumentation able to see it.
 
-We've already had that meeting with ourselves three times this summer. Building the
-harness first is how we keep the number finite.
+We have had that meeting with ourselves several times since June. Building the harness
+first is how we keep the number small.
 
 *Next: what a benchmark win doesn't tell you. Independent human gold, the neckline
 mismatch in detail, and why our production system is calibrated on none of the public
