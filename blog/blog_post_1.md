@@ -14,8 +14,8 @@ scorers, hash commitments, bootstrap code, cost gates and integrity receipts. Th
 that came out the other end is almost a byproduct. That looks like procrastination, and for
 a while it felt like it.
 
-This post is the argument for why it was the right order — and, at the end, what it decided
-about which parts of the work we're giving away and which parts we're selling.
+I think it was the right order, and this post is why. It also ended up deciding which parts
+of the work we give away and which parts we sell, which I did not expect going in.
 
 ## The problem we actually had
 
@@ -44,13 +44,12 @@ A model that's excellent on flat product shots and lost on street photos would s
 So we built three tracks instead, with three test sets and three metrics, and a rule
 against averaging them. A system is as good as its worst required track.
 
-## Three times the measurement caught a lie
+## Three times it caught us out
 
-The abstract case for evaluation is boring and everyone nods at it. Here are three
-occasions where our own numbers were about to walk us off a cliff.
+Everyone nods along at the abstract case for evaluation, so here are three specific
+occasions when our own numbers were about to walk us off a cliff.
 
-**The model that looked fine and wasn't.** We ran a corrective training pass on a
-Florence-2 extraction model. Recall barely moved — 0.6013 to 0.5885, the kind of drift you
+We ran a corrective training pass on a Florence-2 extraction model once. Recall barely moved — 0.6013 to 0.5885, the kind of drift you
 shrug at. Underneath, precision had fallen off a table: 0.5661 to 0.3158. A single blended
 headline number would have read as "roughly flat, ship it". Per-field scoring showed a
 model that had started guessing constantly and getting away with it on aggregate. That
@@ -59,32 +58,30 @@ field together couples attributes that have nothing to do with each other, and g
 model no way to say a field doesn't apply. We replaced it with conditional heads and an
 explicit applicability decision, which is what we run today.
 
-**The signal that wasn't there.** A commercial VLM looked like it might beat us on colour
-specifically: 0.730 against our 0.630. Genuinely interesting, and exactly the sort of
+Then there was the colour result. A commercial VLM looked like it might beat us on that
+field specifically, 0.730 against our 0.630. Genuinely interesting, and exactly the sort of
 result that gets a slide. It was computed on 27 eligible rows. We ran a 400-row
 label-balanced follow-up and the effect vanished — the paired interval came out entirely
 negative. Twenty-seven rows is not a finding, it's a rumour, and the only reason we didn't
 repeat it out loud is that the protocol made us check.
 
-**The fourteen points hiding in a vocabulary.** Our system scored 0.7169 on an independent,
-human-labelled external set — a real win over the FashionCLIP baseline at 0.6605, interval
+The third one still bothers me. Our system scored 0.7169 on an independent, human-labelled
+external set — a real win over the FashionCLIP baseline at 0.6605, interval
 clear of zero. Then the production composite route scored 0.5764 on the same images.
 Fourteen points, gone. Not a modelling regression: the two datasets carve up necklines
 differently, and our mapping silently dropped the difference on the floor. Nothing in our
 internal numbers could have surfaced it, because internally the taxonomy always agreed with
 itself.
 
-Three different failure modes, one common thread. Each time the model was wrong and
-confident, and the evaluation was the only thing in the room that wasn't.
+Different failure modes, but each time the model was wrong and confident, and the
+evaluation was the only thing in the room that wasn't.
 
-Which is the part worth saying plainly: **bad evaluation is worse than none.** With no
-evaluation you know you're guessing, so you stay cautious. With flattering evaluation you
-confidently ship the precision collapse.
+So: bad evaluation is worse than none. With no evaluation you know you're guessing and you
+stay cautious. With flattering evaluation you confidently ship the precision collapse.
 
 ## The harness, start to finish
 
-All of that is policy until you see what actually happens when a model gets evaluated.
-Here's the walk.
+All of that is policy until you see what happens when a model actually gets evaluated.
 
 **Step 1: build the manifest.** Each track has a builder that pins everything — dataset
 version, checksums, record IDs, group IDs, split roles, output vocabulary, alias maps,
@@ -163,9 +160,10 @@ Here is the exact claim we allow ourselves:
 > and fit, and applicability-aware full-body attributes.
 
 Not world-best, not universal SOTA, not a public-leaderboard result, not human-gold
-quality, not production readiness. The harness is what let us word it that precisely.
+quality, not production readiness. We could only word it that tightly because the harness
+told us where the edges were.
 
-**The loss we kept.** The first time we ran the full-body track, we lost it. FashionCLIP
+We lost the full-body track the first time we ran it. FashionCLIP
 with matched supervised heads beat our standalone model, and a hybrid beat both:
 
 | System (earlier matched protocol) | Tier 1 | Tier 2 | Tier 3 |
@@ -179,14 +177,15 @@ fresh product-group-disjoint shadow so the rematch couldn't be contaminated by a
 we'd learned, and evaluated once. That rematch is the 0.6917 above. The earlier loss stays
 in the record because it's the reason you can believe the win.
 
-**What the numbers don't say.** Material sits at 0.4148 value-F1 on Fashionpedia. Fabric is
+Some fields are still weak, and we would rather you read it here than find it in your
+pipeline. Material sits at 0.4148 value-F1 on Fashionpedia. Fabric is
 0.6693 and fit 0.6708 on Shopping100k. Collar style, neckline and rare applicability values
 all lag. A conjunctive win means no track failed. It does not mean every attribute is
-production-grade, and we'd rather you read that here than find it in your pipeline.
+production-grade.
 
 ## What this decides about open and closed
 
-Here's the part that surprised us. Once you accept that the harness is the asset, the
+The part that surprised us is that once you accept the harness is the asset, the
 open-source question mostly answers itself.
 
 Open the ruler. Sell what the ruler measured.
@@ -206,10 +205,10 @@ retailers' catalogues. Those are accumulated measurement outcomes tuned to speci
 they don't generalise the way the method does, and they're what a customer is actually
 buying.
 
-Which reframes the pitch in a way we find much easier to say out loud. We're not selling
-weights. We're selling the loop — the ability to run this measurement process against your
-data and tell you, with intervals, whether it worked. The open harness is the receipt that
-the loop is real.
+That reframes the pitch in a way we find easier to say out loud. We aren't selling
+weights. We're selling the loop: the ability to run this measurement process against your
+data and tell you, with intervals, whether it worked. Publishing the harness is how you can
+check that the loop exists before you pay for it.
 
 ## Two objections, and they're both fair
 
