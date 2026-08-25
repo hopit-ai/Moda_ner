@@ -170,6 +170,6 @@ the paired CI against our shipped predictions.
 
 If your lower bound clears zero on every track, we genuinely want to hear from you.
 
-*Next in the series: what a benchmark win doesn't tell you — independent human gold, a
-taxonomy mismatch that cost 14 points, and why our production system is calibrated on none
-of the data above.*
+*Next in the series: [why we built the evaluation harness before the model](blog_post_2.md)
+— three times the measurement caught us being wrong, and what that decided about which parts
+of this work we give away.*
