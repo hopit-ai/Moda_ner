@@ -1,4 +1,4 @@
-# Attribute extraction for fashion — what are we actually measuring?
+# Attribute extraction for fashion — why the evaluation harness first?
 
 **MODA_NER, part 1: the MODA General Attribute Suite**
 
@@ -170,6 +170,5 @@ the paired CI against our shipped predictions.
 
 If your lower bound clears zero on every track, we genuinely want to hear from you.
 
-*Next in the series: [why we built the evaluation harness before the model](blog_post_2.md)
-— three times the measurement caught us being wrong, and what that decided about which parts
-of this work we give away.*
+*Next in the series: [what we open, and what we sell](blog_post_2.md) — why the harness is
+public, why the calibration isn't, and the two objections that deserve a straight answer.*

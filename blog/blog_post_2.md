@@ -1,9 +1,9 @@
-# Attribute extraction for fashion — why the evaluation harness first?
+# Attribute extraction for fashion — what we open, and what we sell
 
 **MODA_NER, part 2**
 
 *Series: Fashion attribute extraction from images*
-*Previous: [What are we actually measuring?](blog_post_1.md)*
+*Previous: [Why the evaluation harness first?](blog_post_1.md)*
 
 ---
 
