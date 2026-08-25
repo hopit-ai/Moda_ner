@@ -75,6 +75,19 @@ Restricted datasets are never redistributed here. `suite/` ships manifest builde
 lists, vocabularies, scorers, and our frozen prediction files with SHA-256 commitments;
 gold labels are rebuilt from each dataset's official source by you. See `REPRODUCE.md`.
 
+## Citing
+
+`CITATION.cff` in this repository has the machine-readable entry; GitHub's "Cite
+this repository" button reads it directly. Every scorer also stamps its output
+with the suite name and version, so a result file carries its own provenance:
+
+```json
+{"micro_f1": 0.6300, "suite": {"name": "MODA General Attribute Suite",
+  "version": "v1", "frozen": "2026-08-24", "track": "fashionpedia-2020-val-moda-oracle-crop-v1"}}
+```
+
+A paper describing the suite is in preparation.
+
 ## Compare your model
 
 1. Freeze your checkpoint, inference code, and thresholds before scoring.

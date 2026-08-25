@@ -1,7 +1,31 @@
 cff-version: 1.2.0
-title: "MODA_NER: the MODA General Attribute Suite"
-message: "If you use this benchmark suite, please cite it."
+message: "If you use this benchmark suite or its models, please cite it as below."
+title: "MODA General Attribute Suite"
+abstract: >-
+  A three-track public benchmark for fashion attribute extraction from images,
+  covering localized garment crops, catalog product images, and applicability-aware
+  full-body attributes. Each track has its own frozen test set, input contract, and
+  metric; predictions are committed by hash before labels are opened; scoring is
+  fail-closed and promotion requires a positive paired confidence interval on every
+  track.
+type: software
 authors:
   - name: "Hopit AI"
-year: 2026
+    website: "https://hopit.ai"
+  - alias: "ArchieIndian"
+    affiliation: "Hopit AI"
+version: "v1"
+date-released: "2026-08-24"
 url: "https://github.com/hopit-ai/Moda_ner"
+repository-code: "https://github.com/hopit-ai/Moda_ner"
+license: MIT
+keywords:
+  - fashion
+  - attribute extraction
+  - benchmark
+  - evaluation
+  - computer vision
+  - multimodal
+# A paper describing the suite is in preparation. When it lands, add a
+# `preferred-citation:` block here so citation tooling routes to the paper while
+# this entry keeps citing the software artifact.
