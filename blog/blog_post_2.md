@@ -3,7 +3,7 @@
 **MODA_NER, part 2**
 
 *Series: Fashion attribute extraction from images*
-*Previous: [We couldn't find a benchmark, so we built one](blog_post_1.md)*
+*Previous: [What are we actually measuring?](blog_post_1.md)*
 
 ---
 

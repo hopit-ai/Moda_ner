@@ -1,4 +1,4 @@
-# We couldn't find a benchmark, so we built one
+# Attribute extraction for fashion — what are we actually measuring?
 
 **MODA_NER, part 1: the MODA General Attribute Suite**
 
