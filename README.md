@@ -69,6 +69,23 @@ CC BY-NC routes: the underlying datasets (Shopping100k, DeepFashion-MultiModal) 
 non-commercial research resources; the weight license honors that, and it binds us too —
 these weights are not part of Hopit's hosted product.
 
+## What's available, and when
+
+The suite opens one complete track at a time. A track is independently reproducible the day
+it lands — manifest builder, scorer, bootstrap, and our frozen prediction files with their
+hashes, including the baselines we lose to. We'd rather ship one track you can actually run
+than three you can't.
+
+| Track | Code | Weights | Status |
+|---|---|---|---|
+| Fashionpedia MODA-15 | `suite/fashionpedia_moda15/` | `moda-ner-fashionpedia15` (MIT) | **5 Sep 2026** |
+| Shopping100k-10 | `suite/shopping100k_10/` | `moda-ner-shopping100k10` (CC BY-NC 4.0) | **10 Sep 2026** |
+| DFMM-18 | `suite/dfmm18/` | `moda-ner-dfmm18` (CC BY-NC 4.0) | **12 Sep 2026** |
+
+Until all three land, the conjunctive claim above is only partly checkable from this repo.
+The frozen results for every track are published regardless — what arrives on the dates
+above is your ability to verify them yourself.
+
 ## Reproduce
 
 Restricted datasets are never redistributed here. `suite/` ships manifest builders, ID
