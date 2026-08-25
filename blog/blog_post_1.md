@@ -1,4 +1,4 @@
-# Attribute extraction for fashion — why the evaluation harness first?
+# Attribute extraction for fashion - why the evaluation harness first?
 
 **MODA_NER, part 1: the MODA General Attribute Suite**
 
