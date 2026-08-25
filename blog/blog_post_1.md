@@ -25,8 +25,8 @@ can put in a database, because a trend system or a catalogue pipeline is going t
 consume it.
 
 Which model should you use? We went looking for a benchmark that would answer that and
-couldn't find one. Not because fashion datasets don't exist — because each covers a
-different slice with a taxonomy that disagrees with the others.
+couldn't find one. Fashion datasets exist in quantity. The problem is that each covers a
+different slice with a taxonomy that disagrees with every other one.
 
 Fashionpedia has expert-annotated attributes localised to garment masks, which is
 wonderful, and it has no colour and no fit, which are the two fields a merchandiser asks
@@ -51,11 +51,11 @@ Everyone nods along at the abstract case for evaluation, so here are three speci
 occasions when our own numbers were about to walk us off a cliff.
 
 We ran a corrective training pass on a Florence-2 extraction model once. Recall barely
-moved — 0.6013 to 0.5885, the kind of drift you shrug at. Underneath, precision had
+moved, 0.6013 to 0.5885, the kind of drift you shrug at. Underneath, precision had
 fallen off a table: 0.5661 to 0.3158. A single blended headline number would have read
 as "roughly flat, ship it". Per-field scoring showed a model that had started guessing
 constantly and getting away with it on aggregate. That failure is also what killed the
-architecture — one autoregressive sequence emitting every field together couples
+architecture. One autoregressive sequence emitting every field together couples
 attributes that have nothing to do with each other, and gives the model no way to say a
 field doesn't apply. We replaced it with conditional heads and an explicit applicability
 decision, which is what we run today.
@@ -63,12 +63,12 @@ decision, which is what we run today.
 Then there was the colour result. A commercial VLM looked like it might beat us on that
 field specifically, 0.730 against our 0.630. Genuinely interesting, and exactly the sort
 of result that gets a slide. It was computed on 27 eligible rows. We ran a 400-row
-label-balanced follow-up and the effect vanished — the paired interval came out entirely
+label-balanced follow-up and the effect vanished. The paired interval came out entirely
 negative. Twenty-seven rows is not a finding, it's a rumour, and the only reason we
 didn't repeat it out loud is that the protocol made us check.
 
 The third one still bothers me. Our system scored 0.7169 on an independent,
-human-labelled external set — a real win over the FashionCLIP baseline at 0.6605,
+human-labelled external set, a real win over the FashionCLIP baseline at 0.6605,
 interval clear of zero. Then the production composite route scored 0.5764 on the same
 images. Fourteen points, gone. Not a modelling regression: the two datasets carve up
 necklines differently, and our mapping silently dropped the difference on the floor.
@@ -86,7 +86,7 @@ collapse.
 
 All of that is policy until you see what happens when a model actually gets evaluated.
 
-**Step 1: build the manifest.** Each track has a builder that pins everything — dataset
+**Step 1: build the manifest.** Each track has a builder that pins everything: dataset
 version, checksums, record IDs, group IDs, split roles, output vocabulary, alias maps,
 missing-label rules, metric, bootstrap method, seed. The manifest exists before any
 model runs.
@@ -108,7 +108,7 @@ from one image succeed and fail together.
 
 So every track splits *and* resamples at its natural unit: source image for
 Fashionpedia, image for Shopping100k, product group for DFMM. The DFMM test is the
-strictest thing we have — 5,000 fresh images across 1,751 product groups, with zero
+strictest thing we have: 5,000 fresh images across 1,751 product groups, with zero
 record overlap and zero product-group overlap against every experiment we had ever run
 before it.
 
@@ -124,12 +124,12 @@ python -m suite.dfmm18.commit --predictions preds.jsonl
 ```
 
 That hash goes into the record before scoring. After this point you can't swap the file,
-and neither can we. Every prediction file in our results directory — including the ones
-from models that beat us — sits next to its hash.
+and neither can we. Every prediction file in our results directory sits next to its
+hash, including the ones from models that beat us.
 
 **Step 4: the scorer opens the labels, and it fails closed.** Missing row, it stops.
 Duplicate ID, it stops. An ID not in the manifest, a field outside the frozen
-vocabulary, a hallucinated value the alias map can't resolve — all reported separately,
+vocabulary, a hallucinated value the alias map can't resolve: all reported separately,
 where anyone can see them. The one thing the scorer will never do is silently drop the
 rows a model got wrong.
 
@@ -195,14 +195,14 @@ open-source question mostly answers itself.
 
 Open the ruler. Sell what the ruler measured.
 
-The harness goes out, all of it — protocol, splits, scorers, bootstrap code, our frozen
+The harness goes out, all of it: protocol, splits, scorers, bootstrap code, our frozen
 prediction files with their hashes, including the runs we lose. A benchmark nobody else
-can run isn't a benchmark, it's an opinion with a table in it. It only becomes worth
-something if other people use it, and the people most motivated to attack it are exactly
-the ones who'd enjoy beating us, which is adversarial review we could never afford to
-commission. Publishing it is also the only honest evidence for what we sell: if we tell
-a retailer we can build this on their catalogue and prove it worked, they should be able
-to inspect the machinery that would do the proving.
+can run is just an opinion with a table in it. It only becomes worth something if other
+people use it, and the people most motivated to attack it are exactly the ones who'd
+enjoy beating us, which is adversarial review we could never afford to commission.
+Publishing it is also the only honest evidence for what we sell: if we tell a retailer
+we can build this on their catalogue and prove it worked, they should be able to inspect
+the machinery that would do the proving.
 
 What stays closed is what the ruler selected. Calibrated per-field thresholds. The
 routing layer that takes a declared schema and picks the head. Taxonomies fitted to
@@ -220,17 +220,17 @@ you can check that the loop exists before you pay for it.
 **"You built the test you pass."** Yes, and that deserves suspicion, so the answer has
 to be structural rather than indignant. Predictions are committed by hash before any
 label opens, so we can't retro-fit. We picked the strongest available comparator on each
-track rather than the most convenient — on the crop track that meant benchmarking
-against the model that already held the lead. The scorer fails closed, so we can't
-quietly drop rows we got wrong. And we published a track we lost. A benchmark whose
-author only ever wins on it is worth what you'd expect; ours has our losses in it.
+track rather than the most convenient. On the crop track that meant benchmarking against
+the model that already held the lead. The scorer fails closed, so we can't quietly drop
+rows we got wrong. And we published a track we lost. A benchmark whose author only ever
+wins on it is worth what you'd expect; ours has our losses in it.
 
-**"It's not really open — some weights are non-commercial."** True, and the datasets are
-the reason rather than us. Two of the three tracks are built on research-only corpora
-whose terms we're not going to quietly ignore, so weights trained on them ship
-non-commercial — and that binds us as well as you: those exact weights aren't in our
-paid product either. The part that matters for reproduction — protocol, scorers, splits,
-prediction files — carries no such restriction.
+**"It's not really open, some of the weights are non-commercial."** True, and the
+datasets are the reason rather than us. Two of the three tracks are built on
+research-only corpora whose terms we're not going to quietly ignore, so weights trained
+on them ship non-commercial, and that binds us as well as you: those exact weights
+aren't in our paid product either. The part that matters for reproduction, meaning
+protocol, scorers, splits and prediction files, carries no such restriction.
 
 ## Run your own model
 
@@ -246,6 +246,6 @@ own instrumentation able to see it.
 We've already had that meeting with ourselves three times this summer. Building the
 harness first is how we keep the number finite.
 
-*Next: what a benchmark win doesn't tell you — independent human gold, the neckline
+*Next: what a benchmark win doesn't tell you. Independent human gold, the neckline
 mismatch in detail, and why our production system is calibrated on none of the public
 data.*
