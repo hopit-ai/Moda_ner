@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+title: "MODA_NER: the MODA General Attribute Suite"
+message: "If you use this benchmark suite, please cite it."
+authors:
+  - name: "Hopit AI"
+year: 2026
+url: "https://github.com/hopit-ai/Moda_ner"
