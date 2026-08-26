@@ -38,7 +38,7 @@ MODELS = {
     "moda-ner-v-crop": "*",
     "moda-ner-v-catalog": "*",
     "moda-ner-v-fullbody": "*",
-    "moda-ner-t": "**",
+    "moda-ner-t": "***",
     "moda-ner-pro": "***",
 }
 

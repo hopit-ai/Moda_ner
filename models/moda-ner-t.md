@@ -1,8 +1,12 @@
-# MODA_NER(T)  `**`
+# MODA_NER(T)  `***`
 
-**Hugging Face:** `HopitAI/moda-ner-t`
-**Tier `**`** — open weights, code closed. **Weights: MIT**, pending verification of two
-training-source licences.
+**Tier `***`** — closed code, closed weights, benchmarks published. **Not distributed.**
+
+We have one text checkpoint worth serving. The prior one scores 0.8601 against this one's
+0.8723, a gap of 0.0122, so there is no weaker-but-useful version to publish while keeping a
+stronger one back. Releasing anything here means releasing everything, and we are not ready
+to do that on the strength of a silver-labelled evaluation. The numbers below are published
+in full regardless.
 
 A 149,625,627-parameter ModernBERT span extractor for fashion text.
 
@@ -63,6 +67,10 @@ The evaluation labels are cleaned silver: rule-derived, and already opened durin
 development. They are not independent human gold and not fresh confirmation. Treat 0.8723 as
 a development figure rather than a validated one, and treat the entity table above as the
 real description of what works.
+
+**If you want this capability.** The honest answer is that a general checkpoint is not the
+useful artefact here — ontology alignment to your catalogue is. That is what MODA_NER Pro
+does. [Talk to us](https://hopit.ai).
 
 **Credit.** Cite the MODA General Attribute Suite (`CITATION.cff`) when reporting numbers
 from this track.
