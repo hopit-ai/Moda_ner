@@ -12,11 +12,10 @@ from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(REPO_ROOT / "src"))
 
-from hopit_attr.eval.conditional import normalize_value  # noqa: E402
-from hopit_attr.eval.image_attributes import evaluate_image_attributes  # noqa: E402
-from hopit_attr.stage2_florence.train import attributes_from_entry  # noqa: E402
+from suite._eval import normalize_value
+from suite._eval import evaluate_image_attributes
+from suite._eval import attributes_from_entry
 
 CATEGORY_FIELDS = ("master_category", "category")
 

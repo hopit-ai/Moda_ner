@@ -20,17 +20,13 @@ from pathlib import Path
 from typing import Any, Iterable
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(REPO_ROOT / "src"))
 
-from hopit_attr.data.fashionpedia_adapter import (  # noqa: E402
+from suite._eval.fashionpedia_adapter import (  # noqa: E402
     convert_fashionpedia_dataset_linked,
 )
 
 BENCHMARK_ID = "fashionpedia-2020-val-moda-oracle-crop-v1"
-S3_IMAGE_PREFIX = (
-    "<internal-store>"
-    f"{BENCHMARK_ID}/images"
-)
+S3_IMAGE_PREFIX = ""  # not used publicly; images are never redistributed
 EVALUATED_FIELDS = (
     "master_category",
     "category",

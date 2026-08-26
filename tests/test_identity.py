@@ -43,3 +43,31 @@ def test_every_model_declares_a_release_tier():
         assert marker in {"*", "**", "***"}, (name, marker)
     assert ident.tier("moda-ner-v-crop") == "*"
     assert ident.tier("unknown-model") == ""
+
+
+def test_crop_scorer_reproduces_the_published_headline():
+    """The launch claim is that shipped predictions regenerate the published
+    numbers. If this ever fails, the claim is false and nothing should ship."""
+    import json
+    import subprocess
+    import sys
+    import tempfile
+    from pathlib import Path
+
+    published = json.loads(Path("results/crop/moda-ner-v-crop/community_metrics.json").read_text())
+    with tempfile.TemporaryDirectory() as tmp:
+        out = Path(tmp) / "recomputed.json"
+        subprocess.run(
+            [sys.executable, "-m", "suite.crop.score",
+             "--gold", "suite/crop/benchmark.jsonl",
+             "--predictions", "results/crop/moda-ner-v-crop/evaluation_predictions.jsonl",
+             "--output", str(out)],
+            check=True, capture_output=True,
+        )
+        recomputed = json.loads(out.read_text())
+
+    got = recomputed.get("point_metrics", recomputed)
+    want = published["point_metrics"]
+    for field in ("attribute_micro_f1", "attribute_field_macro_f1",
+                  "category_accuracy", "master_category_accuracy"):
+        assert got[field] == want[field], (field, got[field], want[field])
