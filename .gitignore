@@ -8,3 +8,8 @@ venv/
 
 # Restricted datasets are never committed here — rebuild from official sources.
 data/
+
+# Gold labels are never committed here. Builders rebuild them from each
+# corpus's official source under that source's own terms.
+suite/**/benchmark.jsonl
+suite/text/*.jsonl

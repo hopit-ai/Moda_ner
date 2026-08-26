@@ -47,12 +47,23 @@ def test_every_model_declares_a_release_tier():
 
 def test_crop_scorer_reproduces_the_published_headline():
     """The launch claim is that shipped predictions regenerate the published
-    numbers. If this ever fails, the claim is false and nothing should ship."""
+    numbers. If this ever fails, the claim is false and nothing should ship.
+
+    Gold labels are not committed here: they are rebuilt from the corpus's
+    official source. So this skips unless a local rebuild is present, and CI
+    runs it against a rebuilt copy.
+    """
     import json
     import subprocess
     import sys
     import tempfile
     from pathlib import Path
+
+    import pytest
+
+    gold = Path("suite/crop/benchmark.jsonl")
+    if not gold.exists():
+        pytest.skip("no local gold: run `python -m suite.crop.build_manifest` first")
 
     published = json.loads(Path("results/crop/moda-ner-v-crop/community_metrics.json").read_text())
     with tempfile.TemporaryDirectory() as tmp:

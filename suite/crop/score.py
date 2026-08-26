@@ -153,7 +153,7 @@ def summarize(
     gold_rows: list[dict[str, Any]],
     predictions: list[dict[str, Any]],
     *,
-    bootstrap_samples: int = 1000,
+    bootstrap_samples: int = 10000,
     seed: int = 42,
 ) -> dict[str, Any]:
     groups, attribute_fields = _build_group_stats(gold_rows, predictions)
@@ -203,7 +203,7 @@ def compare(
     *,
     baseline_name: str = "baseline",
     candidate_name: str = "candidate",
-    bootstrap_samples: int = 1000,
+    bootstrap_samples: int = 10000,
     seed: int = 42,
 ) -> dict[str, Any]:
     """Compare two checkpoints with an image-clustered paired bootstrap."""
