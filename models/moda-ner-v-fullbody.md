@@ -12,7 +12,7 @@ length; lower-garment length; cardigan; navel coverage; hat; glasses; neckwear; 
 accessories; wrist accessories; ring; socks or leggings. Every field can return N/A, and N/A
 is scored as a real class rather than treated as a negative.
 
-| Measure (fullbody18 track) | Best internal | Strongest external open baseline | Paired 95% CI |
+| Measure (fullbody track) | Best internal | Strongest external open baseline | Paired 95% CI |
 |---|---:|---:|---:|
 | Tier-1 macro-F1 | 0.6917 | 0.5943 | [+0.0891, +0.1053] |
 | Tier-2 N/A-F1 | 0.6637 | 0.6088 | [+0.0433, +0.0657] |

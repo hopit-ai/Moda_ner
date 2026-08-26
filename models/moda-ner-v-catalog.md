@@ -10,7 +10,7 @@ Ten field-specific supervised heads on the frozen encoder
 **Output:** category, collar, **colour**, fabric, fastening, **fit**, neckline, pattern,
 pocket, sleeve length.
 
-| | Field-macro set F1 (catalog10 track) |
+| | Field-macro set F1 (catalog track) |
 |---|---:|
 | **This released checkpoint** | **TBD at upload** |
 | Best internal checkpoint | 0.8292 |

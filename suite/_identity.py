@@ -10,8 +10,9 @@ metric, comparator, or router creates a NEW suite version. Bump SUITE_VERSION in
 the same commit as the change; never redefine an existing version in place.
 
 NAMING RULE: track and release identifiers describe the INPUT CONTRACT, never the
-source dataset. Source datasets are named only where reproduction requires it, in
-REPRODUCE.md and the per-track builder docs.
+source corpus and never its field count, which is close to a fingerprint. Source
+corpora are named only where reproduction requires it, in REPRODUCE.md and the
+per-track builder docs. Nothing here names a component of the hosted tier.
 """
 
 from __future__ import annotations
@@ -23,10 +24,10 @@ SUITE_URL = "https://github.com/hopit-ai/Moda_ner"
 
 # Track identifiers name the input contract, not the corpus behind it.
 TRACKS = {
-    "crop15": "moda-gas-crop15-v1",
-    "catalog10": "moda-gas-catalog10-v1",
-    "fullbody18": "moda-gas-fullbody18-v1",
-    "textspan13": "moda-gas-textspan13-v1",
+    "crop": "moda-gas-crop-v1",
+    "catalog": "moda-gas-catalog-v1",
+    "fullbody": "moda-gas-fullbody-v1",
+    "text": "moda-gas-text-v1",
 }
 
 # Models evaluated under this suite, by release tier.
@@ -37,8 +38,8 @@ MODELS = {
     "moda-ner-v-crop": "*",
     "moda-ner-v-catalog": "*",
     "moda-ner-v-fullbody": "*",
-    "moda-ner-t-spans": "**",
-    "moda-ner-v-router": "***",
+    "moda-ner-t": "**",
+    "moda-ner-pro": "***",
 }
 
 CITATION = f"{SUITE_NAME} ({SUITE_VERSION}), Hopit AI, {SUITE_FROZEN}. {SUITE_URL}"

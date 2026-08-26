@@ -12,7 +12,7 @@ sleeve length and shape, neckline, collar presence and style, waist, material, s
 treatment, pattern, closure. No colour, no fit; the evaluation corpus for this track carries
 no equivalent labels.
 
-| | Attribute micro-F1 (crop15 track) |
+| | Attribute micro-F1 (crop track) |
 |---|---:|
 | **This released checkpoint** | **TBD at upload** |
 | Best internal checkpoint | 0.6300 |

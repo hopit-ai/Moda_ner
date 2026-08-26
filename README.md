@@ -28,9 +28,9 @@ three frozen tracks separate rather than averaging incompatible taxonomies:
 
 | Track | Frozen test | Input contract | Covers | Known gap |
 |---|---|---|---|---|
-| **crop15** | 4,688 garment crops / 1,158 images | oracle garment crop | category hierarchy, silhouette, sleeve, neckline, collar, closure, hemline, waist, pattern, material, surface treatment | no color/fit; localization supplied |
-| **catalog10** | 9,995 catalogue images / 61,384 cells | catalogue product image | category, collar, **color**, fabric, fastening, **fit**, neckline, pattern, pocket, sleeve length | no applicability/accessories |
-| **fullbody18** | 5,000 images / 1,751 product groups | full-body image | region fabric/pattern, neckline, sleeve, lengths, accessories, explicit **N/A** | closed vocabulary |
+| **crop** | 4,688 garment crops / 1,158 images | oracle garment crop | category hierarchy, silhouette, sleeve, neckline, collar, closure, hemline, waist, pattern, material, surface treatment | no color/fit; localization supplied |
+| **catalog** | 9,995 catalogue images / 61,384 cells | catalogue product image | category, collar, **color**, fabric, fastening, **fit**, neckline, pattern, pocket, sleeve length | no applicability/accessories |
+| **fullbody** | 5,000 images / 1,751 product groups | full-body image | region fabric/pattern, neckline, sleeve, lengths, accessories, explicit **N/A** | closed vocabulary |
 
 Protocol, in one paragraph: splits and bootstrap resampling at each track's natural leakage
 unit (source image / image / product group); training, calibration, development, and test
@@ -70,8 +70,13 @@ Release tiers:
 | **MODA_NER(V) — Crop** `moda-ner-v-crop` | `*` | garment crop | MIT | 0.6300 micro-F1 |
 | **MODA_NER(V) — Catalog** `moda-ner-v-catalog` | `*` | catalogue image | CC BY-NC 4.0 | 0.8292 set-F1 |
 | **MODA_NER(V) — Full-body** `moda-ner-v-fullbody` | `*` | full-body photo | CC BY-NC 4.0 | 0.6917 T1 macro-F1 |
-| **MODA_NER(T) — Spans** `moda-ner-t-spans` | `**` | product text | MIT | 0.8723 strict-span F1 |
-| **MODA_NER(V) — Router** | `***` | declared schema | not distributed | benchmarks published |
+| **MODA_NER(T)** `moda-ner-t` | `**` | product text | MIT | 0.8723 strict-span F1 |
+| **MODA_NER Pro** | `***` | hosted | not distributed | benchmarks published |
+
+MODA_NER Pro is the hosted tier. Its benchmark numbers are published alongside everything
+else; the system itself is not distributed. In practice a Pro engagement is a model fine-tuned
+on the customer's own catalogue, which is both more accurate on their taxonomy and free of any
+research-licence dependency. [Talk to us](https://hopit.ai).
 
 Weights are heads and adapters on the already-public MIT encoder
 [`HopitAI/moda-fashion-distilled`](https://huggingface.co/HopitAI/moda-fashion-distilled).
@@ -92,9 +97,9 @@ than three you can't.
 
 | Track | Code | Weights | Status |
 |---|---|---|---|
-| crop15 | `suite/crop15/` | `moda-ner-v-crop` (MIT) | **5 Sep 2026** |
-| catalog10 | `suite/catalog10/` | `moda-ner-v-catalog` (CC BY-NC 4.0) | **10 Sep 2026** |
-| fullbody18 | `suite/fullbody18/` | `moda-ner-v-fullbody` (CC BY-NC 4.0) | **12 Sep 2026** |
+| crop | `suite/crop/` | `moda-ner-v-crop` (MIT) | **5 Sep 2026** |
+| catalog | `suite/catalog/` | `moda-ner-v-catalog` (CC BY-NC 4.0) | **10 Sep 2026** |
+| fullbody | `suite/fullbody/` | `moda-ner-v-fullbody` (CC BY-NC 4.0) | **12 Sep 2026** |
 
 Until all three land, the conjunctive claim above is only partly checkable from this repo.
 The frozen results for every track are published regardless — what arrives on the dates
