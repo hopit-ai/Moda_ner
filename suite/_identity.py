@@ -3,10 +3,15 @@
 Any scorer in this repository prints the banner and stamps its result payload.
 The point is propagation: a number pasted out of a result JSON should still say
 which suite and which version produced it, months later and three hands away.
+That is also how this work gets credited when a result travels without its post.
 
 VERSIONING RULE (from the frozen protocol): any change to data, split, taxonomy,
 metric, comparator, or router creates a NEW suite version. Bump SUITE_VERSION in
 the same commit as the change; never redefine an existing version in place.
+
+NAMING RULE: track and release identifiers describe the INPUT CONTRACT, never the
+source dataset. Source datasets are named only where reproduction requires it, in
+REPRODUCE.md and the per-track builder docs.
 """
 
 from __future__ import annotations
@@ -16,18 +21,27 @@ SUITE_VERSION = "v1"
 SUITE_FROZEN = "2026-08-24"
 SUITE_URL = "https://github.com/hopit-ai/Moda_ner"
 
-# Track identifiers. The Fashionpedia id matches the frozen internal release
-# name; the other two are reconciled against their frozen release names during
-# the suite port and must not drift afterwards.
+# Track identifiers name the input contract, not the corpus behind it.
 TRACKS = {
-    "fashionpedia_moda15": "fashionpedia-2020-val-moda-oracle-crop-v1",
-    "shopping100k_10": "shopping100k-10-blind-v1",
-    "dfmm18": "dfmm18-fresh-shadow-v1",
+    "crop15": "moda-gas-crop15-v1",
+    "catalog10": "moda-gas-catalog10-v1",
+    "fullbody18": "moda-gas-fullbody18-v1",
+    "textspan13": "moda-gas-textspan13-v1",
 }
 
-CITATION = (
-    f"{SUITE_NAME} ({SUITE_VERSION}), Hopit AI, {SUITE_FROZEN}. {SUITE_URL}"
-)
+# Models evaluated under this suite, by release tier.
+#   "*"   open code + open weights
+#   "**"  open weights only, code closed
+#   "***" closed code + closed weights, benchmarks published
+MODELS = {
+    "moda-ner-v-crop": "*",
+    "moda-ner-v-catalog": "*",
+    "moda-ner-v-fullbody": "*",
+    "moda-ner-t-spans": "**",
+    "moda-ner-v-router": "***",
+}
+
+CITATION = f"{SUITE_NAME} ({SUITE_VERSION}), Hopit AI, {SUITE_FROZEN}. {SUITE_URL}"
 
 
 def banner(track: str | None = None) -> str:
@@ -63,3 +77,8 @@ def markdown_footer(track: str | None = None) -> str:
     """Attribution line appended under any table a scorer renders."""
     t = f" — {TRACKS.get(track, track)}" if track else ""
     return f"_Scored with [{SUITE_NAME} {SUITE_VERSION}]({SUITE_URL}){t}._"
+
+
+def tier(model: str) -> str:
+    """Release-tier marker for a model name; empty string if unknown."""
+    return MODELS.get(model, "")
