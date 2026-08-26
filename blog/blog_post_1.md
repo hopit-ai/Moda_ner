@@ -23,7 +23,7 @@ For example:
 
 - Fashionpedia has detailed expert labels for garments, but does not cover colour or fit.
 - Shopping100k includes colour and fit, but uses catalogue photos and cannot express that a field does not apply.
-- DeepFashion-MultiModal (DFMM) includes full-body photos and has an explicit “not applicable” label, but uses its own fixed set of terms.
+- DeepFashion-MultiModal (DFMM) includes full-body photos and has an explicit "not applicable" label, but uses its own fixed set of terms.
 - General vision-language benchmarks usually test captioning or visual question answering. They do not test the structured product data a retailer needs.
 
 We could have forced these datasets into one shared label system and published one impressive number. But that would hide important trade-offs. A model that performs well on clean product images but poorly on street photos could still look good after everything is averaged together.
@@ -49,21 +49,21 @@ The suite has four main pieces.
 
 **Fixed test definitions.** For every track, we fix the data version, test IDs, allowed answers, accepted alternate spellings, scoring rules, and random seed. This is a contract: it defines what a model will see and how its answer will be judged.
 
-**Builders for the test data.** We cannot redistribute some source datasets. Users download them from the original source under that source’s terms. Our builders then recreate the exact test split using IDs and checksums. If a local copy does not match the expected version, the process stops instead of quietly producing a different test.
+**Builders for the test data.** We do not ship gold labels, on any track. Users obtain each dataset from its original source under that source's terms, and our builders then recreate the exact test split using IDs and checksums. If a local copy does not match the expected version, the process stops instead of quietly producing a different test. What we do ship is the protocol, the scorers, and our own prediction files, which is what lets you recompute our numbers once you have the data.
 
-The `text` track is different because we created its labels. Its data ships directly in the repository, so it can run without an external download. We publish the test and our score, but not the model checkpoint behind that score.
+The `text` track differs in one way: we created its labels, so instead of pointing at a third-party corpus its builder regenerates them from their public sources. We publish the test and our score on it, but not the model checkpoint behind that score.
 
 **Strict scoring.** Each track has a scorer that checks every expected row and reports problems instead of ignoring them. We also calculate a range around every comparison, so readers can see whether an apparent improvement is likely to be real.
 
 **Published evidence.** We publish the prediction files, their SHA-256 hashes, and the results for all systems we evaluate. That includes runs we lost. The goal is to let others check the numbers, not simply take our word for them.
 
-There are 147 targeted tests in the suite. Most were added after an earlier version exposed a way we could have fooled ourselves.
+The suite ships with its own tests, including one that re-scores our published predictions and fails if they stop reproducing the number we published. Most of the others exist because an earlier version of the evaluation exposed a way we could have fooled ourselves.
 
 ## Why this mattered to us
 
 We did not start with a perfect evaluation process. Like many teams, we started with models.
 
-Our first serious system used Florence-2 to produce a JSON object containing all of a garment’s attributes. It was promising enough that we trained it again. Recall changed only a little, from 0.6013 to 0.5885. Looking only at a blended number, that might have seemed close enough to ship.
+Our first serious system used Florence-2 to produce a JSON object containing all of a garment's attributes. It was promising enough that we trained it again. Recall changed only a little, from 0.6013 to 0.5885. Looking only at a blended number, that might have seemed close enough to ship.
 
 But precision dropped from 0.5661 to 0.3158.
 
@@ -71,7 +71,7 @@ In plain terms, the updated model had started guessing much more often. It still
 
 That taught us two things.
 
-First, asking one autoregressive model to generate every field in a single sequence was a poor fit for the task. It linked attributes that should be independent, made rare labels easier to miss, and gave the model no clean way to say “this does not apply.” We moved to separate conditional heads with an explicit applicability decision.
+First, asking one autoregressive model to generate every field in a single sequence was a poor fit for the task. It linked attributes that should be independent, made rare labels easier to miss, and gave the model no clean way to say "this does not apply." We moved to separate conditional heads with an explicit applicability decision.
 
 Second, we stopped improving the model for a while and improved the way we measured it.
 
@@ -88,8 +88,8 @@ The process has five steps.
 Before an evaluation begins, we create a manifest: a file that records the dataset version, checksums, records, groups, allowed answers, rules, metric, and seed.
 
 ```
-python -m suite.fullbody.build_manifest --source <your local copy>
-# manifest: 5,000 test images, 1,751 product groups, 18 fields, sha256=...
+python -m suite.crop.build_manifest --source <your local copy>
+# manifest: 4,688 garment crops, 1,158 source images, 15 fields, sha256=...
 ```
 
 This is not glamorous, but it prevents the target from shifting while we are measuring it.
@@ -109,8 +109,8 @@ Training chooses model weights. Calibration chooses decision thresholds. Develop
 The model receives the images and the expected schema, but not the labels. When its run finishes, we hash the prediction file before scoring it.
 
 ```
-python -m suite.fullbody.commit --predictions preds.jsonl
-# committed: preds.jsonl  sha256=9f3a...  rows=5000
+python -m suite.crop.commit --predictions preds.jsonl
+# committed: preds.jsonl  sha256=9f3a...  rows=4688
 ```
 
 This creates a record of the exact predictions that were scored. Neither we nor anyone else can swap in a better file after seeing the answers.
@@ -119,7 +119,7 @@ This creates a record of the exact predictions that were scored. Neither we nor 
 
 The scorer stops or reports an error if a row is missing, duplicated, unexpected, or contains an unsupported value. It does not quietly remove difficult cases.
 
-It also distinguishes “wrong” from “not visible.” If a photograph cuts off a garment’s waist, predicting `waist: N/A` should not count as an error. The tracks handle this in ways that fit their labels: `crop` evaluates applicability separately where needed, `catalog` ignores fields that were never labelled, and `fullbody` treats N/A as a real answer that can be scored.
+It also distinguishes "wrong" from "not visible." If a photograph cuts off a garment's waist, predicting `waist: N/A` should not count as an error. The tracks handle this in ways that fit their labels: `crop` evaluates applicability separately where needed, `catalog` ignores fields that were never labelled, and `fullbody` treats N/A as a real answer that can be scored.
 
 Without this rule, a model could confidently invent attributes for every garment and appear better than it is.
 
@@ -171,7 +171,7 @@ The claim these results support is deliberately narrow:
 
 This does not mean we are world-best, universally state of the art, human-level, or ready for every production case. It means exactly what the benchmark measured.
 
-Some fields are still weak. On Fashionpedia, material reaches 0.4148 value-F1. On Shopping100k, fabric reaches 0.6693 and fit 0.6708. Collar style, neckline, and rare “not applicable” cases also need work. Passing every track does not mean every attribute is production-ready.
+Some fields are still weak. On `crop`, material reaches 0.4148 value-F1. On `catalog`, fabric reaches 0.6693 and fit 0.6708. Collar style, neckline, and rare "not applicable" cases also need work. Passing every track does not mean every attribute is production-ready.
 
 ## A limitation our own tests missed
 
@@ -179,11 +179,11 @@ The most important recent problem came from outside the suite.
 
 On an independently human-labelled set of 1,110 images that nobody on our team had worked on, our model scored 0.7169. FashionCLIP scored 0.6605, and the difference was clearly positive.
 
-But our production composite route scored only 0.5764 on the same images—about 14 points lower.
+But our production composite route scored only 0.5764 on the same images, about 14 points lower.
 
 This was not a model regression. The external dataset divided neckline categories differently, and our mapping between the two label systems removed an important distinction. Our internal benchmark could not reveal this because its labels were internally consistent. Independent labels could.
 
-This is the limit of any internal benchmark: it can measure the system it defines carefully, but it cannot prove that its label system matches every retailer’s or every real-world use case.
+This is the limit of any internal benchmark: it can measure the system it defines carefully, but it cannot prove that its label system matches every retailer's or every real-world use case.
 
 ## What we will improve next
 
@@ -205,9 +205,9 @@ Our approach is simple: open the ruler; sell what the ruler measures.
 
 We will publish the protocol, splits, scorers, uncertainty code, prediction files, and hashes, including losing runs. A benchmark that no one else can run is just an opinion with a table beside it. It becomes useful when other people can inspect it, challenge it, and improve on it.
 
-What stays closed is the work produced when we apply that process to a particular customer: field-level thresholds, model-routing logic, and mappings to a retailer’s own taxonomy. Those are data-specific decisions and part of what a customer is paying us to build.
+What stays closed is the work produced when we apply that process to a particular customer: field-level thresholds, model-routing logic, and mappings to a retailer's own taxonomy. Those are data-specific decisions and part of what a customer is paying us to build.
 
-Two of the four tracks use research-only datasets. Any weights trained on those data are non-commercial, and we will respect that restriction. Those exact weights are not used in our paid product. The materials needed to reproduce the evaluation—protocols, scorers, splits, and prediction files—do not have the same restriction.
+Two of the four tracks use research-only datasets. Any weights trained on those data are non-commercial, and we will respect that restriction. Those exact weights are not used in our paid product. The materials needed to reproduce the evaluation - protocols, scorers, splits, and prediction files - do not have the same restriction.
 
 ## What you can download
 
@@ -219,8 +219,8 @@ For `catalog` and `fullbody`, the published weights are non-commercial because t
 
 Freeze your checkpoint. Create predictions without seeing the labels. Commit the prediction hash. Score each track. Report the paired uncertainty interval against our published predictions.
 
-The suite will open one track at a time: `crop` first, followed by `catalog`, `fullbody`, and `text` during the following week. Check the repository’s availability table to see what can be run today.
+The suite opens one track at a time, starting with `crop`. The others follow as their builders and prediction files are published. Check the repository's availability table for what can be run today rather than assuming everything in this post is ready.
 
 If another team beats us under this protocol, we want to know. The alternative is learning about a problem from a customer after a taxonomy mismatch has quietly removed fourteen points from a production route. We have had enough versions of that conversation to know that evaluation is not overhead. It is how we keep the unknowns visible.
 
-*Next: what a benchmark win does not tell you—independent human gold, the neckline taxonomy mismatch, and why our production system is calibrated on none of the public data.*
+*Next: what a benchmark win does not tell you - independent human gold, the neckline taxonomy mismatch, and why our production system is calibrated on none of the public data.*
