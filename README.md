@@ -108,13 +108,13 @@ than three you can't.
 | crop | `suite/crop/` | `moda-ner-v-crop` (MIT) | **5 Sep 2026** |
 | catalog | `suite/catalog/` | `moda-ner-v-catalog` (CC BY-NC 4.0) | **10 Sep 2026** |
 | fullbody | `suite/fullbody/` | `moda-ner-v-fullbody` (CC BY-NC 4.0) | **12 Sep 2026** |
-| text | `suite/text/` | none — model not distributed | **14 Sep 2026** |
+| text | `suite/text/` | none — model not distributed | scorer now; builder pending |
 
-The text track is the odd one out in two ways. Its labels are ours rather than a third
-party's, so the splits ship in this repository directly and it runs with no external dataset
-acquisition — it is the easiest way to try the suite. And no model ships alongside it: we
-publish the benchmark and our number on it, and keep the checkpoint. If you want to beat
-0.8723 on span extraction, the track is right there.
+No gold labels are committed here, on any track. Each track's builder reconstructs its split
+from the corpus's official source, under that source's own terms, so you obtain the data and
+we supply the protocol, the scorers and our predictions. The text track is the odd one out in
+one respect: no model ships alongside it. We publish the benchmark and our number on it, and
+keep the checkpoint.
 
 Until the image tracks land, the conjunctive claim above is only partly checkable from this
 repo.
