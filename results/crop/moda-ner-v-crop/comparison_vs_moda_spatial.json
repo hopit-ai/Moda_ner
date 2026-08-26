@@ -1,0 +1,83 @@
+{
+  "protocol": "Fashionpedia 2020 val; official boxes; MODA mapping; oracle crops",
+  "rows": 4688,
+  "unique_image_groups": 1158,
+  "baseline_name": "moda-distilled-spatial-residual-full130k-e1",
+  "candidate_name": "moda-distilled-spatial-teacher-distill-full130k-e1",
+  "baseline_point_metrics": {
+    "category_accuracy": 0.8812,
+    "master_category_accuracy": 0.9172,
+    "attribute_micro_precision": 0.6102,
+    "attribute_micro_recall": 0.6395,
+    "attribute_micro_f1": 0.6245,
+    "attribute_field_macro_f1": 0.603
+  },
+  "candidate_point_metrics": {
+    "category_accuracy": 0.8825,
+    "master_category_accuracy": 0.9215,
+    "attribute_micro_precision": 0.6187,
+    "attribute_micro_recall": 0.6418,
+    "attribute_micro_f1": 0.63,
+    "attribute_field_macro_f1": 0.6074
+  },
+  "candidate_minus_baseline": {
+    "category_accuracy": 0.0013,
+    "master_category_accuracy": 0.0043,
+    "attribute_micro_precision": 0.0085,
+    "attribute_micro_recall": 0.0024,
+    "attribute_micro_f1": 0.0055,
+    "attribute_field_macro_f1": 0.0044
+  },
+  "paired_cluster_bootstrap_delta_95ci": {
+    "category_accuracy": {
+      "low": -0.0017,
+      "high": 0.0044
+    },
+    "master_category_accuracy": {
+      "low": 0.0013,
+      "high": 0.0073
+    },
+    "attribute_micro_precision": {
+      "low": 0.0052,
+      "high": 0.0118
+    },
+    "attribute_micro_recall": {
+      "low": -0.0006,
+      "high": 0.0055
+    },
+    "attribute_micro_f1": {
+      "low": 0.0027,
+      "high": 0.0085
+    },
+    "attribute_field_macro_f1": {
+      "low": 0.0002,
+      "high": 0.009
+    }
+  },
+  "bootstrap_probability_candidate_better": {
+    "category_accuracy": 0.776,
+    "master_category_accuracy": 0.9974,
+    "attribute_micro_precision": 1.0,
+    "attribute_micro_recall": 0.9345,
+    "attribute_micro_f1": 0.9999,
+    "attribute_field_macro_f1": 0.9796
+  },
+  "bootstrap_samples": 10000,
+  "per_field_value_f1_delta": {
+    "category": 0.0013,
+    "closure_type": 0.0015,
+    "collar_presence": 0.0068,
+    "collar_style": 0.0035,
+    "hemline": 0.0094,
+    "master_category": 0.0043,
+    "material": -0.0038,
+    "neckline": -0.0026,
+    "pattern": 0.003,
+    "silhouette": 0.0038,
+    "sleeve_length": 0.0004,
+    "sleeve_shape": 0.0033,
+    "sub_category": 0.0073,
+    "surface_treatment": 0.0175,
+    "waist_type": 0.0075
+  }
+}

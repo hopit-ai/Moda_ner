@@ -3,7 +3,7 @@
   "rows": 4688,
   "unique_image_groups": 1158,
   "baseline_name": "fashionsiglip-spatial-residual-full130k-e1",
-  "candidate_name": "moda-distilled-spatial-residual-full130k-e1",
+  "candidate_name": "moda-distilled-spatial-teacher-distill-full130k-e1",
   "baseline_point_metrics": {
     "category_accuracy": 0.8791,
     "master_category_accuracy": 0.913,
@@ -13,71 +13,71 @@
     "attribute_field_macro_f1": 0.6093
   },
   "candidate_point_metrics": {
-    "category_accuracy": 0.8812,
-    "master_category_accuracy": 0.9172,
-    "attribute_micro_precision": 0.6102,
-    "attribute_micro_recall": 0.6395,
-    "attribute_micro_f1": 0.6245,
-    "attribute_field_macro_f1": 0.603
+    "category_accuracy": 0.8825,
+    "master_category_accuracy": 0.9215,
+    "attribute_micro_precision": 0.6187,
+    "attribute_micro_recall": 0.6418,
+    "attribute_micro_f1": 0.63,
+    "attribute_field_macro_f1": 0.6074
   },
   "candidate_minus_baseline": {
-    "category_accuracy": 0.0021,
-    "master_category_accuracy": 0.0043,
-    "attribute_micro_precision": 0.0016,
-    "attribute_micro_recall": -0.0016,
-    "attribute_micro_f1": 0.0001,
-    "attribute_field_macro_f1": -0.0063
+    "category_accuracy": 0.0034,
+    "master_category_accuracy": 0.0085,
+    "attribute_micro_precision": 0.01,
+    "attribute_micro_recall": 0.0007,
+    "attribute_micro_f1": 0.0056,
+    "attribute_field_macro_f1": -0.0019
   },
   "paired_cluster_bootstrap_delta_95ci": {
     "category_accuracy": {
-      "low": -0.004,
-      "high": 0.0084
+      "low": -0.003,
+      "high": 0.0098
     },
     "master_category_accuracy": {
-      "low": -0.0017,
-      "high": 0.0102
+      "low": 0.0027,
+      "high": 0.0144
     },
     "attribute_micro_precision": {
-      "low": -0.003,
-      "high": 0.006
+      "low": 0.0054,
+      "high": 0.0146
     },
     "attribute_micro_recall": {
-      "low": -0.0062,
-      "high": 0.0028
+      "low": -0.0039,
+      "high": 0.0053
     },
     "attribute_micro_f1": {
-      "low": -0.0041,
-      "high": 0.004
+      "low": 0.0014,
+      "high": 0.0097
     },
     "attribute_field_macro_f1": {
-      "low": -0.0122,
-      "high": -0.0006
+      "low": -0.0077,
+      "high": 0.004
     }
   },
   "bootstrap_probability_candidate_better": {
-    "category_accuracy": 0.7374,
-    "master_category_accuracy": 0.9156,
-    "attribute_micro_precision": 0.753,
-    "attribute_micro_recall": 0.2279,
-    "attribute_micro_f1": 0.5056,
-    "attribute_field_macro_f1": 0.0159
+    "category_accuracy": 0.8443,
+    "master_category_accuracy": 0.9974,
+    "attribute_micro_precision": 1.0,
+    "attribute_micro_recall": 0.621,
+    "attribute_micro_f1": 0.9947,
+    "attribute_field_macro_f1": 0.269
   },
   "bootstrap_samples": 10000,
   "per_field_value_f1_delta": {
-    "category": 0.0021,
-    "closure_type": 0.0008,
-    "collar_presence": -0.0009,
-    "collar_style": -0.0355,
-    "hemline": 0.0005,
-    "master_category": 0.0042,
-    "material": -0.0495,
-    "neckline": -0.0114,
-    "pattern": 0.0035,
-    "silhouette": -0.0061,
-    "sleeve_length": -0.001,
-    "sleeve_shape": 0.0067,
-    "sub_category": 0.0151,
-    "surface_treatment": -0.0019,
-    "waist_type": -0.0022
+    "category": 0.0034,
+    "closure_type": 0.0023,
+    "collar_presence": 0.0059,
+    "collar_style": -0.032,
+    "hemline": 0.0099,
+    "master_category": 0.0085,
+    "material": -0.0533,
+    "neckline": -0.014,
+    "pattern": 0.0065,
+    "silhouette": -0.0023,
+    "sleeve_length": -0.0006,
+    "sleeve_shape": 0.01,
+    "sub_category": 0.0224,
+    "surface_treatment": 0.0156,
+    "waist_type": 0.0053
   }
 }
