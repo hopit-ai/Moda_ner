@@ -1,0 +1,81 @@
+{
+  "aggregation_device": "cpu",
+  "cluster_order": "lexicographic",
+  "clusters": 1751,
+  "comparator": "fashionclip",
+  "confidence": 0.95,
+  "confidence_intervals": {
+    "delta_reference_minus_comparator": {
+      "tier1_macro_f1": {
+        "lower": 0.089141,
+        "upper": 0.105315
+      },
+      "tier2_na_f1": {
+        "lower": 0.043276,
+        "upper": 0.065695
+      },
+      "tier3_visible_macro_f1": {
+        "lower": 0.072296,
+        "upper": 0.09046
+      }
+    },
+    "fashionclip": {
+      "tier1_macro_f1": {
+        "lower": 0.586679,
+        "upper": 0.600038
+      },
+      "tier2_na_f1": {
+        "lower": 0.593861,
+        "upper": 0.623588
+      },
+      "tier3_visible_macro_f1": {
+        "lower": 0.488917,
+        "upper": 0.503049
+      }
+    },
+    "moda_v7": {
+      "tier1_macro_f1": {
+        "lower": 0.681229,
+        "upper": 0.699691
+      },
+      "tier2_na_f1": {
+        "lower": 0.647794,
+        "upper": 0.678759
+      },
+      "tier3_visible_macro_f1": {
+        "lower": 0.567104,
+        "upper": 0.58701
+      }
+    }
+  },
+  "iterations": 10000,
+  "method": "paired_nonparametric_product_cluster_bootstrap_percentile",
+  "point_estimates": {
+    "delta_reference_minus_comparator": {
+      "tier1_macro_f1": 0.097373,
+      "tier2_na_f1": 0.054883,
+      "tier3_visible_macro_f1": 0.081649
+    },
+    "fashionclip": {
+      "tier1_macro_f1": 0.594298,
+      "tier2_na_f1": 0.608772,
+      "tier3_visible_macro_f1": 0.49686
+    },
+    "moda_v7": {
+      "tier1_macro_f1": 0.691671,
+      "tier2_na_f1": 0.663655,
+      "tier3_visible_macro_f1": 0.578509
+    }
+  },
+  "reference": "moda_v7",
+  "reference_win_probability": {
+    "tier1_macro_f1": 1.0,
+    "tier2_na_f1": 1.0,
+    "tier3_visible_macro_f1": 1.0
+  },
+  "rows": 5000,
+  "sampling_backend": "numpy.PCG64",
+  "sampling_unit": "product_group_id",
+  "seed": 20260810,
+  "tf32_disabled_for_exact_counts": false
+}

@@ -105,9 +105,9 @@ than three you can't.
 
 | Track | Code | Weights | Status |
 |---|---|---|---|
-| crop | `suite/crop/` | `moda-ner-v-crop` (MIT) | **5 Sep 2026** |
-| catalog | `suite/catalog/` | `moda-ner-v-catalog` (CC BY-NC 4.0) | **10 Sep 2026** |
-| fullbody | `suite/fullbody/` | `moda-ner-v-fullbody` (CC BY-NC 4.0) | **12 Sep 2026** |
+| crop | `suite/crop/` | `moda-ner-v-crop` (MIT) | ready — reproduces 0.6300 |
+| catalog | `suite/catalog/` | `moda-ner-v-catalog` (CC BY-NC 4.0) | ready — reproduces 0.829235 |
+| fullbody | `suite/fullbody/` | `moda-ner-v-fullbody` (CC BY-NC 4.0) | predictions and scores ready; scorer extraction pending |
 | text | `suite/text/` | none — model not distributed | scorer now; builder pending |
 
 No gold labels are committed here, on any track. Each track's builder reconstructs its split

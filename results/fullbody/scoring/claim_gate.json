@@ -1,0 +1,14 @@
+{
+  "general_suite_dfmm_gate_passed": true,
+  "passed": true,
+  "promotion_rule": "lower_95_percent_moda_minus_fashionclip_above_zero_on_all_three_tiers",
+  "protocol": "dfmm-fresh-product-shadow-v1",
+  "publish_negative_or_inconclusive_result": true,
+  "release_id": "dfmm-fresh-product-shadow5k-v1-20260810",
+  "tier_pass": {
+    "tier1_macro_f1": true,
+    "tier2_na_f1": true,
+    "tier3_visible_macro_f1": true
+  },
+  "unrestricted_universal_state_of_the_art_claim_allowed": false
+}

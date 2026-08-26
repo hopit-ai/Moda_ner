@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "bytes": 10240128,
+      "path": "fashionclip_embeddings.npy",
+      "sha256": "b61ec45eaee2c3a5d37885c94ca575aee916f716a8c8813979eadbdc70633d50"
+    },
+    {
+      "bytes": 2082,
+      "path": "inference_summary.json",
+      "sha256": "843929a8c3c7f08525ef7a98958687f265278f3584e32fb5121c21500cf095a3"
+    },
+    {
+      "bytes": 15360128,
+      "path": "moda_embeddings.npy",
+      "sha256": "1ea3c2a2d6774d8e141cba37cd2872df78db0dd3a2b937b84393ccd617c580e1"
+    },
+    {
+      "bytes": 2437788,
+      "path": "predictions/fashionclip.jsonl",
+      "sha256": "ad485cf79e35acaeeca7c01ca608df3a92404fca3b38565901b7c2301aeeb7f3"
+    },
+    {
+      "bytes": 2434357,
+      "path": "predictions/moda_v7.jsonl",
+      "sha256": "feebc81e180f9a44fa97f8ae8009bc7e75f69b9898b99c792a2a75edeb1d96fd"
+    }
+  ]
+}
