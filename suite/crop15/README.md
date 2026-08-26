@@ -1,1 +1,1 @@
-# fashionpedia_moda15 — suite code lands week of 1 Sep 2026 (manifest builder, scorer, bootstrap, frozen predictions). Layout placeholder.
+# crop15 — suite code lands per the availability table in README. Layout placeholder.

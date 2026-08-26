@@ -76,7 +76,7 @@ The workflow has five steps.
 Before a model runs, the track builder pins the dataset version, checksums, records, groups, split roles, output vocabulary, aliases, labeling rules, metric, bootstrap method, and seed.
 
 ```
-python -m suite.dfmm18.build_manifest --source data/dfmm
+python -m suite.fullbody18.build_manifest --source data/dfmm
 # manifest: 5,000 test images, 1,751 product groups, 18 fields, sha256=...
 ```
 
@@ -97,7 +97,7 @@ Training selects weights. Calibration selects thresholds. Development selects ch
 Inference receives images and the schema, but never the labels. When it finishes, the prediction file is hashed before scoring.
 
 ```
-python -m suite.dfmm18.commit --predictions preds.jsonl
+python -m suite.fullbody18.commit --predictions preds.jsonl
 # committed: preds.jsonl  sha256=9f3a...  rows=5000
 ```
 

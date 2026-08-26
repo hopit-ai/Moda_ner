@@ -8,8 +8,8 @@ headline number from the shipped prediction files.
 Per-track quickstarts will follow the pattern:
 
 ```bash
-python -m suite.fashionpedia_moda15.build_manifest --source data/fashionpedia  # you download the source
-python -m suite.fashionpedia_moda15.score --predictions results/fashionpedia/moda_predictions.jsonl
+python -m suite.crop15.build_manifest --source <your local copy>
+python -m suite.crop15.score --predictions results/crop15/moda_predictions.jsonl
 ```
 
 ## Provenance stamping (contract for the port)
@@ -30,3 +30,19 @@ guards the contract.
 Bump `SUITE_VERSION` in `suite/_identity.py` in the same commit as any change to
 data, split, taxonomy, metric, comparator, or router. Never redefine a version in
 place.
+
+## Source corpora
+
+Track identifiers everywhere else in this repository describe the input contract rather than
+the corpus behind it. This file is the exception, because a manifest builder cannot
+reconstruct a split without knowing what to build it from.
+
+| Track | Source | Obtain from | Terms |
+|---|---|---|---|
+| `crop15` | Fashionpedia | fashionpedia.github.io | Annotations CC BY 4.0. **Attribution required:** Jia et al., ECCV 2020 |
+| `catalog10` | Shopping100k | on request from the dataset authors | Academic / non-commercial research only |
+| `fullbody18` | DeepFashion-MultiModal | github.com/yumingj/DeepFashion-MultiModal | Non-commercial research only, extends to derived data |
+| `textspan13` | mixed public fashion catalogues | see the track README | Per-source; all permissive |
+
+We evaluate against these corpora and say so. We do not redistribute them, and no model name
+in this repository is derived from one.

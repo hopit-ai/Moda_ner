@@ -28,9 +28,9 @@ three frozen tracks separate rather than averaging incompatible taxonomies:
 
 | Track | Frozen test | Input contract | Covers | Known gap |
 |---|---|---|---|---|
-| **Fashionpedia MODA-15** | 4,688 garment crops / 1,158 images | oracle garment crop | category hierarchy, silhouette, sleeve, neckline, collar, closure, hemline, waist, pattern, material, surface treatment | no color/fit; localization supplied |
-| **Shopping100k-10** | 9,995 catalog images / 61,384 cells | catalog product image | category, collar, **color**, fabric, fastening, **fit**, neckline, pattern, pocket, sleeve length | no applicability/accessories |
-| **DFMM-18 fresh shadow** | 5,000 images / 1,751 product groups | full-body image | region fabric/pattern, neckline, sleeve, lengths, accessories, explicit **N/A** | closed vocabulary |
+| **crop15** | 4,688 garment crops / 1,158 images | oracle garment crop | category hierarchy, silhouette, sleeve, neckline, collar, closure, hemline, waist, pattern, material, surface treatment | no color/fit; localization supplied |
+| **catalog10** | 9,995 catalogue images / 61,384 cells | catalogue product image | category, collar, **color**, fabric, fastening, **fit**, neckline, pattern, pocket, sleeve length | no applicability/accessories |
+| **fullbody18** | 5,000 images / 1,751 product groups | full-body image | region fabric/pattern, neckline, sleeve, lengths, accessories, explicit **N/A** | closed vocabulary |
 
 Protocol, in one paragraph: splits and bootstrap resampling at each track's natural leakage
 unit (source image / image / product group); training, calibration, development, and test
@@ -54,20 +54,34 @@ does not make every attribute production-perfect.
 
 ## Released models
 
-Weights are heads/adapters on the already-public MIT encoder
-[`HopitAI/moda-fashion-distilled`](https://huggingface.co/HopitAI/moda-fashion-distilled).
-The released checkpoints are strong open baselines; our best internal checkpoints stay in
-the hosted tier, and each model card states BOTH numbers so nothing is implied.
+Two families. **MODA_NER(V)** works on images, **MODA_NER(T)** on product text. Names describe
+the input contract, never the corpus a model was measured against.
 
-| Route | HF model | Weight license | Released ckpt score | Best internal |
+Release tiers:
+
+```
+*     open code + open weights
+**    open weights only, code closed
+***   closed code + closed weights, benchmarks published
+```
+
+| Model | Tier | Input | Weights | Best internal |
 |---|---|---|---|---|
-| Fashionpedia MODA-15 | `HopitAI/moda-ner-fashionpedia15` | MIT | see card | 0.6300 micro-F1 |
-| Shopping100k-10 | `HopitAI/moda-ner-shopping100k10` | CC BY-NC 4.0 | see card | 0.8292 set-F1 |
-| DFMM-18 | `HopitAI/moda-ner-dfmm18` | CC BY-NC 4.0 | see card | 0.6917 T1 macro-F1 |
+| **MODA_NER(V) — Crop** `moda-ner-v-crop` | `*` | garment crop | MIT | 0.6300 micro-F1 |
+| **MODA_NER(V) — Catalog** `moda-ner-v-catalog` | `*` | catalogue image | CC BY-NC 4.0 | 0.8292 set-F1 |
+| **MODA_NER(V) — Full-body** `moda-ner-v-fullbody` | `*` | full-body photo | CC BY-NC 4.0 | 0.6917 T1 macro-F1 |
+| **MODA_NER(T) — Spans** `moda-ner-t-spans` | `**` | product text | MIT | 0.8723 strict-span F1 |
+| **MODA_NER(V) — Router** | `***` | declared schema | not distributed | benchmarks published |
 
-CC BY-NC routes: the underlying datasets (Shopping100k, DeepFashion-MultiModal) are
-non-commercial research resources; the weight license honors that, and it binds us too —
-these weights are not part of Hopit's hosted product.
+Weights are heads and adapters on the already-public MIT encoder
+[`HopitAI/moda-fashion-distilled`](https://huggingface.co/HopitAI/moda-fashion-distilled).
+Where a published checkpoint is not our strongest, the model card states both figures.
+
+**On the non-commercial routes.** Two tracks are evaluated against research-only corpora whose
+terms do not permit commercial use of models trained on them. We honour that, and it binds us
+too: those weights are not in Hopit's hosted product. For production we fine-tune on the
+customer's own catalogue, which raises accuracy on their taxonomy and yields a model with no
+dependency on research-licensed data.
 
 ## What's available, and when
 
@@ -78,9 +92,9 @@ than three you can't.
 
 | Track | Code | Weights | Status |
 |---|---|---|---|
-| Fashionpedia MODA-15 | `suite/fashionpedia_moda15/` | `moda-ner-fashionpedia15` (MIT) | **5 Sep 2026** |
-| Shopping100k-10 | `suite/shopping100k_10/` | `moda-ner-shopping100k10` (CC BY-NC 4.0) | **10 Sep 2026** |
-| DFMM-18 | `suite/dfmm18/` | `moda-ner-dfmm18` (CC BY-NC 4.0) | **12 Sep 2026** |
+| crop15 | `suite/crop15/` | `moda-ner-v-crop` (MIT) | **5 Sep 2026** |
+| catalog10 | `suite/catalog10/` | `moda-ner-v-catalog` (CC BY-NC 4.0) | **10 Sep 2026** |
+| fullbody18 | `suite/fullbody18/` | `moda-ner-v-fullbody` (CC BY-NC 4.0) | **12 Sep 2026** |
 
 Until all three land, the conjunctive claim above is only partly checkable from this repo.
 The frozen results for every track are published regardless — what arrives on the dates
@@ -88,11 +102,13 @@ above is your ability to verify them yourself.
 
 ## Reproduce
 
-Restricted datasets are never redistributed here. `suite/` ships manifest builders, ID
-lists, vocabularies, scorers, and our frozen prediction files with SHA-256 commitments;
-gold labels are rebuilt from each dataset's official source by you. See `REPRODUCE.md`.
+Restricted corpora are never redistributed here. `suite/` ships manifest builders, ID lists,
+vocabularies, scorers, and our frozen prediction files with SHA-256 commitments; gold labels
+are rebuilt by you from each corpus's official source under its own terms. The sources are
+identified in `REPRODUCE.md`, which is the one place we name them, because a builder cannot
+work without knowing what to build from.
 
-## Citing
+## Citing and credit
 
 `CITATION.cff` in this repository has the machine-readable entry; GitHub's "Cite
 this repository" button reads it directly. Every scorer also stamps its output
@@ -103,7 +119,12 @@ with the suite name and version, so a result file carries its own provenance:
   "version": "v1", "frozen": "2026-08-24", "track": "fashionpedia-2020-val-moda-oracle-crop-v1"}}
 ```
 
-A paper describing the suite is in preparation.
+If you report a number produced by this suite, cite it. Both weight licences we use carry an
+attribution term (MIT requires the notice; CC BY-NC requires credit), and every scorer stamps
+the suite name and version into its output so a result stays attributable after it is copied
+out of context.
+
+A paper describing the suite is in preparation, and will become the preferred citation.
 
 ## Compare your model
 
