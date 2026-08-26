@@ -5,23 +5,17 @@
 *Series: Fashion attribute extraction from images*
 *Sibling series: [Building a fashion search engine from scratch](https://github.com/hopit-ai/Moda)*
 
-When a computer looks at a fashion image, we want it to return useful facts: what the garment is, its colour, sleeve length, neckline, fit, pattern, and material.
+When a computer looks at a fashion image, we want structured facts back: what the garment is, its colour, sleeve length, neckline, fit, pattern, material. Those facts feed catalogues, search, recommendations and trend analysis, so it is not enough for a model to look convincing in a demo. We need to know how often it is right, where it fails, and whether a new model is genuinely better than the last.
 
-That sounds simple. It is not.
-
-Those facts feed product catalogues, search, recommendations, and trend analysis. So it is not enough for a model to give answers that look convincing in a demo. We need to know how often it is right, where it fails, and whether a new model is genuinely better than the last one.
-
-This is why we are starting a series about fashion attribute extraction with the test system, not the model.
+That is why this series starts with the test system rather than the model.
 
 ## The problem with a single benchmark score
 
 We looked for an existing benchmark that could answer those questions. We did not find one.
 
-Fashion datasets differ in the images they contain, the attributes they label, and the words they use for those attributes. Their label systems do not line up. Fashionpedia has detailed expert labels but no colour or fit. Shopping100k has colour and fit, but uses catalogue photos and cannot express that a field does not apply. DeepFashion-MultiModal has full-body photos and an explicit "not applicable" label, inside its own fixed vocabulary. General vision-language benchmarks test captioning or visual question answering, not structured product data.
+Fashion datasets differ in their images, their attributes, and the words they use for them, and their label systems do not line up. Fashionpedia has expert labels but no colour or fit. Shopping100k has colour and fit, but only catalogue photos, and cannot express that a field does not apply. DeepFashion-MultiModal has full-body photos and an explicit "not applicable" label inside a fixed vocabulary. General vision-language benchmarks test captioning, not structured product data.
 
-We could have forced these into one shared label system and published a single impressive number. That would hide the trade-offs. A model that does well on clean product images and poorly on street photos would still look good after averaging.
-
-So we built four separate tests and report them separately, because a good overall score should not hide a serious weakness.
+We could have forced these into one label system and published a single impressive number, but that hides the trade-offs: a model strong on clean product images and weak on street photos still looks good after averaging. So we built four separate tests and report them separately.
 
 | Track | What it tests | Test set | Related examples grouped by |
 |---|---|---:|---|
@@ -83,9 +77,9 @@ But precision dropped from 0.5661 to 0.3158.
 
 The updated model had started guessing far more often. It still did well enough on easy fields that an overall score hid the damage; a field-by-field view showed a clear regression.
 
-That taught us two things. First, asking one autoregressive model to generate every field in a single sequence was a poor fit: it linked attributes that should be independent, made rare labels easier to miss, and gave the model no clean way to say "this does not apply." We moved to separate conditional heads with an explicit applicability decision. Second, we stopped improving the model for a while and improved how we measured it.
+Two things followed. Asking one autoregressive model to generate every field in a single sequence turned out to be a poor fit: it linked attributes that should be independent, made rare labels easier to miss, and left no clean way to say "this does not apply." We moved to separate conditional heads with an explicit applicability decision. And we stopped improving the model for a while and improved how we measured it.
 
-The tracks then grew one at a time. Fashionpedia first, for its expert garment labels. It could not answer colour or fit, so we added Shopping100k. Neither captures whether an attribute applies at all, so we added DFMM. Text covers a related but distinct task. Each track exists because an earlier one left an important question unanswered.
+The tracks grew one at a time after that, each because the previous one left a question unanswered: Fashionpedia for expert labels, Shopping100k for colour and fit, DFMM for applicability, text for product copy.
 
 ## How a model is tested
 
@@ -96,7 +90,7 @@ python -m suite.crop.build_manifest --source <your local copy>
 # manifest: 4,688 garment crops, 1,158 source images, 15 fields, sha256=...
 ```
 
-**Avoid testing on near-duplicates.** One source image can yield several crops; one product can appear in several photos. If related examples land on both sides of a split, the model looks better than it is. We split at the right level per dataset — source image, image, product group — and estimate uncertainty the same way, because related images tend to succeed or fail together. Training chooses weights, calibration chooses thresholds, development selects a checkpoint, and the frozen test is saved for one final run.
+**Avoid testing on near-duplicates.** One source image yields several crops; one product appears in several photos. If related examples land on both sides of a split, the model looks better than it is. We split at the right level per dataset, and estimate uncertainty the same way, because related images succeed or fail together. Training chooses weights, calibration chooses thresholds, development selects a checkpoint, and the frozen test is saved for one final run.
 
 **Predict before seeing the answers.** The model gets images and the schema, never the labels. We hash the prediction file before scoring it, so no better file can be swapped in afterwards.
 
@@ -105,9 +99,9 @@ python -m suite.crop.commit --predictions preds.jsonl
 # committed: preds.jsonl  sha256=9f3a...  rows=4688
 ```
 
-**Score every row, including the awkward ones.** The scorer stops or reports an error on a missing, duplicated, unexpected, or unsupported row rather than quietly dropping it. It also separates "wrong" from "not visible": if a photo cuts off the waist, predicting `waist: N/A` is not an error. Without that rule, a model could invent attributes for every garment and look better for it.
+**Score every row, including the awkward ones.** The scorer errors on a missing, duplicated or unsupported row rather than quietly dropping it, and separates "wrong" from "not visible": if a photo cuts off the waist, predicting `waist: N/A` is not an error. Without that rule a model could invent attributes for every garment and look better for it.
 
-**Require improvement across the important tests.** We compare with 10,000 paired bootstrap resamples on the same examples. To promote a model, the lower end of its improvement range must clear zero on every required track. No average lets a bad result hide behind good ones.
+**Require improvement across the important tests.** We compare with 10,000 paired bootstrap resamples on the same examples, and to promote a model the lower end of its improvement range must clear zero on every required track. No average lets a bad result hide behind good ones.
 
 ## What the suite has caught
 
@@ -171,9 +165,7 @@ Next steps, briefly. We have committed 1,993 Fashionpedia image groups for indep
 
 Freeze your checkpoint. Predict without seeing the labels. Commit the hash. Score each track. Report the paired interval against our published predictions.
 
-For `crop`, the published weights are the checkpoint that produced the number above, MIT-licensed and usable commercially — download it, score it, and you should get 0.6300. For `catalog` and `fullbody` the weights are non-commercial. Where any checkpoint differs from the table, the model card reports both numbers; trust the card.
-
-The suite opens one track at a time, starting with `crop`. Check the repository's availability table for what runs today rather than assuming everything here is ready.
+For `crop`, the published weights are the checkpoint that produced the number above, MIT-licensed and usable commercially: download it, score it, and you should get 0.6300. For `catalog` and `fullbody` the weights are non-commercial. The suite opens one track at a time, starting with `crop`, so check the repository's availability table for what runs today.
 
 If another team beats us under this protocol, we want to know. The alternative is learning about a problem from a customer after a taxonomy mismatch has quietly removed fourteen points from a production route. We have had enough versions of that conversation to know evaluation is not overhead. It is how we keep the unknowns visible.
 
