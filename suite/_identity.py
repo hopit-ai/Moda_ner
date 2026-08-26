@@ -18,9 +18,16 @@ per-track builder docs. Nothing here names a component of the hosted tier.
 from __future__ import annotations
 
 SUITE_NAME = "MODA General Attribute Suite"
-SUITE_VERSION = "v1"
-SUITE_FROZEN = "2026-08-24"
+SUITE_VERSION = "v1.1"
+SUITE_FROZEN = "2026-08-26"
 SUITE_URL = "https://github.com/hopit-ai/Moda_ner"
+
+# The published claim was frozen against v1, which held the three image tracks.
+# v1.1 adds the text track. The claim is NOT restated over it: the text track has
+# no external comparator worth naming, so it ships as a published benchmark and a
+# published number rather than as a comparative claim.
+CLAIM_VERSION = "v1"
+CLAIM_TRACKS = ("crop", "catalog", "fullbody")
 
 # Track identifiers name the input contract, not the corpus behind it.
 TRACKS = {
@@ -29,6 +36,9 @@ TRACKS = {
     "fullbody": "moda-gas-fullbody-v1",
     "text": "moda-gas-text-v1",
 }
+
+# Tracks the frozen claim covers. Adding a track does not widen the claim.
+CLAIMED = {t: t in CLAIM_TRACKS for t in TRACKS}
 
 # Models evaluated under this suite, by release tier.
 #   "*"   open code + open weights

@@ -82,3 +82,14 @@ def test_crop_scorer_reproduces_the_published_headline():
     for field in ("attribute_micro_f1", "attribute_field_macro_f1",
                   "category_accuracy", "master_category_accuracy"):
         assert got[field] == want[field], (field, got[field], want[field])
+
+
+def test_adding_a_track_does_not_widen_the_frozen_claim():
+    """The claim was frozen over three image tracks. A track added later ships as
+    a benchmark, not as a comparative claim, until it has a comparator."""
+    assert ident.CLAIM_VERSION == "v1"
+    assert set(ident.CLAIM_TRACKS) == {"crop", "catalog", "fullbody"}
+    assert ident.CLAIMED["text"] is False
+    assert ident.SUITE_VERSION != ident.CLAIM_VERSION, (
+        "the suite has changed since the claim was frozen; bump SUITE_VERSION"
+    )

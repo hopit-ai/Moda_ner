@@ -121,23 +121,31 @@ It also stopped us overreacting to a small sample. A commercial vision-language 
 
 ## Our current results
 
-| Track / main metric | MODA | Strongest comparator | Paired 95% interval |
-|---|---:|---:|---:|
-| `crop` attribute micro-F1 | **0.6300** | Same heads, FashionSigLIP encoder: 0.6245 | [+0.0014, +0.0097] |
-| `catalog` field-macro set F1 | **0.8292** | FashionCLIP 2.0 + matched heads: 0.6657 | [+0.1595, +0.1676] |
-| `fullbody` Tier-1 macro-F1 | **0.6917** | FashionCLIP 2.0 + matched heads: 0.5943 | [+0.0891, +0.1053] |
-| `fullbody` Tier-2 N/A-F1 | **0.6637** | FashionCLIP 2.0 + matched heads: 0.6088 | [+0.0433, +0.0657] |
-| `fullbody` Tier-3 visible macro-F1 | **0.5785** | FashionCLIP 2.0 + matched heads: 0.4969 | [+0.0723, +0.0905] |
+| Track | What the number measures | MODA | Best comparator | Paired 95% interval |
+|---|---|---:|---:|---:|
+| `crop` | Of all attribute predictions across 15 fields, the share that exactly match | **0.6300** | 0.6245 | [+0.0014, +0.0097] |
+| `catalog` | Score per field, then averaged across 10 fields, so a rare field counts as much as a common one | **0.8292** | 0.6657 | [+0.1595, +0.1676] |
+| `fullbody` — overall | Same per-field average, across 18 fields | **0.6917** | 0.5943 | [+0.0891, +0.1053] |
+| `fullbody` — knowing when not to answer | How reliably it says "not applicable" when the attribute genuinely is not there | **0.6637** | 0.6088 | [+0.0433, +0.0657] |
+| `fullbody` — when the attribute is visible | The per-field average again, but only on cases where the attribute really is present | **0.5785** | 0.4969 | [+0.0723, +0.0905] |
+
+Comparators are the FashionSigLIP-encoder variant on `crop`, and FashionCLIP 2.0 with matched supervised heads on `catalog` and `fullbody`.
+
+**Do not read across the rows.** `catalog` at 0.8292 is not "better" than `crop` at 0.6300: they use different metrics over different fields on different images. Ten catalogue fields on clean studio photos is an easier problem than fifteen fields on a cropped garment, and the two numbers are not on the same scale. Each row is a comparison against that track's comparator, and nothing more.
+
+The three `fullbody` rows split one question into three because a single number would hide the interesting part. A model can score well overall while being bad at knowing when an attribute simply is not visible, which is exactly the failure that makes a system unusable in a catalogue pipeline.
 
 One important caveat: the `crop` comparison is an encoder experiment, not a win over another vendor. Same architecture, same heads, same training release — only the encoder changed. The genuine third-party baselines there are zero-shot models, Qwen3-VL-8B at 0.1805 and calibrated FashionSigLIP text prototypes at 0.1817, and neither was built for this task, which is why we do not make much of the gap.
 
 The fuller `crop` picture is two wins and two ties against the FashionSigLIP-encoder variant: we win micro-F1 by 0.0056 and master-category accuracy by 0.0085, while field-macro F1 and category accuracy are ties whose ranges include zero. Micro-F1 weights common attributes more heavily; field-macro weights every field equally. Reporting both shows whether gains come only from the easiest fields.
 
-The claim these results support is deliberately narrow:
+The claim these results support is deliberately narrow, and covers the three image tracks only:
 
 > MODA General is the best of the named open systems evaluated under the frozen public MODA General Attribute Suite, spanning localized garment crops, catalog product images, color and fit, and applicability-aware full-body attributes.
 
 Not world-best, not universally state of the art, not human-level, not ready for every production case. Exactly what the benchmark measured.
+
+The `text` track sits outside that sentence on purpose. It was added after the claim was frozen, and no external system has yet been evaluated on it under the same conditions, so we publish the benchmark and our number on it without making a comparative claim. Adding a track does not widen what we get to say.
 
 ## A limitation our own tests missed
 
