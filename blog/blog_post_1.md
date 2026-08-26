@@ -5,25 +5,40 @@
 *Series: Fashion attribute extraction from images*  
 *Sibling series: [Building a fashion search engine from scratch](https://github.com/hopit-ai/Moda)*
 
-If you need to turn a fashion image into structured data, you need more than a model that produces plausible answers. You need to know when it is right, where it fails, and whether a change actually improves it.
+If you need to turn a fashion image into structured data, you need more than a model that produces
+plausible answers. You need to know when it is right, where it fails, and whether a change actually
+improves it.
 
 That is why we are starting this series with an evaluation harness rather than a model announcement.
 
-The task sounds straightforward: given a photo of a dress, identify its category, sleeve length, neckline, colour, fit, pattern, and material. In practice, those fields power cataloguing, search, personalisation, trend analysis, and every other downstream system that needs to understand an item. A model that is merely impressive in a demo is not enough. We need to answer practical questions:
+The task sounds straightforward: given a photo of a dress, identify its category, sleeve length,
+neckline, colour, fit, pattern, and material. In practice, those fields power cataloguing, search,
+personalisation, trend analysis, and every other downstream system that needs to understand an item.
+A model that is merely impressive in a demo is not enough. We need to answer practical questions:
 
-- Which vision model should we use?
-- Does it work on product shots, street photos, and cropped garments?
-- Is a higher score real, or an artefact of the test split?
-- Does it know when an attribute is not visible or does not apply?
-- Is the gain large enough to justify the cost at runtime?
+- Which vision model should we use? - Does it work on product shots, street photos, and cropped
+garments? - Is a higher score real, or an artefact of the test split? - Does it know when an
+attribute is not visible or does not apply? - Is the gain large enough to justify the cost at
+runtime?
 
-We looked for an existing benchmark that answered those questions and did not find one. There are many fashion datasets, but they cover different attribute sets, image styles, and labeling conventions. Their taxonomies often disagree.
+We looked for an existing benchmark that answered those questions and did not find one. There are
+many fashion datasets, but they cover different attribute sets, image styles, and labeling
+conventions. Their taxonomies often disagree.
 
-For example, Fashionpedia provides expert garment-level annotations, but not colour or fit—two fields merchandisers care about deeply. Shopping100k includes colour and fit, but only for catalogue images and without a way to say that a field is inapplicable. DeepFashion-MultiModal (DFMM) includes full-body images and an explicit N/A class, but uses a closed vocabulary. General vision-language benchmarks mainly test captioning and visual question answering, not production-oriented attribute extraction.
+For example, Fashionpedia provides expert garment-level annotations, but not colour or fit—two
+fields merchandisers care about deeply. Shopping100k includes colour and fit, but only for catalogue
+images and without a way to say that a field is inapplicable. DeepFashion-MultiModal (DFMM) includes
+full-body images and an explicit N/A class, but uses a closed vocabulary. General vision-language
+benchmarks mainly test captioning and visual question answering, not production-oriented attribute
+extraction.
 
-We could have mapped everything into one label space and reported one headline score. We considered it several times. We abandoned the idea because every mapping would embed a modeling decision. A system that performs well on flat product images but fails on street photography could still look good in an averaged result.
+We could have mapped everything into one label space and reported one headline score. We considered
+it several times. We abandoned the idea because every mapping would embed a modeling decision. A
+system that performs well on flat product images but fails on street photography could still look
+good in an averaged result.
 
-Instead, we built four tracks, four test sets, and four metrics. We do not average them into one number. A system is only as useful as its weakest important component.
+Instead, we built four tracks, four test sets, and four metrics. We do not average them into one
+number. A system is only as useful as its weakest important component.
 
 ## What the suite contains
 
@@ -40,35 +55,66 @@ It has four parts.
 | `fullbody` | 5,000 images across 1,751 product groups | Full-body photo | Product group |
 | `text` | 1,071 rows (765 standard, 306 hard) | Product title or description | Row |
 
+The `crop` schema, in full, since a benchmark whose label space is secret is not a benchmark:
+
+| | Fields |
+|---|---|
+| Category hierarchy | `master_category`, `category`, `sub_category` |
+| Shape | `silhouette`, `hemline`, `sleeve_length`, `sleeve_shape`, `waist_type` |
+| Neck and collar | `neckline`, `collar_presence`, `collar_style` |
+| Surface | `material`, `surface_treatment`, `pattern` |
+| Construction | `closure_type` |
+
+Every legal value ships with the track, along with per-field support counts, because a scorer cannot
+judge a prediction without knowing the vocabulary it is judged against. `catalog` uses ten fields
+including colour and fit; `fullbody` uses eighteen with an explicit N/A class; `text` uses thirteen
+entity types.
+
 **Manifest builders.** Some source datasets are restricted, so we do not redistribute them. Instead, users download them from the official source under its terms. Our builders reconstruct the exact test split from record IDs and checksums. If a local dataset copy differs from ours, the build stops instead of silently evaluating against a different dataset.
 
-The `text` track is the exception. Its labels are ours rather than a third party's, so its splits ship in the repository directly and it runs with no external download. It is also the one track with no accompanying model: we publish the benchmark and our score on it, and keep the checkpoint. If you want to beat us at span extraction, the track is right there.
+The `text` track is the exception. Its labels are ours rather than a third party's, so its splits
+ship in the repository directly and it runs with no external download. It is also the one track with
+no accompanying model: we publish the benchmark and our score on it, and keep the checkpoint. If you
+want to beat us at span extraction, the track is right there.
 
 **Scorers and uncertainty estimates.** Each track has a strict scorer and uses 10,000 paired bootstrap resamples, clustered at the correct leakage unit. This produces uncertainty intervals that account for related examples—for instance, multiple garment crops from one source image.
 
 **Frozen evidence.** We publish the prediction files for every evaluated system, along with SHA-256 hashes and result JSONs. That includes systems that beat us and runs we lost. The point is to make the numbers checkable, not merely assertable.
 
-There are 147 focused tests in the suite. Most exist because an earlier version of the evaluation failed to catch something important.
+There are 147 focused tests in the suite. Most exist because an earlier version of the evaluation
+failed to catch something important.
 
 ## Why the harness mattered
 
-We did not begin with this level of discipline. Like many teams, we had models before we had a reliable benchmark.
+We did not begin with this level of discipline. Like many teams, we had models before we had a
+reliable benchmark.
 
-Our first serious system used Florence-2 to produce a JSON object containing every attribute. It worked well enough to justify another training pass. After that pass, recall barely changed: from 0.6013 to 0.5885. On a blended score, that could easily look close enough to ship.
+Our first serious system used Florence-2 to produce a JSON object containing every attribute. It
+worked well enough to justify another training pass. After that pass, recall barely changed: from
+0.6013 to 0.5885. On a blended score, that could easily look close enough to ship.
 
 But precision fell from 0.5661 to 0.3158.
 
-Per-field scoring showed what the aggregate hid: the model had started guessing much more often. Improvements on easy fields masked a collapse on harder ones. We were close to shipping a regression because a summary number made it look harmless.
+Per-field scoring showed what the aggregate hid: the model had started guessing much more often.
+Improvements on easy fields masked a collapse on harder ones. We were close to shipping a regression
+because a summary number made it look harmless.
 
 That result changed two things.
 
-First, it led to a technical diagnosis. A single autoregressive sequence that emits every field couples attributes that should be independent, crowds out rare labels, and gives the model no clean way to say that a field does not apply. We replaced that approach with conditional heads and an explicit applicability decision.
+First, it led to a technical diagnosis. A single autoregressive sequence that emits every field
+couples attributes that should be independent, crowds out rare labels, and gives the model no clean
+way to say that a field does not apply. We replaced that approach with conditional heads and an
+explicit applicability decision.
 
 Second, we paused model work and built the evaluation suite.
 
-The tracks were created incrementally, each to cover a blind spot in the last one. Fashionpedia came first because its expert mask-level annotations were the highest-quality available signal. It could not answer questions about colour or fit, so we added Shopping100k. Neither dataset distinguishes an absent or inapplicable attribute from a negative label, so we added DFMM, where N/A is a real class.
+The tracks were created incrementally, each to cover a blind spot in the last one. Fashionpedia came
+first because its expert mask-level annotations were the highest-quality available signal. It could
+not answer questions about colour or fit, so we added Shopping100k. Neither dataset distinguishes an
+absent or inapplicable attribute from a negative label, so we added DFMM, where N/A is a real class.
 
-None of the tracks was planned upfront. Each exists because the earlier tracks could not answer a question our users needed answered.
+None of the tracks was planned upfront. Each exists because the earlier tracks could not answer a
+question our users needed answered.
 
 ## What happens when a model is scored
 
@@ -76,57 +122,81 @@ The workflow has five steps.
 
 ### 1. Build a fixed manifest
 
-Before a model runs, the track builder pins the dataset version, checksums, records, groups, split roles, output vocabulary, aliases, labeling rules, metric, bootstrap method, and seed.
+Before a model runs, the track builder pins the dataset version, checksums, records, groups, split
+roles, output vocabulary, aliases, labeling rules, metric, bootstrap method, and seed.
 
 ```
 python -m suite.fullbody.build_manifest --source <your local copy>
 # manifest: 5,000 test images, 1,751 product groups, 18 fields, sha256=...
 ```
 
-This is deliberately unglamorous. The manifest prevents accidental changes to what is being measured.
+This is deliberately unglamorous. The manifest prevents accidental changes to what is being
+measured.
 
 ### 2. Split and resample at the point where leakage occurs
 
-Randomly splitting individual rows can inflate a fashion-model score. One Fashionpedia image may yield several garment crops; one DFMM product may appear in several photos. If related examples appear in both training and test data, the model is partly being tested on something it has effectively already seen.
+Randomly splitting individual rows can inflate a fashion-model score. One Fashionpedia image may
+yield several garment crops; one DFMM product may appear in several photos. If related examples
+appear in both training and test data, the model is partly being tested on something it has
+effectively already seen.
 
-The same logic applies to confidence intervals. Treating related crops as independent makes the interval too narrow because they tend to succeed and fail together.
+The same logic applies to confidence intervals. Treating related crops as independent makes the
+interval too narrow because they tend to succeed and fail together.
 
-Each track therefore splits and resamples at its natural unit: source image for Fashionpedia, image for Shopping100k, and product group for DFMM. The DFMM test is especially strict: its 5,000 images cover 1,751 product groups with no record or product-group overlap against any prior experiment.
+Each track therefore splits and resamples at its natural unit: source image for Fashionpedia, image
+for Shopping100k, and product group for DFMM. The DFMM test is especially strict: its 5,000 images
+cover 1,751 product groups with no record or product-group overlap against any prior experiment.
 
-Training selects weights. Calibration selects thresholds. Development selects checkpoints. The frozen test is read once, at the end.
+Training selects weights. Calibration selects thresholds. Development selects checkpoints. The
+frozen test is read once, at the end.
 
 ### 3. Predict without labels, then commit the results
 
-Inference receives images and the schema, but never the labels. When it finishes, the prediction file is hashed before scoring.
+Inference receives images and the schema, but never the labels. When it finishes, the prediction
+file is hashed before scoring.
 
 ```
 python -m suite.fullbody.commit --predictions preds.jsonl
 # committed: preds.jsonl  sha256=9f3a...  rows=5000
 ```
 
-The hash becomes part of the record. That prevents either side from swapping predictions after seeing the result.
+The hash becomes part of the record. That prevents either side from swapping predictions after
+seeing the result.
 
 ### 4. Score strictly and account for observability
 
-The scorer fails closed. A missing row, duplicate ID, unexpected record, unknown field value, or value the alias map cannot resolve is reported explicitly. It never quietly drops hard rows.
+The scorer fails closed. A missing row, duplicate ID, unexpected record, unknown field value, or
+value the alias map cannot resolve is reported explicitly. It never quietly drops hard rows.
 
-One rule is particularly important: an attribute that cannot be observed is not a negative example. If the waist is cropped out, predicting `waist: N/A` should not be treated as an error. Fashionpedia evaluates applicability separately for conditional fields; Shopping100k excludes unlabelled cells; and DFMM scores N/A as a class with its own F1.
+One rule is particularly important: an attribute that cannot be observed is not a negative example.
+If the waist is cropped out, predicting `waist: N/A` should not be treated as an error. Fashionpedia
+evaluates applicability separately for conditional fields; Shopping100k excludes unlabelled cells;
+and DFMM scores N/A as a class with its own F1.
 
-That distinction prevents a model from getting credit for confidently inventing attributes on every garment.
+That distinction prevents a model from getting credit for confidently inventing attributes on every
+garment.
 
 ### 5. Use paired bootstrap intervals and a conjunctive gate
 
-Every score includes 10,000 paired bootstrap resamples clustered at the track's leakage unit. A promotion requires the lower bound of the improvement interval to clear zero on every required track. There is no weighted average where a weak result can hide behind strong ones elsewhere.
+Every score includes 10,000 paired bootstrap resamples clustered at the track's leakage unit. A
+promotion requires the lower bound of the improvement interval to clear zero on every required
+track. There is no weighted average where a weak result can hide behind strong ones elsewhere.
 
-None of this is exotic. It is simply the collection of places where benchmarks tend to mislead their owners, closed one by one.
+None of this is exotic. It is simply the collection of places where benchmarks tend to mislead their
+owners, closed one by one.
 
 ## What the harness has caught
 
-The harness rarely produces dramatic revelations. More often, it prevents us from believing a convenient story.
+The harness rarely produces dramatic revelations. More often, it prevents us from believing a
+convenient story.
 
-It stopped an unnecessary backbone swap for the price of a coffee. We compared a general SigLIP-2 encoder with a fashion-pretrained encoder under the same development protocol. SigLIP-2 reached 0.6018 development micro-F1, versus 0.6163 for the fashion-pretrained option. The decision was quick, cheap, and did not depend on anyone's preference.
+It stopped an unnecessary backbone swap for the price of a coffee. We compared a general SigLIP-2
+encoder with a fashion-pretrained encoder under the same development protocol. SigLIP-2 reached
+0.6018 development micro-F1, versus 0.6163 for the fashion-pretrained option. The decision was
+quick, cheap, and did not depend on anyone's preference.
 
-It also made us publish a loss. On the first full-body evaluation, FashionCLIP with matched supervised heads outperformed our standalone model, and a hybrid did better than both.
+It also made us publish a loss. On the first full-body evaluation, FashionCLIP with matched
+supervised heads outperformed our standalone model, and a hybrid did better than both.
 
 | System (earlier matched protocol) | Tier 1 | Tier 2 | Tier 3 |
 |---|---:|---:|---:|
@@ -134,9 +204,14 @@ It also made us publish a loss. On the first full-body evaluation, FashionCLIP w
 | FashionCLIP + linear heads | 0.5985 | 0.6237 | 0.5008 |
 | MODA-FashionCLIP hybrid | **0.6492** | **0.6425** | **0.5353** |
 
-We retained that result. We then selected the next standalone candidate using development data only, built a fresh test split with no overlapping product groups, and evaluated it once.
+We retained that result. We then selected the next standalone candidate using development data only,
+built a fresh test split with no overlapping product groups, and evaluated it once.
 
-The suite also prevented us from overinterpreting a commercial VLM result. The model appeared to beat us on colour—0.730 versus 0.630—but the figure came from only 27 eligible rows. A 100-row checkpoint gate let us avoid paying for the remaining 900 calls after the model lost the broader comparison. We later tested colour on 400 balanced rows and the apparent advantage disappeared; the paired interval was entirely negative.
+The suite also prevented us from overinterpreting a commercial VLM result. The model appeared to
+beat us on colour—0.730 versus 0.630—but the figure came from only 27 eligible rows. A 100-row
+checkpoint gate let us avoid paying for the remaining 900 calls after the model lost the broader
+comparison. We later tested colour on 400 balanced rows and the apparent advantage disappeared; the
+paired interval was entirely negative.
 
 Twenty-seven rows are not a finding. They are a lead worth testing.
 
@@ -144,33 +219,62 @@ Twenty-seven rows are not a finding. They are a lead worth testing.
 
 | Track / primary metric | MODA | Strongest comparator | Paired 95% CI |
 |---|---:|---:|---:|
-| Fashionpedia attribute micro-F1 | **0.6300** | FashionSigLIP 0.6245 | [+0.0014, +0.0097] |
-| Shopping100k field-macro set F1 | **0.8292** | FashionCLIP 0.6657 | [+0.1595, +0.1676] |
-| DFMM Tier-1 macro-F1 | **0.6917** | FashionCLIP 0.5943 | [+0.0891, +0.1053] |
-| DFMM Tier-2 N/A-F1 | **0.6637** | FashionCLIP 0.6088 | [+0.0433, +0.0657] |
-| DFMM Tier-3 visible macro-F1 | **0.5785** | FashionCLIP 0.4969 | [+0.0723, +0.0905] |
+| `crop` attribute micro-F1 | **0.6300** | Same heads, FashionSigLIP encoder 0.6245 | [+0.0014, +0.0097] |
+| `catalog` field-macro set F1 | **0.8292** | FashionCLIP 2.0 + matched heads 0.6657 | [+0.1595, +0.1676] |
+| `fullbody` Tier-1 macro-F1 | **0.6917** | FashionCLIP 2.0 + matched heads 0.5943 | [+0.0891, +0.1053] |
+| `fullbody` Tier-2 N/A-F1 | **0.6637** | FashionCLIP 2.0 + matched heads 0.6088 | [+0.0433, +0.0657] |
+| `fullbody` Tier-3 visible macro-F1 | **0.5785** | FashionCLIP 2.0 + matched heads 0.4969 | [+0.0723, +0.0905] |
 
-The DFMM Tier-1 result is the fresh rematch described above. The earlier loss remains in the record because it is part of the evidence that the later win was not selected after the fact.
+The `fullbody` Tier-1 result is the fresh rematch described above. The earlier loss remains in the
+record because it is part of the evidence that the later win was not selected after the fact.
+
+A word on what those comparators are, because the labels matter. On `catalog` and `fullbody`,
+FashionCLIP 2.0 with matched supervised heads is a genuine external system trained by someone else.
+On `crop`, the 0.6245 is **not** a third-party product: it is our own architecture, our own heads,
+our own training release, running on a frozen Marqo-FashionSigLIP encoder instead of ours. Marqo
+never trained it and has never claimed a number on this task. So the `crop` comparison is an encoder
+ablation — same everything, swap the backbone — not a win over a vendor. The genuine third-party
+baselines on that track are zero-shot and score far lower: Qwen3-VL-8B at 0.1805 and calibrated
+FashionSigLIP text prototypes at 0.1817, both measuring models on a task they were never built for,
+which is why we do not lean on those gaps.
+
+The `crop` scoreboard in full, since one number hides the rest. Against that FashionSigLIP-encoder
+variant we win attribute micro-F1 (+0.0056, CI [+0.0014, +0.0097]) and master-category accuracy
+(+0.0085, CI [+0.0027, +0.0144]). Field-macro F1 (−0.0019, CI [−0.0077, +0.0040]) and category
+accuracy (+0.0034, CI [−0.0030, +0.0098]) are ties: the intervals span zero. Two wins, two ties, no
+losses. Micro-F1 pools every attribute decision, so frequent fields dominate; field-macro averages
+the fifteen fields equally, so the weak tail counts as much as the easy head. Winning one and tying
+the other is the honest description.
 
 The precise claim these results support is:
 
 > MODA General is the best of the named open systems evaluated under the frozen public MODA General Attribute Suite, spanning localized garment crops, catalog product images, color and fit, and applicability-aware full-body attributes.
 
-That is intentionally narrower than "world-best," "universal state of the art," "human-level," or "production ready." The harness helps us state exactly what the evidence supports—and no more.
+That is intentionally narrower than "world-best," "universal state of the art," "human-level," or
+"production ready." The harness helps us state exactly what the evidence supports—and no more.
 
-Several fields still need work. On Fashionpedia, material achieves 0.4148 value-F1. On Shopping100k, fabric reaches 0.6693 and fit 0.6708. Collar style, neckline, and rare applicability values also lag. Passing every track means no track failed; it does not mean every attribute is ready for every production use case.
+Several fields still need work. On Fashionpedia, material achieves 0.4148 value-F1. On Shopping100k,
+fabric reaches 0.6693 and fit 0.6708. Collar style, neckline, and rare applicability values also
+lag. Passing every track means no track failed; it does not mean every attribute is ready for every
+production use case.
 
 ## The limitation the harness did not catch
 
 The most important recent failure was outside the harness's reach.
 
-On an independently human-labelled external set of 1,110 images that nobody on our team had handled, our system achieved 0.7169, compared with 0.6605 for FashionCLIP. The interval was clearly positive.
+On an independently human-labelled external set of 1,110 images that nobody on our team had handled,
+our system achieved 0.7169, compared with 0.6605 for FashionCLIP. The interval was clearly positive.
 
-But the production composite route scored only 0.5764 on the same images—a drop of roughly 14 points.
+But the production composite route scored only 0.5764 on the same images—a drop of roughly 14
+points.
 
-The cause was not a model regression. The two datasets divided neckline categories differently, and our taxonomy mapping flattened a meaningful distinction. Internal evaluation could not expose the problem because the taxonomy was consistent within the internal protocol. Independent labels did.
+The cause was not a model regression. The two datasets divided neckline categories differently, and
+our taxonomy mapping flattened a meaningful distinction. Internal evaluation could not expose the
+problem because the taxonomy was consistent within the internal protocol. Independent labels did.
 
-That is the boundary of this harness: it can rigorously measure the system it defines, but it cannot prove that its taxonomy matches every real-world taxonomy. The next post will examine that gap in more detail.
+That is the boundary of this harness: it can rigorously measure the system it defines, but it cannot
+prove that its taxonomy matches every real-world taxonomy. The next post will examine that gap in
+more detail.
 
 ## What comes next
 
@@ -184,24 +288,50 @@ We are improving the suite in four directions.
 
 **An independently administered holdout.** The strongest possible test set is one we neither build nor administer. That is the most direct way to address the concern that a benchmark author may design a test they pass.
 
-We are also preparing a paper describing the suite, which will become the preferred citation when available.
+We are also preparing a paper describing the suite, which will become the preferred citation when
+available.
 
 ## Why the benchmark is open while some model work is not
 
 Our position is simple: open the ruler; sell what the ruler measures.
 
-We will publish the protocol, splits, scorers, bootstrap code, frozen prediction files, and hashes—including the losing runs. A benchmark that others cannot run is just an opinion accompanied by a table. It becomes useful when others can inspect it, challenge it, and beat it.
+We will publish the protocol, splits, scorers, bootstrap code, frozen prediction files, and
+hashes—including the losing runs. A benchmark that others cannot run is just an opinion accompanied
+by a table. It becomes useful when others can inspect it, challenge it, and beat it.
 
-What remains closed is the output of applying the measurement process to particular data: calibrated field-level thresholds, routing that chooses a head for a declared schema, and retailer-specific taxonomy mappings. These are accumulated, data-specific decisions. They are also the practical work customers are paying us to do.
+What remains closed is the output of applying the measurement process to particular data: calibrated
+field-level thresholds, routing that chooses a head for a declared schema, and retailer-specific
+taxonomy mappings. These are accumulated, data-specific decisions. They are also the practical work
+customers are paying us to do.
 
-Two of the four tracks are based on research-only datasets, so weights trained on them are non-commercial. We will respect those terms. Those exact weights are not part of our paid product, either. The components needed to reproduce the evaluation—protocols, scorers, splits, and prediction files—do not carry that restriction.
+Two of the four tracks are based on research-only datasets, so weights trained on them are
+non-commercial. We will respect those terms. Those exact weights are not part of our paid product,
+either. The components needed to reproduce the evaluation—protocols, scorers, splits, and prediction
+files—do not carry that restriction.
+
+## What you can download, and what it scores
+
+The numbers above are our strongest checkpoints. The weights we publish are not always those
+checkpoints, and where they differ the model card states both figures — so if you download a model
+and score it, expect the card's number rather than the table's.
+
+On `catalog` and `fullbody` the published weights are non-commercial anyway, because the evaluation
+corpora are research-only, so we publish our best there: the licence already does the work that a
+weaker checkpoint would. On `crop`, where the weights are MIT and usable commercially, the published
+checkpoint is deliberately not our strongest. We would rather say that in a sentence than have you
+discover it in a scoring run.
 
 ## Run your own model
 
-Freeze a checkpoint. Generate predictions without labels on the same IDs. Commit the prediction hash. Score each track. Report the paired confidence interval against our published predictions.
+Freeze a checkpoint. Generate predictions without labels on the same IDs. Commit the prediction
+hash. Score each track. Report the paired confidence interval against our published predictions.
 
-The suite opens one track at a time — `crop` first, then `catalog`, `fullbody` and `text` over the following week — so check the availability table in the repository for what is runnable today.
+The suite opens one track at a time — `crop` first, then `catalog`, `fullbody` and `text` over the
+following week — so check the availability table in the repository for what is runnable today.
 
-If another team beats us under the protocol, we want to know. The alternative is learning from a customer after a taxonomy mismatch has quietly removed fourteen points from a production route. We have had that conversation with ourselves enough times to know that the evaluation harness is not overhead. It is how we keep the unknowns visible.
+If another team beats us under the protocol, we want to know. The alternative is learning from a
+customer after a taxonomy mismatch has quietly removed fourteen points from a production route. We
+have had that conversation with ourselves enough times to know that the evaluation harness is not
+overhead. It is how we keep the unknowns visible.
 
 *Next: what a benchmark win does not tell you—independent human gold, the neckline taxonomy mismatch, and why our production system is calibrated on none of the public data.*
