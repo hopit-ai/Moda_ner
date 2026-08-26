@@ -42,7 +42,10 @@ reconstruct a split without knowing what to build it from.
 | `crop` | Fashionpedia | fashionpedia.github.io | Annotations CC BY 4.0. **Attribution required:** Jia et al., ECCV 2020 |
 | `catalog` | Shopping100k | on request from the dataset authors | Academic / non-commercial research only |
 | `fullbody` | DeepFashion-MultiModal | github.com/yumingj/DeepFashion-MultiModal | Non-commercial research only, extends to derived data |
-| `text` | mixed public fashion catalogues | see the track README | Per-source; all permissive |
+| `text` | our own rule-derived spans over public fashion catalogues | **ships in this repo** | Labels ours; source catalogues per-source, all permissive |
 
 We evaluate against these corpora and say so. We do not redistribute them, and no model name
 in this repository is derived from one.
+
+The `text` track is the exception to the first half of that: its labels are ours, so the
+splits are committed here directly and the track needs no external download.

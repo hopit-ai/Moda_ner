@@ -31,6 +31,7 @@ three frozen tracks separate rather than averaging incompatible taxonomies:
 | **crop** | 4,688 garment crops / 1,158 images | oracle garment crop | category hierarchy, silhouette, sleeve, neckline, collar, closure, hemline, waist, pattern, material, surface treatment | no color/fit; localization supplied |
 | **catalog** | 9,995 catalogue images / 61,384 cells | catalogue product image | category, collar, **color**, fabric, fastening, **fit**, neckline, pattern, pocket, sleeve length | no applicability/accessories |
 | **fullbody** | 5,000 images / 1,751 product groups | full-body image | region fabric/pattern, neckline, sleeve, lengths, accessories, explicit **N/A** | closed vocabulary |
+| **text** | 1,071 rows (765 standard + 306 hard) | product title or description | exact character spans for 13 entity types | labels are silver, not human gold |
 
 Protocol, in one paragraph: splits and bootstrap resampling at each track's natural leakage
 unit (source image / image / product group); training, calibration, development, and test
@@ -104,8 +105,16 @@ than three you can't.
 | crop | `suite/crop/` | `moda-ner-v-crop` (MIT) | **5 Sep 2026** |
 | catalog | `suite/catalog/` | `moda-ner-v-catalog` (CC BY-NC 4.0) | **10 Sep 2026** |
 | fullbody | `suite/fullbody/` | `moda-ner-v-fullbody` (CC BY-NC 4.0) | **12 Sep 2026** |
+| text | `suite/text/` | none — model not distributed | **14 Sep 2026** |
 
-Until all three land, the conjunctive claim above is only partly checkable from this repo.
+The text track is the odd one out in two ways. Its labels are ours rather than a third
+party's, so the splits ship in this repository directly and it runs with no external dataset
+acquisition — it is the easiest way to try the suite. And no model ships alongside it: we
+publish the benchmark and our number on it, and keep the checkpoint. If you want to beat
+0.8723 on span extraction, the track is right there.
+
+Until the image tracks land, the conjunctive claim above is only partly checkable from this
+repo.
 The frozen results for every track are published regardless — what arrives on the dates
 above is your ability to verify them yourself.
 

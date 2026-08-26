@@ -5,8 +5,12 @@
 We have one text checkpoint worth serving. The prior one scores 0.8601 against this one's
 0.8723, a gap of 0.0122, so there is no weaker-but-useful version to publish while keeping a
 stronger one back. Releasing anything here means releasing everything, and we are not ready
-to do that on the strength of a silver-labelled evaluation. The numbers below are published
-in full regardless.
+to do that on the strength of a silver-labelled evaluation.
+
+**The benchmark, however, is public.** The `text` track ships in this repository with its
+splits, label schema and scorer, so the number below is checkable and beatable even though
+the model behind it is not distributed. That is the arrangement we would defend generally:
+the ruler is open, the checkpoint is not.
 
 A 149,625,627-parameter ModernBERT span extractor for fashion text.
 
