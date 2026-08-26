@@ -1,0 +1,89 @@
+{
+  "attributes": [
+    "category",
+    "collar",
+    "color",
+    "fabric",
+    "fastening",
+    "fit",
+    "neckline",
+    "pattern",
+    "pocket",
+    "sleeve_length"
+  ],
+  "input_sha256": {
+    "config": "68358b12d0846f4107d5fbc14333757d31de1315a0fb6bdd78dc646a4dc5f029",
+    "labels": "86d370e5bc8586197951595502404ef6fea803e8f3cd5b438106a6ab5c290c56",
+    "left_predictions": "68a2438930b3e6f833fa4ef7744952a2588f61395d3c195b39cb757122df0cee",
+    "right_predictions": "aa20343e947b3f242876f50f551ae6d47b7d79012531f6888e13022b337c2e0f"
+  },
+  "left_system_id": "moda_shopping100k_field_specific_heads_v1",
+  "per_attribute": {
+    "category": {
+      "delta": 0.023412,
+      "left_f1": 0.909555,
+      "right_f1": 0.886143
+    },
+    "collar": {
+      "delta": 0.083599,
+      "left_f1": 0.882962,
+      "right_f1": 0.799363
+    },
+    "color": {
+      "delta": 0.069201,
+      "left_f1": 0.705288,
+      "right_f1": 0.636087
+    },
+    "fabric": {
+      "delta": 0.308927,
+      "left_f1": 0.669279,
+      "right_f1": 0.360352
+    },
+    "fastening": {
+      "delta": 0.073342,
+      "left_f1": 0.916896,
+      "right_f1": 0.843554
+    },
+    "fit": {
+      "delta": 0.167089,
+      "left_f1": 0.670779,
+      "right_f1": 0.50369
+    },
+    "neckline": {
+      "delta": 0.141639,
+      "left_f1": 0.833661,
+      "right_f1": 0.692022
+    },
+    "pattern": {
+      "delta": 0.062432,
+      "left_f1": 0.897663,
+      "right_f1": 0.835231
+    },
+    "pocket": {
+      "delta": 0.021386,
+      "left_f1": 0.949102,
+      "right_f1": 0.927716
+    },
+    "sleeve_length": {
+      "delta": 0.102308,
+      "left_f1": 0.857163,
+      "right_f1": 0.754855
+    }
+  },
+  "primary": {
+    "delta_field_macro_set_f1": 0.105334,
+    "delta_interval": [
+      0.102055,
+      0.108707
+    ],
+    "interval": 0.95,
+    "left_field_macro_set_f1": 0.829235,
+    "probability_delta_above_zero": 1.0,
+    "right_field_macro_set_f1": 0.723901,
+    "samples": 10000,
+    "seed": 20260810
+  },
+  "protocol_id": "moda-shopping100k-image-attribute-v1-20260810",
+  "right_system_id": "moda_shopping100k_public_probe_v1",
+  "rows": 9995
+}

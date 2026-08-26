@@ -1,0 +1,16 @@
+{
+  "baseline_training_commitment_sha256": "8553c7c56298a6db6b5536a1b1a8268cc8c6cdb84bcc98e8435d32575f030b1b",
+  "candidate_training_commitment_sha256": "09bdef1b1ddab2935c0eff72b67720ed76f39cf24d2b9e3369c8b70ace06838a",
+  "config_sha256": "f6f397e2b50d635a9e337da45c84ec1c59af640a5de670bece2d8098ab0fbc93",
+  "input": "image_only",
+  "official_image_archive_sha256": "f27aa9f1a7e024f0d88df871c419543390e74c96a38261d3d69e237983179cb5",
+  "output_prefix": "fashion_vision/models/conditional-attribute-classifier/benchmarks/dfmm-fresh-product-shadow5k-v1-20260810/evaluation/moda-v7-vs-fashionclip-v1",
+  "protocol": "dfmm-fresh-product-shadow-v1",
+  "release_commitment_sha256": "89a89f240b8d72d13d6296a96e471a18f93487fe80a466c1ebd91fd0317efb14",
+  "release_id": "dfmm-fresh-product-shadow5k-v1-20260810",
+  "runner_sha256": "cf0a30510d9fdbcd99c3eda3339b6e3d30d6238499b4d76e1ba8041421b91b5f",
+  "shadow_labels_loaded": 0,
+  "staging_audit_sha256": "3225d800964ca17291dbec432905e13eb6aee6984fcacbf008d309081ef18b86",
+  "status": "locked_before_shadow_input_access",
+  "test_parameter_selection_allowed": false
+}

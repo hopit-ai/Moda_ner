@@ -1,0 +1,42 @@
+{
+  "api_cost_usd": 0.0,
+  "benchmark_config_sha256": "68358b12d0846f4107d5fbc14333757d31de1315a0fb6bdd78dc646a4dc5f029",
+  "benchmark_protocol_id": "moda-shopping100k-image-attribute-v1-20260810",
+  "fields": [
+    "category",
+    "collar",
+    "color",
+    "fabric",
+    "fastening",
+    "fit",
+    "neckline",
+    "pattern",
+    "pocket",
+    "sleeve_length"
+  ],
+  "gpu_cost_usd": 0.0,
+  "inference_manifest_sha256": "50083d5063b66fa8b0af174d5da3548e6a9003467ae81d0afcc2dacf90f1428a",
+  "model_artifact_sha256": {
+    "category": "a3980ff6decae582ffdcf4fe83226ed8d5e7fd6bd4a8ee1f89edcf93bf1f2dfe",
+    "collar": "7c4b806b4c117b8f0be011b202c32a4e5993b9631d47c70588dfadf153bbb280",
+    "color": "b24960e99e0b4fb92c3e409537513bc407c3eca1abcd298945d4aebc6d8e231a",
+    "fabric": "930ee3a6077f97ed05ff915832d00585989b6528f0d55d0685a70f2bb362fcf4",
+    "fastening": "1d468a855b591c25b5abb63174e294113decdbf3668c0252380259647249bb78",
+    "fit": "74027ec9b2d17433cc1fb9068ae262314dc66fc94e36d6bf615bd8797dde9758",
+    "neckline": "47ed3b5de35f54e2464491f59562579e8a25756108145af21c70ff92f17dffb9",
+    "pattern": "3321e94124f8f7b8ea23703ef20bd47cbccb8b8da2e28e0b1cf0c769f511b92d",
+    "pocket": "69759ed0d415b57d3d6a412b2920261884d81dff663b8ca29aaa1019f6fce253",
+    "sleeve_length": "2903f5fb2da52778495efba88a8c7587348a87cff89225398f72bca6773d3c31"
+  },
+  "model_sha256": "19537f9d0437eefed3ae622cbbd2bc531d0abf156460ac713363fce49d7d3079",
+  "prediction_sha256": "68a2438930b3e6f833fa4ef7744952a2588f61395d3c195b39cb757122df0cee",
+  "probe_config_sha256": "a6b7289f50dcccc6be3af8bdc6f10a96d07563d926094ccc0eac85c22d16f3f3",
+  "rows": 9995,
+  "selection_partitions": [
+    "train_internal_holdout",
+    "calibration_confirmation"
+  ],
+  "system_id": "moda_shopping100k_field_specific_heads_v1",
+  "test_embeddings_sha256": "93f0e52e00d19b4616a41b83c554a11cbcd3be18fb3d720b685358cdc3ec061c",
+  "test_labels_accessed": false
+}

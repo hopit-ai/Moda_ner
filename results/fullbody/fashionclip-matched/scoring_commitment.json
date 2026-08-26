@@ -1,0 +1,24 @@
+{
+  "bootstrap": {
+    "confidence": 0.95,
+    "iterations": 10000,
+    "method": "paired_nonparametric_product_cluster_bootstrap_percentile",
+    "seed": 20260810,
+    "unit": "product_group_id"
+  },
+  "config_sha256": "f6f397e2b50d635a9e337da45c84ec1c59af640a5de670bece2d8098ab0fbc93",
+  "inference_commitment_sha256": "e604ef41cb7d933a44a43f8db8174e4d9373c30ca567be17764016319b64fa70",
+  "prediction_sha256": {
+    "fashionclip": "ad485cf79e35acaeeca7c01ca608df3a92404fca3b38565901b7c2301aeeb7f3",
+    "moda_v7": "feebc81e180f9a44fa97f8ae8009bc7e75f69b9898b99c792a2a75edeb1d96fd"
+  },
+  "private_labels_sha256": "6af1b6b59697c2c76114fd8f36ee8627a680c25149dda62a2daddcd2fb83313c",
+  "promotion_gate": "lower_95_percent_moda_minus_fashionclip_above_zero_on_all_three_tiers",
+  "protocol": "dfmm-fresh-product-shadow-v1",
+  "release_commitment_sha256": "89a89f240b8d72d13d6296a96e471a18f93487fe80a466c1ebd91fd0317efb14",
+  "release_id": "dfmm-fresh-product-shadow5k-v1-20260810",
+  "runner_sha256": "f81d6e3ccd45d0e3d7111d937ffec339142166b721bbe9600307fa48dd77e966",
+  "scorer": "hopit_attr.eval.dfmm.score_three_tier",
+  "status": "locked_before_private_shadow_label_access",
+  "test_parameter_selection_allowed": false
+}

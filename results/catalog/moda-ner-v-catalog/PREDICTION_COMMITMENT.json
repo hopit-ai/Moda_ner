@@ -1,0 +1,10 @@
+{
+  "benchmark_config_sha256": "68358b12d0846f4107d5fbc14333757d31de1315a0fb6bdd78dc646a4dc5f029",
+  "benchmark_protocol_id": "moda-shopping100k-image-attribute-v1-20260810",
+  "commitment_sha256": "aaee7f3f4cd87f9f0fd710a08d23b7a6f51f85b0672c7cd45a2053d4260d49ce",
+  "model_sha256": "19537f9d0437eefed3ae622cbbd2bc531d0abf156460ac713363fce49d7d3079",
+  "prediction_sha256": "68a2438930b3e6f833fa4ef7744952a2588f61395d3c195b39cb757122df0cee",
+  "rows": 9995,
+  "system_id": "moda_shopping100k_field_specific_heads_v1",
+  "test_labels_accessed": false
+}

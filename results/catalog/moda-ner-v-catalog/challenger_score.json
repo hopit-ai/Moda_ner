@@ -1,0 +1,160 @@
+{
+  "input_sha256": {
+    "config": "68358b12d0846f4107d5fbc14333757d31de1315a0fb6bdd78dc646a4dc5f029",
+    "labels": "86d370e5bc8586197951595502404ef6fea803e8f3cd5b438106a6ab5c290c56",
+    "predictions": "68a2438930b3e6f833fa4ef7744952a2588f61395d3c195b39cb757122df0cee"
+  },
+  "protocol_id": "moda-shopping100k-image-attribute-v1-20260810",
+  "score": {
+    "attributes": [
+      "category",
+      "collar",
+      "color",
+      "fabric",
+      "fastening",
+      "fit",
+      "neckline",
+      "pattern",
+      "pocket",
+      "sleeve_length"
+    ],
+    "eligible_cell_coverage": 0.614147,
+    "field_macro_set_f1": 0.829235,
+    "micro_accuracy": 0.814007,
+    "micro_set_f1": 0.814007,
+    "per_attribute": {
+      "category": {
+        "accuracy": 0.909555,
+        "coverage": 1.0,
+        "eligible_rows": 9995,
+        "false_negative": 904,
+        "false_positive": 904,
+        "macro_class_f1": 0.887435,
+        "precision": 0.909555,
+        "recall": 0.909555,
+        "set_f1": 0.909555,
+        "supported_classes": 16,
+        "true_positive": 9091
+      },
+      "collar": {
+        "accuracy": 0.882962,
+        "coverage": 0.251326,
+        "eligible_rows": 2512,
+        "false_negative": 294,
+        "false_positive": 294,
+        "macro_class_f1": 0.771213,
+        "precision": 0.882962,
+        "recall": 0.882962,
+        "set_f1": 0.882962,
+        "supported_classes": 17,
+        "true_positive": 2218
+      },
+      "color": {
+        "accuracy": 0.705288,
+        "coverage": 0.821211,
+        "eligible_rows": 8208,
+        "false_negative": 2419,
+        "false_positive": 2419,
+        "macro_class_f1": 0.554034,
+        "precision": 0.705288,
+        "recall": 0.705288,
+        "set_f1": 0.705288,
+        "supported_classes": 19,
+        "true_positive": 5789
+      },
+      "fabric": {
+        "accuracy": 0.669279,
+        "coverage": 0.523362,
+        "eligible_rows": 5231,
+        "false_negative": 1730,
+        "false_positive": 1730,
+        "macro_class_f1": 0.250534,
+        "precision": 0.669279,
+        "recall": 0.669279,
+        "set_f1": 0.669279,
+        "supported_classes": 14,
+        "true_positive": 3501
+      },
+      "fastening": {
+        "accuracy": 0.916896,
+        "coverage": 0.3997,
+        "eligible_rows": 3995,
+        "false_negative": 332,
+        "false_positive": 332,
+        "macro_class_f1": 0.675319,
+        "precision": 0.916896,
+        "recall": 0.916896,
+        "set_f1": 0.916896,
+        "supported_classes": 10,
+        "true_positive": 3663
+      },
+      "fit": {
+        "accuracy": 0.670779,
+        "coverage": 0.908354,
+        "eligible_rows": 9079,
+        "false_negative": 2989,
+        "false_positive": 2989,
+        "macro_class_f1": 0.527316,
+        "precision": 0.670779,
+        "recall": 0.670779,
+        "set_f1": 0.670779,
+        "supported_classes": 15,
+        "true_positive": 6090
+      },
+      "neckline": {
+        "accuracy": 0.833661,
+        "coverage": 0.457729,
+        "eligible_rows": 4575,
+        "false_negative": 761,
+        "false_positive": 761,
+        "macro_class_f1": 0.635789,
+        "precision": 0.833661,
+        "recall": 0.833661,
+        "set_f1": 0.833661,
+        "supported_classes": 11,
+        "true_positive": 3814
+      },
+      "pattern": {
+        "accuracy": 0.897663,
+        "coverage": 0.834917,
+        "eligible_rows": 8345,
+        "false_negative": 854,
+        "false_positive": 854,
+        "macro_class_f1": 0.65474,
+        "precision": 0.897663,
+        "recall": 0.897663,
+        "set_f1": 0.897663,
+        "supported_classes": 16,
+        "true_positive": 7491
+      },
+      "pocket": {
+        "accuracy": 0.949102,
+        "coverage": 0.233917,
+        "eligible_rows": 2338,
+        "false_negative": 119,
+        "false_positive": 119,
+        "macro_class_f1": 0.834471,
+        "precision": 0.949102,
+        "recall": 0.949102,
+        "set_f1": 0.949102,
+        "supported_classes": 7,
+        "true_positive": 2219
+      },
+      "sleeve_length": {
+        "accuracy": 0.857163,
+        "coverage": 0.710955,
+        "eligible_rows": 7106,
+        "false_negative": 1015,
+        "false_positive": 1015,
+        "macro_class_f1": 0.72859,
+        "precision": 0.857163,
+        "recall": 0.857163,
+        "set_f1": 0.857163,
+        "supported_classes": 9,
+        "true_positive": 6091
+      }
+    },
+    "rows": 9995
+  },
+  "system_id": "moda_shopping100k_field_specific_heads_v1"
+}

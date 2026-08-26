@@ -1,0 +1,723 @@
+{
+  "api_cost_usd": 0.0,
+  "benchmark_protocol_id": "moda-shopping100k-image-attribute-v1-20260810",
+  "config_sha256": "34228075917efd18a7518ec25a214048a8711bdecc8a1c762bb3c2a72a81a23d",
+  "estimated_requested_resource_cost_usd": 0.688324,
+  "fields": [
+    "category",
+    "collar",
+    "color",
+    "fabric",
+    "fastening",
+    "fit",
+    "neckline",
+    "pattern",
+    "pocket",
+    "sleeve_length"
+  ],
+  "gpu": "A10",
+  "model_sha256": "05bde4251de77a525f5bc56fe1e6138eb0450cbc81747a3d52d8840c79aca5ea",
+  "prediction_sha256": "f875bcab65017fd9bc60f6f8222b6f764a735ae3ca908c2604cf82f238d932e7",
+  "protocol_id": "moda-shopping100k-fashionclip-public-probe-v1-20260810",
+  "public_calibration_labels_accessed": true,
+  "public_train_labels_accessed": true,
+  "rows": 9995,
+  "runner_sha256": "27829f72a7bf452b34d91ff7d00445349726bff2103a79cbe89030d8f7f7d3d7",
+  "system_id": "fashionclip_shopping100k_public_probe_v1",
+  "test_labels_accessed": false,
+  "training": {
+    "best_calibration_field_macro_class_f1": 0.5153008435496413,
+    "best_epoch": 39,
+    "calibration_manifest_sha256": "04a01bd07c991165b0c077f630a793027a50512169f5744b10406a6af51a7cbc",
+    "calibration_rows": 10117,
+    "config_sha256": "34228075917efd18a7518ec25a214048a8711bdecc8a1c762bb3c2a72a81a23d",
+    "history": [
+      {
+        "epoch": 1,
+        "field_macro_class_f1": 0.4039155802471289,
+        "per_attribute_macro_class_f1": {
+          "category": 0.6882883578853193,
+          "collar": 0.4197596320728716,
+          "color": 0.3674900472572734,
+          "fabric": 0.15529348015281538,
+          "fastening": 0.42951785362153566,
+          "fit": 0.300195042906577,
+          "neckline": 0.2999668025987383,
+          "pattern": 0.3414217639548457,
+          "pocket": 0.5469376603504015,
+          "sleeve_length": 0.4902851616709115
+        },
+        "train_loss": 2.4376042008399965
+      },
+      {
+        "epoch": 2,
+        "field_macro_class_f1": 0.41280113497133747,
+        "per_attribute_macro_class_f1": {
+          "category": 0.7340972378822959,
+          "collar": 0.4153408826484208,
+          "color": 0.3867550447956768,
+          "fabric": 0.154585901279822,
+          "fastening": 0.42409741211405017,
+          "fit": 0.31116107416207034,
+          "neckline": 0.3376050016983756,
+          "pattern": 0.3485708855973614,
+          "pocket": 0.5208636128080487,
+          "sleeve_length": 0.494934296727253
+        },
+        "train_loss": 2.2252183079719545
+      },
+      {
+        "epoch": 3,
+        "field_macro_class_f1": 0.4203611945346828,
+        "per_attribute_macro_class_f1": {
+          "category": 0.7448889545070466,
+          "collar": 0.41093830622798316,
+          "color": 0.39530005331760676,
+          "fabric": 0.16642847002957248,
+          "fastening": 0.42835086348349805,
+          "fit": 0.3070959929805884,
+          "neckline": 0.33572043815376973,
+          "pattern": 0.3523389935495926,
+          "pocket": 0.5378721609308258,
+          "sleeve_length": 0.524677712166345
+        },
+        "train_loss": 2.0499984979629517
+      },
+      {
+        "epoch": 4,
+        "field_macro_class_f1": 0.4309283497443788,
+        "per_attribute_macro_class_f1": {
+          "category": 0.749755077079425,
+          "collar": 0.4225185265299172,
+          "color": 0.4036604634570356,
+          "fabric": 0.17081421334011607,
+          "fastening": 0.46471472344487197,
+          "fit": 0.3066354189683443,
+          "neckline": 0.3461756540171464,
+          "pattern": 0.35804337550966414,
+          "pocket": 0.5402517143051456,
+          "sleeve_length": 0.5467143307921216
+        },
+        "train_loss": 1.903120756149292
+      },
+      {
+        "epoch": 5,
+        "field_macro_class_f1": 0.4469310355274924,
+        "per_attribute_macro_class_f1": {
+          "category": 0.7522696453458644,
+          "collar": 0.4229583078309707,
+          "color": 0.41194547345782206,
+          "fabric": 0.16804183649241042,
+          "fastening": 0.46125084478399536,
+          "fit": 0.3183464637014481,
+          "neckline": 0.34426465540286927,
+          "pattern": 0.3821957618473467,
+          "pocket": 0.6603467443019754,
+          "sleeve_length": 0.5476906221102227
+        },
+        "train_loss": 1.7799647152423859
+      },
+      {
+        "epoch": 6,
+        "field_macro_class_f1": 0.4541094199710029,
+        "per_attribute_macro_class_f1": {
+          "category": 0.7606549389713828,
+          "collar": 0.42614974272253825,
+          "color": 0.41961096994135705,
+          "fabric": 0.17015524372474222,
+          "fastening": 0.4619046808678971,
+          "fit": 0.3192407722180669,
+          "neckline": 0.3425671165493868,
+          "pattern": 0.39718065784791695,
+          "pocket": 0.6946918294043771,
+          "sleeve_length": 0.5489382474623627
+        },
+        "train_loss": 1.6771814107894898
+      },
+      {
+        "epoch": 7,
+        "field_macro_class_f1": 0.4589151772753895,
+        "per_attribute_macro_class_f1": {
+          "category": 0.7635051857929813,
+          "collar": 0.43411994579976054,
+          "color": 0.4296657040398225,
+          "fabric": 0.17365806833520978,
+          "fastening": 0.4587790427422247,
+          "fit": 0.3214896196627444,
+          "neckline": 0.34415804950956413,
+          "pattern": 0.4103840221583882,
+          "pocket": 0.7019383554199005,
+          "sleeve_length": 0.551453779293299
+        },
+        "train_loss": 1.5899955034255981
+      },
+      {
+        "epoch": 8,
+        "field_macro_class_f1": 0.4640390353124443,
+        "per_attribute_macro_class_f1": {
+          "category": 0.7695509744328443,
+          "collar": 0.4350821029666752,
+          "color": 0.4365373932632952,
+          "fabric": 0.17406288822539556,
+          "fastening": 0.4724718677986238,
+          "fit": 0.3263960484877509,
+          "neckline": 0.35209237887627504,
+          "pattern": 0.4377845541473825,
+          "pocket": 0.6851772768763202,
+          "sleeve_length": 0.5512348680498801
+        },
+        "train_loss": 1.5159645855426789
+      },
+      {
+        "epoch": 9,
+        "field_macro_class_f1": 0.467290806258991,
+        "per_attribute_macro_class_f1": {
+          "category": 0.7766173890864769,
+          "collar": 0.4363599841610428,
+          "color": 0.4437876279838204,
+          "fabric": 0.16984650020889555,
+          "fastening": 0.48318779992842664,
+          "fit": 0.3281010122566515,
+          "neckline": 0.3526211253505051,
+          "pattern": 0.43825183062432005,
+          "pocket": 0.6864711804930138,
+          "sleeve_length": 0.557663612496757
+        },
+        "train_loss": 1.4532510578632354
+      },
+      {
+        "epoch": 10,
+        "field_macro_class_f1": 0.46979627600498813,
+        "per_attribute_macro_class_f1": {
+          "category": 0.7817296662382763,
+          "collar": 0.43473638685655025,
+          "color": 0.4498569008599579,
+          "fabric": 0.17049154109014894,
+          "fastening": 0.4963433841155355,
+          "fit": 0.3251217135002023,
+          "neckline": 0.34923013313630435,
+          "pattern": 0.4481522186258331,
+          "pocket": 0.6868327064196492,
+          "sleeve_length": 0.5554681092074237
+        },
+        "train_loss": 1.3994981348514557
+      },
+      {
+        "epoch": 11,
+        "field_macro_class_f1": 0.47351808092013653,
+        "per_attribute_macro_class_f1": {
+          "category": 0.7843310310594711,
+          "collar": 0.4352311899458329,
+          "color": 0.4562217587828534,
+          "fabric": 0.16634182245692505,
+          "fastening": 0.5124776483530434,
+          "fit": 0.32667222695592085,
+          "neckline": 0.3546524612745545,
+          "pattern": 0.4457398362014479,
+          "pocket": 0.6893412780124333,
+          "sleeve_length": 0.5641715561588827
+        },
+        "train_loss": 1.3529968559741974
+      },
+      {
+        "epoch": 12,
+        "field_macro_class_f1": 0.4750962482083093,
+        "per_attribute_macro_class_f1": {
+          "category": 0.7908112960915222,
+          "collar": 0.440882834720082,
+          "color": 0.4633054559499969,
+          "fabric": 0.16839799403737174,
+          "fastening": 0.5047058413944512,
+          "fit": 0.32836777110394616,
+          "neckline": 0.3565376429817989,
+          "pattern": 0.44675683306361336,
+          "pocket": 0.6884991159364781,
+          "sleeve_length": 0.562697696803832
+        },
+        "train_loss": 1.3129343271255494
+      },
+      {
+        "epoch": 13,
+        "field_macro_class_f1": 0.47783493190737475,
+        "per_attribute_macro_class_f1": {
+          "category": 0.7932979674337872,
+          "collar": 0.44145478436195607,
+          "color": 0.46385542393258694,
+          "fabric": 0.16890064418914805,
+          "fastening": 0.5129983090981257,
+          "fit": 0.3305751943632024,
+          "neckline": 0.3628280332788418,
+          "pattern": 0.4517683841693077,
+          "pocket": 0.6905237322043355,
+          "sleeve_length": 0.5621468460424557
+        },
+        "train_loss": 1.277214914560318
+      },
+      {
+        "epoch": 14,
+        "field_macro_class_f1": 0.4804735442887519,
+        "per_attribute_macro_class_f1": {
+          "category": 0.7991077260829779,
+          "collar": 0.44187780034813384,
+          "color": 0.46806721123653605,
+          "fabric": 0.1646131008873657,
+          "fastening": 0.517072033107417,
+          "fit": 0.3341456456203725,
+          "neckline": 0.3624898155650426,
+          "pattern": 0.45745420782940227,
+          "pocket": 0.6934271566638752,
+          "sleeve_length": 0.5664807455463949
+        },
+        "train_loss": 1.2458472192287444
+      },
+      {
+        "epoch": 15,
+        "field_macro_class_f1": 0.48185039756840276,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8016431486676285,
+          "collar": 0.44249627989058943,
+          "color": 0.46757694267586447,
+          "fabric": 0.16537158332391572,
+          "fastening": 0.5153369942067824,
+          "fit": 0.33346763940533947,
+          "neckline": 0.3632509446114324,
+          "pattern": 0.46443134710140405,
+          "pocket": 0.6959682151214157,
+          "sleeve_length": 0.5689608806796549
+        },
+        "train_loss": 1.2176946580410004
+      },
+      {
+        "epoch": 16,
+        "field_macro_class_f1": 0.4850685414601905,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8039084583038858,
+          "collar": 0.4479531425920809,
+          "color": 0.47221462722739566,
+          "fabric": 0.16552957041740038,
+          "fastening": 0.5227563833043869,
+          "fit": 0.33658156715892923,
+          "neckline": 0.3700972591887496,
+          "pattern": 0.46227040707895023,
+          "pocket": 0.6965220760463435,
+          "sleeve_length": 0.5728519232837825
+        },
+        "train_loss": 1.1925595104694366
+      },
+      {
+        "epoch": 17,
+        "field_macro_class_f1": 0.48783160484835764,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8069455421703533,
+          "collar": 0.4468190393774464,
+          "color": 0.47440439983182014,
+          "fabric": 0.16279408385669983,
+          "fastening": 0.5161097763124973,
+          "fit": 0.3373846219409316,
+          "neckline": 0.3667465641020339,
+          "pattern": 0.46952368851912013,
+          "pocket": 0.7247164144499646,
+          "sleeve_length": 0.5728719179227083
+        },
+        "train_loss": 1.1712798655033112
+      },
+      {
+        "epoch": 18,
+        "field_macro_class_f1": 0.4903359122356973,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8082088471714958,
+          "collar": 0.44905478646253527,
+          "color": 0.4796731185145582,
+          "fabric": 0.16593577088552847,
+          "fastening": 0.5166357332890398,
+          "fit": 0.3414331635430889,
+          "neckline": 0.3726462609180647,
+          "pattern": 0.4694441325409607,
+          "pocket": 0.7239770639567008,
+          "sleeve_length": 0.5763502450750012
+        },
+        "train_loss": 1.15045907497406
+      },
+      {
+        "epoch": 19,
+        "field_macro_class_f1": 0.49113476490690366,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8102885344444538,
+          "collar": 0.4501154291392184,
+          "color": 0.48070381127723055,
+          "fabric": 0.16148813797569592,
+          "fastening": 0.5199752740750712,
+          "fit": 0.3416819313541299,
+          "neckline": 0.37069940625970654,
+          "pattern": 0.4725040481582471,
+          "pocket": 0.7282758584815305,
+          "sleeve_length": 0.5756152179037537
+        },
+        "train_loss": 1.1318582534790038
+      },
+      {
+        "epoch": 20,
+        "field_macro_class_f1": 0.4934280515802736,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8138339874649003,
+          "collar": 0.4501705154379487,
+          "color": 0.48365955209651135,
+          "fabric": 0.1642353084819619,
+          "fastening": 0.5259044670868378,
+          "fit": 0.3438230703255184,
+          "neckline": 0.3729420149515588,
+          "pattern": 0.4734573528671574,
+          "pocket": 0.729108490180052,
+          "sleeve_length": 0.5771457569102891
+        },
+        "train_loss": 1.1150189220905304
+      },
+      {
+        "epoch": 21,
+        "field_macro_class_f1": 0.4960244746426158,
+        "per_attribute_macro_class_f1": {
+          "category": 0.815760623095103,
+          "collar": 0.4543124860870464,
+          "color": 0.48376247998453914,
+          "fabric": 0.16504045850505883,
+          "fastening": 0.5241008035746489,
+          "fit": 0.3449407880631809,
+          "neckline": 0.3743686525094006,
+          "pattern": 0.4742297010045069,
+          "pocket": 0.7471752696381577,
+          "sleeve_length": 0.5765534839645149
+        },
+        "train_loss": 1.0994815468788146
+      },
+      {
+        "epoch": 22,
+        "field_macro_class_f1": 0.4978021820235729,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8173385194384725,
+          "collar": 0.4568816982751826,
+          "color": 0.4829191174329505,
+          "fabric": 0.16316072169510157,
+          "fastening": 0.5281148288910636,
+          "fit": 0.34624829289463993,
+          "neckline": 0.3765312735975538,
+          "pattern": 0.4777492188033682,
+          "pocket": 0.749055129385131,
+          "sleeve_length": 0.5800230198222651
+        },
+        "train_loss": 1.085353010892868
+      },
+      {
+        "epoch": 23,
+        "field_macro_class_f1": 0.4977627889035626,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8182846676095248,
+          "collar": 0.45734672265963244,
+          "color": 0.4850528257991728,
+          "fabric": 0.16364858270413632,
+          "fastening": 0.5282742118319312,
+          "fit": 0.34758415452225144,
+          "neckline": 0.37710220707908887,
+          "pattern": 0.47966904296668744,
+          "pocket": 0.7404869151774349,
+          "sleeve_length": 0.5801785586857663
+        },
+        "train_loss": 1.0721979856491088
+      },
+      {
+        "epoch": 24,
+        "field_macro_class_f1": 0.4974451370643962,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8185891884454322,
+          "collar": 0.45446337450838503,
+          "color": 0.4870443723894882,
+          "fabric": 0.16334827506807084,
+          "fastening": 0.5247570041762478,
+          "fit": 0.34793760507190347,
+          "neckline": 0.3800717810003029,
+          "pattern": 0.47856320461417856,
+          "pocket": 0.738250334000593,
+          "sleeve_length": 0.5814262313693601
+        },
+        "train_loss": 1.0600448906421662
+      },
+      {
+        "epoch": 25,
+        "field_macro_class_f1": 0.4992921431912044,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8201907428614167,
+          "collar": 0.4566985303060767,
+          "color": 0.4866865617514677,
+          "fabric": 0.16266488232936668,
+          "fastening": 0.5277956586859351,
+          "fit": 0.3502236379745722,
+          "neckline": 0.37954549252387343,
+          "pattern": 0.4834386896083538,
+          "pocket": 0.7418110192614353,
+          "sleeve_length": 0.5838662166095469
+        },
+        "train_loss": 1.0492657959461211
+      },
+      {
+        "epoch": 26,
+        "field_macro_class_f1": 0.4998598594355064,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8211793293625277,
+          "collar": 0.45914825923325603,
+          "color": 0.4858836212279027,
+          "fabric": 0.16408070651891324,
+          "fastening": 0.5261483388963937,
+          "fit": 0.3512921894238241,
+          "neckline": 0.38115175267742296,
+          "pattern": 0.4796888316988661,
+          "pocket": 0.7461343607063959,
+          "sleeve_length": 0.5838912046095619
+        },
+        "train_loss": 1.0393027126789094
+      },
+      {
+        "epoch": 27,
+        "field_macro_class_f1": 0.4997963038026594,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8232724799697667,
+          "collar": 0.4595976830207222,
+          "color": 0.4872906229226848,
+          "fabric": 0.16138783460612352,
+          "fastening": 0.5274869141563803,
+          "fit": 0.35035159203124006,
+          "neckline": 0.3784550358882139,
+          "pattern": 0.4816094631321404,
+          "pocket": 0.7419461256215291,
+          "sleeve_length": 0.5865652866777935
+        },
+        "train_loss": 1.0292276799678803
+      },
+      {
+        "epoch": 28,
+        "field_macro_class_f1": 0.5003165805638192,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8227362170024591,
+          "collar": 0.4600273816236409,
+          "color": 0.48786508371971055,
+          "fabric": 0.1629015262599726,
+          "fastening": 0.5241510086374559,
+          "fit": 0.3510357953002099,
+          "neckline": 0.379541940170072,
+          "pattern": 0.48278536262932137,
+          "pocket": 0.7474123717835653,
+          "sleeve_length": 0.5847091185117848
+        },
+        "train_loss": 1.0200208097696304
+      },
+      {
+        "epoch": 29,
+        "field_macro_class_f1": 0.5052056855840494,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8240091822914976,
+          "collar": 0.45893436974492413,
+          "color": 0.4889811272314225,
+          "fabric": 0.1606024392424675,
+          "fastening": 0.526792361473815,
+          "fit": 0.3904407862476402,
+          "neckline": 0.3825943213245677,
+          "pattern": 0.4829816560883491,
+          "pocket": 0.745659729527234,
+          "sleeve_length": 0.5910608826685776
+        },
+        "train_loss": 1.011729657649994
+      },
+      {
+        "epoch": 30,
+        "field_macro_class_f1": 0.5058940240698505,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8254615558127978,
+          "collar": 0.4615231873390414,
+          "color": 0.48792099754984974,
+          "fabric": 0.16127271931728532,
+          "fastening": 0.5244728476253584,
+          "fit": 0.3919422178420936,
+          "neckline": 0.3826130679105115,
+          "pattern": 0.48705294377870567,
+          "pocket": 0.7480853260136227,
+          "sleeve_length": 0.5885953775092394
+        },
+        "train_loss": 1.0037496715784073
+      },
+      {
+        "epoch": 31,
+        "field_macro_class_f1": 0.5061656016976978,
+        "per_attribute_macro_class_f1": {
+          "category": 0.827006157696884,
+          "collar": 0.46188176553064064,
+          "color": 0.48881050654158154,
+          "fabric": 0.15862381592256516,
+          "fastening": 0.5241921699363237,
+          "fit": 0.3934866573361445,
+          "neckline": 0.38318479115515275,
+          "pattern": 0.48448358881394704,
+          "pocket": 0.7484766664235226,
+          "sleeve_length": 0.5915098976202162
+        },
+        "train_loss": 0.9962856709957123
+      },
+      {
+        "epoch": 32,
+        "field_macro_class_f1": 0.5072592078057259,
+        "per_attribute_macro_class_f1": {
+          "category": 0.82887289597327,
+          "collar": 0.462077902625204,
+          "color": 0.4886072717845726,
+          "fabric": 0.1592495657398027,
+          "fastening": 0.5285832439078415,
+          "fit": 0.3916825031177178,
+          "neckline": 0.3834971361652153,
+          "pattern": 0.4889156819933181,
+          "pocket": 0.7474123717835653,
+          "sleeve_length": 0.5936935049667513
+        },
+        "train_loss": 0.9894219130277634
+      },
+      {
+        "epoch": 33,
+        "field_macro_class_f1": 0.5076014092959911,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8287131438111713,
+          "collar": 0.46452691611514385,
+          "color": 0.4878836364479059,
+          "fabric": 0.15940206009770244,
+          "fastening": 0.5317501088118282,
+          "fit": 0.39213784440977606,
+          "neckline": 0.38428716853500533,
+          "pattern": 0.48876240272656174,
+          "pocket": 0.7449619504217443,
+          "sleeve_length": 0.5935888615830717
+        },
+        "train_loss": 0.9817564874887467
+      },
+      {
+        "epoch": 34,
+        "field_macro_class_f1": 0.5094275357161184,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8302493131488555,
+          "collar": 0.46633185396685906,
+          "color": 0.487593234255312,
+          "fabric": 0.16111658928426317,
+          "fastening": 0.5308960090385691,
+          "fit": 0.40305554433933516,
+          "neckline": 0.3842670862894328,
+          "pattern": 0.48866525231627644,
+          "pocket": 0.747250631418912,
+          "sleeve_length": 0.5948498431033686
+        },
+        "train_loss": 0.9759111523628234
+      },
+      {
+        "epoch": 35,
+        "field_macro_class_f1": 0.5083253626614045,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8296713304289602,
+          "collar": 0.46670126707929505,
+          "color": 0.48751614236536855,
+          "fabric": 0.15952048924772863,
+          "fastening": 0.5291741081955311,
+          "fit": 0.3932685193271107,
+          "neckline": 0.386840394836137,
+          "pattern": 0.4901765502047016,
+          "pocket": 0.7446363626650757,
+          "sleeve_length": 0.5957484622641371
+        },
+        "train_loss": 0.9703319758176804
+      },
+      {
+        "epoch": 36,
+        "field_macro_class_f1": 0.5094808916980328,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8300916591662664,
+          "collar": 0.4675707177474218,
+          "color": 0.48906041645410564,
+          "fabric": 0.15883356469705284,
+          "fastening": 0.5324528105644657,
+          "fit": 0.39519059249513866,
+          "neckline": 0.3844728872617402,
+          "pattern": 0.49100468874987524,
+          "pocket": 0.7488662448666702,
+          "sleeve_length": 0.5972653349775906
+        },
+        "train_loss": 0.9637817442417145
+      },
+      {
+        "epoch": 37,
+        "field_macro_class_f1": 0.5112493670244325,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8305718243618472,
+          "collar": 0.4678159491751908,
+          "color": 0.4890483160386695,
+          "fabric": 0.15817357627647402,
+          "fastening": 0.5328837888312083,
+          "fit": 0.4043940909931124,
+          "neckline": 0.38803344769693043,
+          "pattern": 0.4939381990835494,
+          "pocket": 0.7484725993095828,
+          "sleeve_length": 0.5991618784777591
+        },
+        "train_loss": 0.957400792837143
+      },
+      {
+        "epoch": 38,
+        "field_macro_class_f1": 0.5132704997271235,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8327234728076629,
+          "collar": 0.4700691708071441,
+          "color": 0.488077831034025,
+          "fabric": 0.16592845012344665,
+          "fastening": 0.5331463940777101,
+          "fit": 0.3961225290157068,
+          "neckline": 0.38806332603772253,
+          "pattern": 0.4927861795433188,
+          "pocket": 0.7679515636381024,
+          "sleeve_length": 0.5978360801863951
+        },
+        "train_loss": 0.9530341893434524
+      },
+      {
+        "epoch": 39,
+        "field_macro_class_f1": 0.5153008435496413,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8332032028591816,
+          "collar": 0.47103042322158234,
+          "color": 0.48899134591191884,
+          "fabric": 0.1627798578121332,
+          "fastening": 0.5343001422420841,
+          "fit": 0.41662115888046813,
+          "neckline": 0.3901705264597213,
+          "pattern": 0.48980249884510363,
+          "pocket": 0.7681538762108338,
+          "sleeve_length": 0.5979554030533867
+        },
+        "train_loss": 0.9482167303562165
+      },
+      {
+        "epoch": 40,
+        "field_macro_class_f1": 0.5144943826443715,
+        "per_attribute_macro_class_f1": {
+          "category": 0.8329823531370266,
+          "collar": 0.4723443236428915,
+          "color": 0.4898525668658406,
+          "fabric": 0.16243065347602184,
+          "fastening": 0.5308975771692248,
+          "fit": 0.40719822998565725,
+          "neckline": 0.38739497179100474,
+          "pattern": 0.49282621350075884,
+          "pocket": 0.7671684783637264,
+          "sleeve_length": 0.6018484585115627
+        },
+        "train_loss": 0.94320128262043
+      }
+    ],
+    "model_sha256": "05bde4251de77a525f5bc56fe1e6138eb0450cbc81747a3d52d8840c79aca5ea",
+    "runner_sha256": "27829f72a7bf452b34d91ff7d00445349726bff2103a79cbe89030d8f7f7d3d7",
+    "test_labels_accessed": false,
+    "train_manifest_sha256": "740f0e8cba9818d5b24bdda35f6e547b856f77c9b8d9195be234b9032a2bd5e5",
+    "train_rows": 80474
+  },
+  "wall_seconds": 1428.533
+}

@@ -1,0 +1,104 @@
+{
+  "protocol_id": "moda-shopping100k-image-attribute-v1-20260810",
+  "dataset": {
+    "name": "Shopping100k",
+    "canonical_images": 100586,
+    "archive_bytes": 6484182099,
+    "huggingface_mirror": "https://huggingface.co/datasets/kenanea/Shopping100k/resolve/main/Shopping100k.zip",
+    "huggingface_linked_etag": "a13bdc1610505a0a2df37ff8e1a5b3c209bd8f070cb9700ba43a4b1a891b7ba4",
+    "use_restriction": "non-commercial research and educational purposes",
+    "citation": "Ak et al., Efficient Multi-Attribute Similarity Learning Towards Attribute-based Fashion Search, WACV 2018"
+  },
+  "split": {
+    "method": "sha256(image_relative_path + '|' + salt) modulo 10000",
+    "salt": "moda-shopping100k-attribute-v1",
+    "train_buckets": [0, 7999],
+    "calibration_buckets": [8000, 8999],
+    "test_buckets": [9000, 9999]
+  },
+  "scoring": {
+    "missing_label": -1,
+    "missing_label_policy": "exclude because the dataset readme says -1 can mean inapplicable or missing",
+    "prediction_mode": "image_only",
+    "primary_metric": "ten-attribute field-macro set F1",
+    "secondary_metrics": ["micro set F1", "field accuracy", "field macro-class F1"],
+    "bootstrap_unit": "image",
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 20260810
+  },
+  "attributes": {
+    "category": {
+      "label_file": "Attributes/category.txt",
+      "prediction_fields": ["category", "sub_category"],
+      "values": ["coat", "jacket", "suit", "shirt", "t-shirt", "jumper", "shorts", "trouser", "jean", "swimming", "jumpsuit", "pyjamas", "tracksuit bottoms", "tracksuit", "skirt", "dress"],
+      "aliases": {"tee": "t-shirt", "t shirt": "t-shirt", "tshirt": "t-shirt", "sweater": "jumper", "trousers": "trouser", "pants": "trouser", "jeans": "jean", "swimwear": "swimming", "pajamas": "pyjamas", "pajama": "pyjamas"}
+    },
+    "collar": {
+      "label_file": "Attributes/collar.txt",
+      "prediction_fields": ["collar_style"],
+      "values": ["buttondown", "cutaway", "high", "hood", "kent", "lapel", "lined", "mandarin", "polo", "round", "shawl", "turndown", "v-neck", "peter pan", "volant", "shirt", "chin"],
+      "aliases": {"button-down": "buttondown", "high collar": "high", "hooded": "hood", "mandarin collar": "mandarin", "polo collar": "polo", "round collar": "round", "shawl collar": "shawl", "turn-down": "turndown", "v neck": "v-neck", "peter pan collar": "peter pan", "shirt collar": "shirt"}
+    },
+    "color": {
+      "label_file": "Attributes/color.txt",
+      "prediction_fields": ["color_palette_primary"],
+      "values": ["maroon", "black", "white", "charcoal", "indigo", "navy", "pink", "light blue", "blue", "beige", "orange", "yellow", "red", "purple", "brown", "olive", "green", "gray", "multi"],
+      "aliases": {"burgundy": "maroon", "charcoal gray": "charcoal", "navy blue": "navy", "olive green": "olive", "grey": "gray", "multicolor": "multi", "multi-color": "multi", "multicolour": "multi"}
+    },
+    "fabric": {
+      "label_file": "Attributes/fabric.txt",
+      "prediction_fields": ["fabric_construction", "material"],
+      "values": ["canvas", "crocheted", "denim", "fleece", "hardshell", "jersey", "jersey lace", "lace", "mesh", "mesh jersey", "rib", "softshell", "sweat", "leather"],
+      "aliases": {"crochet": "crocheted", "ribbed": "rib", "sweatshirt fabric": "sweat"}
+    },
+    "fastening": {
+      "label_file": "Attributes/fastening.txt",
+      "prediction_fields": ["closure_type"],
+      "values": ["zip", "back closure", "belt", "button", "covered", "hook", "laces", "no closure", "front", "others"],
+      "aliases": {"zipper": "zip", "buttoned": "button", "hook-and-eye": "hook", "lace-up": "laces", "none": "no closure", "open": "no closure", "other": "others"}
+    },
+    "fit": {
+      "label_file": "Attributes/fit.txt",
+      "prediction_fields": ["fit", "waist_type"],
+      "values": ["bootcut", "flared", "high waist", "jeggings", "large", "loose", "low", "oversize", "regular", "skinny", "slim", "small", "straight", "tailered", "tapered"],
+      "aliases": {"high-waisted": "high waist", "high waisted": "high waist", "low waist": "low", "oversized": "oversize", "straight leg": "straight", "tailored": "tailered"}
+    },
+    "neckline": {
+      "label_file": "Attributes/neckline.txt",
+      "prediction_fields": ["neckline"],
+      "values": ["boat", "backless", "cache-coeur", "henley", "low v-neck", "low round", "off-the-shoulder", "round", "square", "v-neck", "envelope"],
+      "aliases": {"boat neck": "boat", "low v neck": "low v-neck", "off shoulder": "off-the-shoulder", "off-the-shoulder neckline": "off-the-shoulder", "round neck": "round", "crew": "round", "square neck": "square", "v neck": "v-neck"}
+    },
+    "pattern": {
+      "label_file": "Attributes/pattern.txt",
+      "prediction_fields": ["pattern"],
+      "values": ["animal", "burnout", "camouflage", "checked", "colour gradient", "colourful", "floral", "herringbone", "marl", "paisley", "photo", "pinstriped", "plain", "polka dot", "print", "striped"],
+      "aliases": {"animal print": "animal", "camo": "camouflage", "check": "checked", "color gradient": "colour gradient", "colorful": "colourful", "marled": "marl", "photographic": "photo", "pinstripe": "pinstriped", "solid": "plain", "polka-dot": "polka dot", "printed": "print", "stripe": "striped"}
+    },
+    "pocket": {
+      "label_file": "Attributes/pocket.txt",
+      "prediction_fields": ["pocket_style"],
+      "values": ["side", "cargo", "flap", "napoleon", "belt", "sleeve", "zip"],
+      "aliases": {"side pocket": "side", "cargo pocket": "cargo", "flap pocket": "flap", "napoleon pocket": "napoleon", "belt pocket": "belt", "sleeve pocket": "sleeve", "zip pocket": "zip", "zippered": "zip"}
+    },
+    "sleeve_length": {
+      "label_file": "Attributes/sleevelen.txt",
+      "prediction_fields": ["sleeve_length"],
+      "values": ["3/4", "spaghetti", "sleeveless", "elbow", "extra long", "extra short", "long", "short", "strapless"],
+      "aliases": {"three-quarter": "3/4", "three quarter": "3/4", "3/4 sleeve": "3/4", "spaghetti strap": "spaghetti", "elbow length": "elbow", "extra-long": "extra long", "extra-short": "extra short", "long sleeve": "long", "short sleeve": "short"}
+    }
+  },
+  "excluded_source_attributes": {
+    "gender": "not a product appearance attribute and outside Research30",
+    "sport": "use-case label outside Research30"
+  },
+  "claim_gate": {
+    "minimum_test_rows": 9000,
+    "minimum_test_eligible_cells": 50000,
+    "minimum_frozen_systems": 4,
+    "winner_primary_delta_95ci_lower_bound_above_zero": true,
+    "required_fields": ["category", "collar", "color", "fabric", "fastening", "fit", "neckline", "pattern", "pocket", "sleeve_length"],
+    "required_baselines": ["florence2_corrective_research30", "moda_research30_e1", "fashionsiglip_research30_e1", "strong_open_vlm_or_public_classifier"]
+  },
+  "claim_boundary": "A result supports a public-data same-split Shopping100k image-attribute claim. It is not the original retrieval protocol or an official leaderboard result because the original exact split IDs are unavailable."
+}

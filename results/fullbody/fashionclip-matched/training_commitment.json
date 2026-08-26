@@ -1,0 +1,1629 @@
+{
+  "auxiliary_fields": 0,
+  "calibration_refit": false,
+  "calibration_rows": 1000,
+  "development_can_change_model": false,
+  "development_rows": 1000,
+  "development_three_tier": {
+    "category_level": {
+      "fabric": {
+        "tier1": 0.41462,
+        "tier2": 0.420088,
+        "tier3": 0.383249
+      },
+      "pattern": {
+        "tier1": 0.466983,
+        "tier2": 0.431235,
+        "tier3": 0.458452
+      },
+      "shape": {
+        "tier1": 0.677153,
+        "tier2": 0.722375,
+        "tier3": 0.534585
+      }
+    },
+    "model_level": {
+      "tier1_macro_f1": 0.598369,
+      "tier2_na_f1": 0.611108,
+      "tier3_visible_macro_f1": 0.496674
+    },
+    "per_attribute": {
+      "glasses": {
+        "group": "shape",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.4178145087235996,
+          "macro_precision": 0.397690883863818,
+          "macro_recall": 0.5253986329294698,
+          "per_class": {
+            "NA": {
+              "f1": 0.6666666666666666,
+              "precision": 0.5496688741721855,
+              "recall": 0.8469387755102041,
+              "support": 98
+            },
+            "have a glasses in hand or clothes": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "no": {
+              "f1": 0.8888888888888888,
+              "precision": 0.9744279946164199,
+              "recall": 0.8171557562076749,
+              "support": 886
+            },
+            "sunglasses": {
+              "f1": 0.11570247933884298,
+              "precision": 0.06666666666666667,
+              "recall": 0.4375,
+              "support": 16
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.6666666666666666,
+          "precision": 0.5496688741721855,
+          "recall": 0.8469387755102041,
+          "support": 98
+        },
+        "tier3": {
+          "macro_f1": 0.2535093415266361,
+          "macro_precision": 0.2642571555927762,
+          "macro_recall": 0.3136639390519187,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "have a glasses in hand or clothes": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "no": {
+              "f1": 0.8943792464484249,
+              "precision": 0.9877216916780355,
+              "recall": 0.8171557562076749,
+              "support": 886
+            },
+            "sunglasses": {
+              "f1": 0.11965811965811965,
+              "precision": 0.06930693069306931,
+              "recall": 0.4375,
+              "support": 16
+            }
+          }
+        }
+      },
+      "hat": {
+        "group": "shape",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.6083511290112396,
+          "macro_precision": 0.5707562928769988,
+          "macro_recall": 0.7193564699925515,
+          "per_class": {
+            "NA": {
+              "f1": 0.631578947368421,
+              "precision": 0.525,
+              "recall": 0.7924528301886793,
+              "support": 53
+            },
+            "no": {
+              "f1": 0.8423772609819121,
+              "precision": 0.9394812680115274,
+              "recall": 0.7634660421545667,
+              "support": 854
+            },
+            "yes": {
+              "f1": 0.3510971786833856,
+              "precision": 0.24778761061946902,
+              "recall": 0.6021505376344086,
+              "support": 93
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.631578947368421,
+          "precision": 0.525,
+          "recall": 0.7924528301886793,
+          "support": 53
+        },
+        "tier3": {
+          "macro_f1": 0.40039454216669407,
+          "macro_precision": 0.4005194646724801,
+          "macro_recall": 0.45520552659632507,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "no": {
+              "f1": 0.8467532467532467,
+              "precision": 0.9504373177842566,
+              "recall": 0.7634660421545667,
+              "support": 854
+            },
+            "yes": {
+              "f1": 0.3544303797468355,
+              "precision": 0.25112107623318386,
+              "recall": 0.6021505376344086,
+              "support": 93
+            }
+          }
+        }
+      },
+      "lower_clothing_length": {
+        "group": "shape",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.7660376358402198,
+          "macro_precision": 0.7503147184389605,
+          "macro_recall": 0.7880673712252659,
+          "per_class": {
+            "NA": {
+              "f1": 0.8521303258145364,
+              "precision": 0.8232445520581114,
+              "recall": 0.8831168831168831,
+              "support": 385
+            },
+            "long": {
+              "f1": 0.9763313609467456,
+              "precision": 0.9880239520958084,
+              "recall": 0.9649122807017544,
+              "support": 171
+            },
+            "medium short": {
+              "f1": 0.7032967032967032,
+              "precision": 0.6274509803921569,
+              "recall": 0.8,
+              "support": 40
+            },
+            "three-point": {
+              "f1": 0.8317631224764469,
+              "precision": 0.8753541076487252,
+              "recall": 0.7923076923076923,
+              "support": 390
+            },
+            "three-quarter": {
+              "f1": 0.4666666666666667,
+              "precision": 0.4375,
+              "recall": 0.5,
+              "support": 14
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.8521303258145364,
+          "precision": 0.8232445520581114,
+          "recall": 0.8831168831168831,
+          "support": 385
+        },
+        "tier3": {
+          "macro_f1": 0.6121233906306636,
+          "macro_precision": 0.619909482945718,
+          "macro_recall": 0.6114439946018894,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "long": {
+              "f1": 0.9792284866468842,
+              "precision": 0.9939759036144579,
+              "recall": 0.9649122807017544,
+              "support": 171
+            },
+            "medium short": {
+              "f1": 0.7356321839080461,
+              "precision": 0.6808510638297872,
+              "recall": 0.8,
+              "support": 40
+            },
+            "three-point": {
+              "f1": 0.8790896159317212,
+              "precision": 0.987220447284345,
+              "recall": 0.7923076923076923,
+              "support": 390
+            },
+            "three-quarter": {
+              "f1": 0.4666666666666667,
+              "precision": 0.4375,
+              "recall": 0.5,
+              "support": 14
+            }
+          }
+        }
+      },
+      "lower_fabric": {
+        "group": "fabric",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.2893845169094892,
+          "macro_precision": 0.27702276010831633,
+          "macro_recall": 0.3358443014887114,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 4
+            },
+            "chiffon": {
+              "f1": 0.4285714285714286,
+              "precision": 0.3235294117647059,
+              "recall": 0.6346153846153846,
+              "support": 52
+            },
+            "cotton": {
+              "f1": 0.6666666666666667,
+              "precision": 0.7553516819571865,
+              "recall": 0.5966183574879227,
+              "support": 414
+            },
+            "denim": {
+              "f1": 0.8124306326304106,
+              "precision": 0.8452655889145496,
+              "recall": 0.782051282051282,
+              "support": 468
+            },
+            "furry": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "knitted": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 10
+            },
+            "leather": {
+              "f1": 0.4074074074074074,
+              "precision": 0.2920353982300885,
+              "recall": 0.673469387755102,
+              "support": 49
+            },
+            "other": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 3
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        "tier3": {
+          "macro_f1": 0.29027649705991976,
+          "macro_precision": 0.2783301399155917,
+          "macro_recall": 0.3358443014887114,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "chiffon": {
+              "f1": 0.4313725490196078,
+              "precision": 0.32673267326732675,
+              "recall": 0.6346153846153846,
+              "support": 52
+            },
+            "cotton": {
+              "f1": 0.6684709066305818,
+              "precision": 0.76,
+              "recall": 0.5966183574879227,
+              "support": 414
+            },
+            "denim": {
+              "f1": 0.8124306326304106,
+              "precision": 0.8452655889145496,
+              "recall": 0.782051282051282,
+              "support": 468
+            },
+            "furry": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "knitted": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 10
+            },
+            "leather": {
+              "f1": 0.4099378881987578,
+              "precision": 0.29464285714285715,
+              "recall": 0.673469387755102,
+              "support": 49
+            },
+            "other": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 3
+            }
+          }
+        }
+      },
+      "lower_pattern": {
+        "group": "pattern",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.32342022559092,
+          "macro_precision": 0.2927511420631519,
+          "macro_recall": 0.4492850193512519,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 3
+            },
+            "color block": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 1
+            },
+            "floral": {
+              "f1": 0.4047619047619047,
+              "precision": 0.3148148148148148,
+              "recall": 0.5666666666666667,
+              "support": 30
+            },
+            "graphic": {
+              "f1": 0.5970149253731343,
+              "precision": 0.5405405405405406,
+              "recall": 0.6666666666666666,
+              "support": 120
+            },
+            "lattice": {
+              "f1": 0.1917808219178082,
+              "precision": 0.125,
+              "recall": 0.4117647058823529,
+              "support": 17
+            },
+            "other": {
+              "f1": 0.15483870967741936,
+              "precision": 0.09448818897637795,
+              "recall": 0.42857142857142855,
+              "support": 28
+            },
+            "pure color": {
+              "f1": 0.774679728711379,
+              "precision": 0.9500924214417745,
+              "recall": 0.6539440203562341,
+              "support": 786
+            },
+            "striped": {
+              "f1": 0.4642857142857143,
+              "precision": 0.3170731707317073,
+              "recall": 0.8666666666666667,
+              "support": 15
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 3
+        },
+        "tier3": {
+          "macro_f1": 0.3241057076542014,
+          "macro_precision": 0.29371480509028863,
+          "macro_recall": 0.4492850193512519,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "color block": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 1
+            },
+            "floral": {
+              "f1": 0.4047619047619047,
+              "precision": 0.3148148148148148,
+              "recall": 0.5666666666666667,
+              "support": 30
+            },
+            "graphic": {
+              "f1": 0.599250936329588,
+              "precision": 0.54421768707483,
+              "recall": 0.6666666666666666,
+              "support": 120
+            },
+            "lattice": {
+              "f1": 0.19444444444444442,
+              "precision": 0.12727272727272726,
+              "recall": 0.4117647058823529,
+              "support": 17
+            },
+            "other": {
+              "f1": 0.15483870967741936,
+              "precision": 0.09448818897637795,
+              "recall": 0.42857142857142855,
+              "support": 28
+            },
+            "pure color": {
+              "f1": 0.7752639517345401,
+              "precision": 0.9518518518518518,
+              "recall": 0.6539440203562341,
+              "support": 786
+            },
+            "striped": {
+              "f1": 0.4642857142857143,
+              "precision": 0.3170731707317073,
+              "recall": 0.8666666666666667,
+              "support": 15
+            }
+          }
+        }
+      },
+      "neckline": {
+        "group": "shape",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.5973968625757413,
+          "macro_precision": 0.5730289706956089,
+          "macro_recall": 0.6435942643794659,
+          "per_class": {
+            "NA": {
+              "f1": 0.8686244204018548,
+              "precision": 0.921311475409836,
+              "recall": 0.8216374269005848,
+              "support": 342
+            },
+            "V-shape": {
+              "f1": 0.5088757396449703,
+              "precision": 0.4387755102040816,
+              "recall": 0.6056338028169014,
+              "support": 71
+            },
+            "lapel": {
+              "f1": 0.6863905325443787,
+              "precision": 0.6666666666666666,
+              "recall": 0.7073170731707317,
+              "support": 82
+            },
+            "round": {
+              "f1": 0.8115942028985508,
+              "precision": 0.8888888888888888,
+              "recall": 0.7466666666666667,
+              "support": 375
+            },
+            "square": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 2
+            },
+            "standing": {
+              "f1": 0.6067415730337079,
+              "precision": 0.4909090909090909,
+              "recall": 0.7941176470588235,
+              "support": 34
+            },
+            "suspenders": {
+              "f1": 0.6995515695067265,
+              "precision": 0.6046511627906976,
+              "recall": 0.8297872340425532,
+              "support": 94
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.8686244204018548,
+          "precision": 0.921311475409836,
+          "recall": 0.8216374269005848,
+          "support": 342
+        },
+        "tier3": {
+          "macro_f1": 0.5018342001759105,
+          "macro_precision": 0.4901691208625632,
+          "macro_recall": 0.5262174891079537,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "V-shape": {
+              "f1": 0.5276073619631902,
+              "precision": 0.4673913043478261,
+              "recall": 0.6056338028169014,
+              "support": 71
+            },
+            "lapel": {
+              "f1": 0.725,
+              "precision": 0.7435897435897436,
+              "recall": 0.7073170731707317,
+              "support": 82
+            },
+            "round": {
+              "f1": 0.8296296296296296,
+              "precision": 0.9333333333333333,
+              "recall": 0.7466666666666667,
+              "support": 375
+            },
+            "square": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 2
+            },
+            "standing": {
+              "f1": 0.6506024096385542,
+              "precision": 0.5510204081632653,
+              "recall": 0.7941176470588235,
+              "support": 34
+            },
+            "suspenders": {
+              "f1": 0.78,
+              "precision": 0.7358490566037735,
+              "recall": 0.8297872340425532,
+              "support": 94
+            }
+          }
+        }
+      },
+      "neckwear": {
+        "group": "shape",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.66616842609158,
+          "macro_precision": 0.645591585342852,
+          "macro_recall": 0.7062512727949392,
+          "per_class": {
+            "NA": {
+              "f1": 0.602836879432624,
+              "precision": 0.5089820359281437,
+              "recall": 0.7391304347826086,
+              "support": 115
+            },
+            "no": {
+              "f1": 0.754158964879852,
+              "precision": 0.8242424242424242,
+              "recall": 0.6950596252129472,
+              "support": 587
+            },
+            "yes": {
+              "f1": 0.641509433962264,
+              "precision": 0.6035502958579881,
+              "recall": 0.6845637583892618,
+              "support": 298
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.602836879432624,
+          "precision": 0.5089820359281437,
+          "recall": 0.7391304347826086,
+          "support": 115
+        },
+        "tier3": {
+          "macro_f1": 0.4739219477005223,
+          "macro_precision": 0.49385964912280694,
+          "macro_recall": 0.45987446120073633,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "no": {
+              "f1": 0.7647610121836925,
+              "precision": 0.85,
+              "recall": 0.6950596252129472,
+              "support": 587
+            },
+            "yes": {
+              "f1": 0.6570048309178744,
+              "precision": 0.631578947368421,
+              "recall": 0.6845637583892618,
+              "support": 298
+            }
+          }
+        }
+      },
+      "outer_clothing_cardigan": {
+        "group": "shape",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.9183537871173537,
+          "macro_precision": 0.8801327885597549,
+          "macro_recall": 0.9685198474147374,
+          "per_class": {
+            "no": {
+              "f1": 0.9839156960621186,
+              "precision": 0.996629213483146,
+              "recall": 0.9715224534501643,
+              "support": 913
+            },
+            "yes": {
+              "f1": 0.8527918781725888,
+              "precision": 0.7636363636363637,
+              "recall": 0.9655172413793104,
+              "support": 87
+            }
+          }
+        },
+        "tier2": null,
+        "tier3": {
+          "macro_f1": 0.9183537871173537,
+          "macro_precision": 0.8801327885597549,
+          "macro_recall": 0.9685198474147374,
+          "per_class": {
+            "no": {
+              "f1": 0.9839156960621186,
+              "precision": 0.996629213483146,
+              "recall": 0.9715224534501643,
+              "support": 913
+            },
+            "yes": {
+              "f1": 0.8527918781725888,
+              "precision": 0.7636363636363637,
+              "recall": 0.9655172413793104,
+              "support": 87
+            }
+          }
+        }
+      },
+      "outer_fabric": {
+        "group": "fabric",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.6178051003747237,
+          "macro_precision": 0.5819430037072815,
+          "macro_recall": 0.6728352658305783,
+          "per_class": {
+            "NA": {
+              "f1": 0.9699421965317918,
+              "precision": 0.9952550415183867,
+              "recall": 0.9458850056369785,
+              "support": 887
+            },
+            "chiffon": {
+              "f1": 0.39999999999999997,
+              "precision": 0.3125,
+              "recall": 0.5555555555555556,
+              "support": 9
+            },
+            "cotton": {
+              "f1": 0.5797101449275363,
+              "precision": 0.49382716049382713,
+              "recall": 0.7017543859649122,
+              "support": 57
+            },
+            "denim": {
+              "f1": 0.7692307692307692,
+              "precision": 0.7142857142857143,
+              "recall": 0.8333333333333334,
+              "support": 6
+            },
+            "furry": {
+              "f1": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "support": 2
+            },
+            "knitted": {
+              "f1": 0.53125,
+              "precision": 0.4473684210526316,
+              "recall": 0.6538461538461539,
+              "support": 26
+            },
+            "leather": {
+              "f1": 0.6923076923076923,
+              "precision": 0.6923076923076923,
+              "recall": 0.6923076923076923,
+              "support": 13
+            },
+            "other": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.9699421965317918,
+          "precision": 0.9952550415183867,
+          "recall": 0.9458850056369785,
+          "support": 887
+        },
+        "tier3": {
+          "macro_f1": 0.5576870748299319,
+          "macro_precision": 0.5630352437417654,
+          "macro_recall": 0.554599640125956,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "chiffon": {
+              "f1": 0.5,
+              "precision": 0.45454545454545453,
+              "recall": 0.5555555555555556,
+              "support": 9
+            },
+            "cotton": {
+              "f1": 0.7142857142857142,
+              "precision": 0.7272727272727273,
+              "recall": 0.7017543859649122,
+              "support": 57
+            },
+            "denim": {
+              "f1": 0.8333333333333334,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "support": 6
+            },
+            "furry": {
+              "f1": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "support": 2
+            },
+            "knitted": {
+              "f1": 0.693877551020408,
+              "precision": 0.7391304347826086,
+              "recall": 0.6538461538461539,
+              "support": 26
+            },
+            "leather": {
+              "f1": 0.7199999999999999,
+              "precision": 0.75,
+              "recall": 0.6923076923076923,
+              "support": 13
+            },
+            "other": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            }
+          }
+        }
+      },
+      "outer_pattern": {
+        "group": "pattern",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.4440849879500186,
+          "macro_precision": 0.4100587879653269,
+          "macro_recall": 0.5764800943977016,
+          "per_class": {
+            "NA": {
+              "f1": 0.9603729603729604,
+              "precision": 0.9927710843373494,
+              "recall": 0.9300225733634312,
+              "support": 886
+            },
+            "color block": {
+              "f1": 0.6666666666666666,
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "support": 3
+            },
+            "floral": {
+              "f1": 0.3333333333333333,
+              "precision": 0.3333333333333333,
+              "recall": 0.3333333333333333,
+              "support": 3
+            },
+            "graphic": {
+              "f1": 0.42857142857142855,
+              "precision": 0.3125,
+              "recall": 0.6818181818181818,
+              "support": 22
+            },
+            "lattice": {
+              "f1": 0.2666666666666667,
+              "precision": 0.15384615384615385,
+              "recall": 1.0,
+              "support": 2
+            },
+            "other": {
+              "f1": 0.2222222222222222,
+              "precision": 0.18181818181818182,
+              "recall": 0.2857142857142857,
+              "support": 7
+            },
+            "pure color": {
+              "f1": 0.6748466257668713,
+              "precision": 0.6395348837209303,
+              "recall": 0.7142857142857143,
+              "support": 77
+            },
+            "striped": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.9603729603729604,
+          "precision": 0.9927710843373494,
+          "recall": 0.9300225733634312,
+          "support": 886
+        },
+        "tier3": {
+          "macro_f1": 0.4553311197196089,
+          "macro_precision": 0.5067204301075269,
+          "macro_recall": 0.4602272727272727,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "color block": {
+              "f1": 0.6666666666666666,
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "support": 3
+            },
+            "floral": {
+              "f1": 0.5,
+              "precision": 1.0,
+              "recall": 0.3333333333333333,
+              "support": 3
+            },
+            "graphic": {
+              "f1": 0.576923076923077,
+              "precision": 0.5,
+              "recall": 0.6818181818181818,
+              "support": 22
+            },
+            "lattice": {
+              "f1": 0.8,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "support": 2
+            },
+            "other": {
+              "f1": 0.30769230769230765,
+              "precision": 0.3333333333333333,
+              "recall": 0.2857142857142857,
+              "support": 7
+            },
+            "pure color": {
+              "f1": 0.7913669064748201,
+              "precision": 0.8870967741935484,
+              "recall": 0.7142857142857143,
+              "support": 77
+            },
+            "striped": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            }
+          }
+        }
+      },
+      "ring": {
+        "group": "shape",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.6291732404838329,
+          "macro_precision": 0.6115042016871706,
+          "macro_recall": 0.6703384056325232,
+          "per_class": {
+            "NA": {
+              "f1": 0.5000000000000001,
+              "precision": 0.4090909090909091,
+              "recall": 0.6428571428571429,
+              "support": 112
+            },
+            "no": {
+              "f1": 0.599640933572711,
+              "precision": 0.5604026845637584,
+              "recall": 0.6447876447876448,
+              "support": 259
+            },
+            "yes": {
+              "f1": 0.7878787878787878,
+              "precision": 0.8650190114068441,
+              "recall": 0.7233704292527822,
+              "support": 629
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.5000000000000001,
+          "precision": 0.4090909090909091,
+          "recall": 0.6428571428571429,
+          "support": 112
+        },
+        "tier3": {
+          "macro_f1": 0.47488362280362867,
+          "macro_precision": 0.5002472517022328,
+          "macro_recall": 0.456052691346809,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "no": {
+              "f1": 0.6242990654205608,
+              "precision": 0.605072463768116,
+              "recall": 0.6447876447876448,
+              "support": 259
+            },
+            "yes": {
+              "f1": 0.8003518029903254,
+              "precision": 0.8956692913385826,
+              "recall": 0.7233704292527822,
+              "support": 629
+            }
+          }
+        }
+      },
+      "sleeve_length": {
+        "group": "shape",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.828518966621233,
+          "macro_precision": 0.815156493756829,
+          "macro_recall": 0.9022908656577431,
+          "per_class": {
+            "long-sleeve": {
+              "f1": 0.8888888888888888,
+              "precision": 0.9893992932862191,
+              "recall": 0.8069164265129684,
+              "support": 347
+            },
+            "medium-sleeve": {
+              "f1": 0.47826086956521735,
+              "precision": 0.3333333333333333,
+              "recall": 0.8461538461538461,
+              "support": 39
+            },
+            "short-sleeve": {
+              "f1": 0.9641873278236913,
+              "precision": 0.9562841530054644,
+              "recall": 0.9722222222222222,
+              "support": 180
+            },
+            "sleeveless": {
+              "f1": 0.9827387802071346,
+              "precision": 0.9816091954022989,
+              "recall": 0.9838709677419355,
+              "support": 434
+            }
+          }
+        },
+        "tier2": null,
+        "tier3": {
+          "macro_f1": 0.828518966621233,
+          "macro_precision": 0.815156493756829,
+          "macro_recall": 0.9022908656577431,
+          "per_class": {
+            "long-sleeve": {
+              "f1": 0.8888888888888888,
+              "precision": 0.9893992932862191,
+              "recall": 0.8069164265129684,
+              "support": 347
+            },
+            "medium-sleeve": {
+              "f1": 0.47826086956521735,
+              "precision": 0.3333333333333333,
+              "recall": 0.8461538461538461,
+              "support": 39
+            },
+            "short-sleeve": {
+              "f1": 0.9641873278236913,
+              "precision": 0.9562841530054644,
+              "recall": 0.9722222222222222,
+              "support": 180
+            },
+            "sleeveless": {
+              "f1": 0.9827387802071346,
+              "precision": 0.9816091954022989,
+              "recall": 0.9838709677419355,
+              "support": 434
+            }
+          }
+        }
+      },
+      "socks": {
+        "group": "shape",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.6264350921588688,
+          "macro_precision": 0.6026133509596109,
+          "macro_recall": 0.6924433256607679,
+          "per_class": {
+            "NA": {
+              "f1": 0.9634241245136187,
+              "precision": 0.9763406940063092,
+              "recall": 0.9508448540706606,
+              "support": 651
+            },
+            "leggings": {
+              "f1": 0.40624999999999994,
+              "precision": 0.325,
+              "recall": 0.5416666666666666,
+              "support": 24
+            },
+            "no": {
+              "f1": 0.8972602739726027,
+              "precision": 0.9424460431654677,
+              "recall": 0.8562091503267973,
+              "support": 306
+            },
+            "socks": {
+              "f1": 0.23880597014925375,
+              "precision": 0.16666666666666666,
+              "recall": 0.42105263157894735,
+              "support": 19
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.9634241245136187,
+          "precision": 0.9763406940063092,
+          "recall": 0.9508448540706606,
+          "support": 651
+        },
+        "tier3": {
+          "macro_f1": 0.4539163258886442,
+          "macro_precision": 0.5000286816854401,
+          "macro_recall": 0.45473211214310283,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "leggings": {
+              "f1": 0.6666666666666667,
+              "precision": 0.8666666666666667,
+              "recall": 0.5416666666666666,
+              "support": 24
+            },
+            "no": {
+              "f1": 0.9065743944636678,
+              "precision": 0.9632352941176471,
+              "recall": 0.8562091503267973,
+              "support": 306
+            },
+            "socks": {
+              "f1": 0.24242424242424243,
+              "precision": 0.1702127659574468,
+              "recall": 0.42105263157894735,
+              "support": 19
+            }
+          }
+        }
+      },
+      "upper_clothing_covering_navel": {
+        "group": "shape",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.8710437251257916,
+          "macro_precision": 0.854701451976085,
+          "macro_recall": 0.8954066867110345,
+          "per_class": {
+            "NA": {
+              "f1": 0.919626168224299,
+              "precision": 0.9283018867924528,
+              "recall": 0.9111111111111111,
+              "support": 270
+            },
+            "no": {
+              "f1": 0.7733333333333333,
+              "precision": 0.6904761904761905,
+              "recall": 0.8787878787878788,
+              "support": 132
+            },
+            "yes": {
+              "f1": 0.9201716738197425,
+              "precision": 0.9453262786596119,
+              "recall": 0.8963210702341137,
+              "support": 598
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.919626168224299,
+          "precision": 0.9283018867924528,
+          "recall": 0.9111111111111111,
+          "support": 270
+        },
+        "tier3": {
+          "macro_f1": 0.5758352508236265,
+          "macro_precision": 0.5659255898366605,
+          "macro_recall": 0.5917029830073308,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "no": {
+              "f1": 0.7945205479452054,
+              "precision": 0.725,
+              "recall": 0.8787878787878788,
+              "support": 132
+            },
+            "yes": {
+              "f1": 0.9329852045256743,
+              "precision": 0.9727767695099818,
+              "recall": 0.8963210702341137,
+              "support": 598
+            }
+          }
+        }
+      },
+      "upper_fabric": {
+        "group": "fabric",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.33667030311101526,
+          "macro_precision": 0.29279844797915694,
+          "macro_recall": 0.4769570401091563,
+          "per_class": {
+            "NA": {
+              "f1": 0.2903225806451613,
+              "precision": 0.1836734693877551,
+              "recall": 0.6923076923076923,
+              "support": 13
+            },
+            "chiffon": {
+              "f1": 0.559748427672956,
+              "precision": 0.4405940594059406,
+              "recall": 0.7672413793103449,
+              "support": 116
+            },
+            "cotton": {
+              "f1": 0.8210976478973627,
+              "precision": 0.9473684210526315,
+              "recall": 0.7245283018867924,
+              "support": 795
+            },
+            "denim": {
+              "f1": 0.3333333333333333,
+              "precision": 0.2222222222222222,
+              "recall": 0.6666666666666666,
+              "support": 12
+            },
+            "furry": {
+              "f1": 0.18181818181818182,
+              "precision": 0.125,
+              "recall": 0.3333333333333333,
+              "support": 3
+            },
+            "knitted": {
+              "f1": 0.5070422535211268,
+              "precision": 0.4235294117647059,
+              "recall": 0.631578947368421,
+              "support": 57
+            },
+            "leather": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 1
+            },
+            "other": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 3
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.2903225806451613,
+          "precision": 0.1836734693877551,
+          "recall": 0.6923076923076923,
+          "support": 13
+        },
+        "tier3": {
+          "macro_f1": 0.3017825520065604,
+          "macro_precision": 0.2713787500173051,
+          "macro_recall": 0.3904185785706948,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "chiffon": {
+              "f1": 0.5632911392405063,
+              "precision": 0.445,
+              "recall": 0.7672413793103449,
+              "support": 116
+            },
+            "cotton": {
+              "f1": 0.8216833095577746,
+              "precision": 0.9489291598023064,
+              "recall": 0.7245283018867924,
+              "support": 795
+            },
+            "denim": {
+              "f1": 0.3404255319148936,
+              "precision": 0.22857142857142856,
+              "recall": 0.6666666666666666,
+              "support": 12
+            },
+            "furry": {
+              "f1": 0.18181818181818182,
+              "precision": 0.125,
+              "recall": 0.3333333333333333,
+              "support": 3
+            },
+            "knitted": {
+              "f1": 0.5070422535211268,
+              "precision": 0.4235294117647059,
+              "recall": 0.631578947368421,
+              "support": 57
+            },
+            "leather": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 1
+            },
+            "other": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 3
+            }
+          }
+        }
+      },
+      "upper_pattern": {
+        "group": "pattern",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.6334423784999351,
+          "macro_precision": 0.58660709623646,
+          "macro_recall": 0.7420431236998571,
+          "per_class": {
+            "NA": {
+              "f1": 0.3333333333333333,
+              "precision": 0.21951219512195122,
+              "recall": 0.6923076923076923,
+              "support": 13
+            },
+            "color block": {
+              "f1": 0.5957446808510638,
+              "precision": 0.45161290322580644,
+              "recall": 0.875,
+              "support": 16
+            },
+            "floral": {
+              "f1": 0.7173913043478259,
+              "precision": 0.6226415094339622,
+              "recall": 0.8461538461538461,
+              "support": 39
+            },
+            "graphic": {
+              "f1": 0.767361111111111,
+              "precision": 0.7836879432624113,
+              "recall": 0.7517006802721088,
+              "support": 294
+            },
+            "lattice": {
+              "f1": 0.6190476190476191,
+              "precision": 0.65,
+              "recall": 0.5909090909090909,
+              "support": 22
+            },
+            "other": {
+              "f1": 0.37209302325581395,
+              "precision": 0.2962962962962963,
+              "recall": 0.5,
+              "support": 32
+            },
+            "pure color": {
+              "f1": 0.8326359832635984,
+              "precision": 0.9066059225512528,
+              "recall": 0.769825918762089,
+              "support": 517
+            },
+            "striped": {
+              "f1": 0.8299319727891157,
+              "precision": 0.7625,
+              "recall": 0.9104477611940298,
+              "support": 67
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.3333333333333333,
+          "precision": 0.21951219512195122,
+          "recall": 0.6923076923076923,
+          "support": 13
+        },
+        "tier3": {
+          "macro_f1": 0.5959205608526092,
+          "macro_precision": 0.5688031998240559,
+          "macro_recall": 0.6555046621613956,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "color block": {
+              "f1": 0.5957446808510638,
+              "precision": 0.45161290322580644,
+              "recall": 0.875,
+              "support": 16
+            },
+            "floral": {
+              "f1": 0.7173913043478259,
+              "precision": 0.6226415094339622,
+              "recall": 0.8461538461538461,
+              "support": 39
+            },
+            "graphic": {
+              "f1": 0.768695652173913,
+              "precision": 0.7864768683274022,
+              "recall": 0.7517006802721088,
+              "support": 294
+            },
+            "lattice": {
+              "f1": 0.65,
+              "precision": 0.7222222222222222,
+              "recall": 0.5909090909090909,
+              "support": 22
+            },
+            "other": {
+              "f1": 0.37209302325581395,
+              "precision": 0.2962962962962963,
+              "recall": 0.5,
+              "support": 32
+            },
+            "pure color": {
+              "f1": 0.8335078534031415,
+              "precision": 0.908675799086758,
+              "recall": 0.769825918762089,
+              "support": 517
+            },
+            "striped": {
+              "f1": 0.8299319727891157,
+              "precision": 0.7625,
+              "recall": 0.9104477611940298,
+              "support": 67
+            }
+          }
+        }
+      },
+      "waist_accessories": {
+        "group": "shape",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.6000651110965961,
+          "macro_precision": 0.5597636339148813,
+          "macro_recall": 0.7437604596404603,
+          "per_class": {
+            "NA": {
+              "f1": 0.8673469387755103,
+              "precision": 0.9004237288135594,
+              "recall": 0.8366141732283464,
+              "support": 508
+            },
+            "belt": {
+              "f1": 0.40624999999999994,
+              "precision": 0.2857142857142857,
+              "recall": 0.7027027027027027,
+              "support": 37
+            },
+            "have a clothing": {
+              "f1": 0.3243243243243243,
+              "precision": 0.21428571428571427,
+              "recall": 0.6666666666666666,
+              "support": 9
+            },
+            "no": {
+              "f1": 0.8023391812865497,
+              "precision": 0.8386308068459658,
+              "recall": 0.7690582959641256,
+              "support": 446
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.8673469387755103,
+          "precision": 0.9004237288135594,
+          "recall": 0.8366141732283464,
+          "support": 508
+        },
+        "tier3": {
+          "macro_f1": 0.4391722549617287,
+          "macro_precision": 0.41039316080434507,
+          "macro_recall": 0.5346069163333738,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "belt": {
+              "f1": 0.46846846846846846,
+              "precision": 0.35135135135135137,
+              "recall": 0.7027027027027027,
+              "support": 37
+            },
+            "have a clothing": {
+              "f1": 0.42857142857142855,
+              "precision": 0.3157894736842105,
+              "recall": 0.6666666666666666,
+              "support": 9
+            },
+            "no": {
+              "f1": 0.8596491228070176,
+              "precision": 0.9744318181818182,
+              "recall": 0.7690582959641256,
+              "support": 446
+            }
+          }
+        }
+      },
+      "wrist_wearing": {
+        "group": "shape",
+        "hallucinations": 0,
+        "tier1": {
+          "macro_f1": 0.5964731115302985,
+          "macro_precision": 0.5792092020597646,
+          "macro_recall": 0.690102942277378,
+          "per_class": {
+            "NA": {
+              "f1": 0.3515151515151515,
+              "precision": 0.23577235772357724,
+              "recall": 0.6904761904761905,
+              "support": 42
+            },
+            "no": {
+              "f1": 0.7302504816955684,
+              "precision": 0.7750511247443763,
+              "recall": 0.6903460837887068,
+              "support": 549
+            },
+            "yes": {
+              "f1": 0.7076537013801757,
+              "precision": 0.7268041237113402,
+              "recall": 0.6894865525672371,
+              "support": 409
+            }
+          }
+        },
+        "tier2": {
+          "f1": 0.3515151515151515,
+          "precision": 0.23577235772357724,
+          "recall": 0.6904761904761905,
+          "support": 42
+        },
+        "tier3": {
+          "macro_f1": 0.48256051384083604,
+          "macro_precision": 0.5078997550813834,
+          "macro_recall": 0.45994421211864794,
+          "per_class": {
+            "NA": {
+              "f1": 0.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "support": 0
+            },
+            "no": {
+              "f1": 0.7373540856031128,
+              "precision": 0.791231732776618,
+              "recall": 0.6903460837887068,
+              "support": 549
+            },
+            "yes": {
+              "f1": 0.7103274559193954,
+              "precision": 0.7324675324675325,
+              "recall": 0.6894865525672371,
+              "support": 409
+            }
+          }
+        }
+      }
+    },
+    "protocol": "dfmm-wacvw-2026-arxiv-2601.15711",
+    "rows": 1000,
+    "schema": {
+      "expected_predictions": 18000,
+      "extra_record_ids": [],
+      "hallucinations": 0,
+      "missing_fields": 0,
+      "missing_record_ids": [],
+      "unknown_fields_in_nested_sections": 0
+    }
+  },
+  "embedding_cache": {
+    "artifact_sha256": {
+      "test_image_array": "ffb18f5b432df5d880fa7599beb02d5adfffc22019def6579499fe4125043a32",
+      "test_index": "2effca3909734642116eb825fd17e951a8e9e6283bb523f90ddaa2e40e2543ee",
+      "train_image_array": "571667bf148750b93c5fd0e1339bd9f75b1cd8fb0830359a586af5391a6d9a69",
+      "train_index": "e104dbb9357279aa5f3c46002e90af51a92b8a63a8975362da9e650a3f5e9dfc"
+    },
+    "dimension": 512,
+    "encoder_weights_sha256": "4977e3a54929eccf065ce449aeaf296f0e5cb6b28e8798c3c97d67cb2f6dafc9",
+    "source_rows": 14000
+  },
+  "encoder_frozen": true,
+  "encoder_weights_sha256": "4977e3a54929eccf065ce449aeaf296f0e5cb6b28e8798c3c97d67cb2f6dafc9",
+  "input": "image_only",
+  "model_sha256": {
+    "glasses": "41de9f4d313d36ae8814562c17e6fa6adb9f0531e7fd7bb475951b74b8b27286",
+    "hat": "89bfb9044436733f26765ce8f5c7aa216223fc8755fd1100ddd2904e6fd51346",
+    "lower_clothing_length": "342a6b1d22222423ff86f5f9d60f7080b648f4464cb63e84d8a100a7bb327aaa",
+    "lower_fabric": "d24574fbecb0b7d48994d14fc492fd481b098324d5124e136b3ccde56b34ad01",
+    "lower_pattern": "8bc4ea7df1adc815b94f122bafdf45db155750af27e4c0739df80390644eef17",
+    "neckline": "cce64d6741151e5ac4dc4bf58d883bf1b6c31657aa134a6df419765e5e40d40a",
+    "neckwear": "12532f331ad7c31682c099f47f31e2fa8c58bfa274767b42de43d6f56c757b96",
+    "outer_clothing_cardigan": "f2458a344af85edfea1725e5893a6aa769d80ed041d6aff724aa0c62a6c1bac4",
+    "outer_fabric": "7da8364dc5e31f2cfb5af857f9ba8920c51d089da2774fe9216474ce04977d34",
+    "outer_pattern": "1f5374ffeb60a58ab462f5d7718d38445798bf54a9ba22f6282f127497e9ff60",
+    "ring": "b2f9eb241b3b69e1f13a9f08f784d7076676c0617d19ce80f432506401bbd240",
+    "sleeve_length": "dd8e90c93e00363ddbb9ec95589a367b6ffb77232650f3305eaaf0d58ecc288c",
+    "socks": "ae08c9f27a2819e09f5097de4c125acfd1bb017b2aaea04b8bb7c9ca2de4eb1e",
+    "upper_clothing_covering_navel": "fe522ff12449ff2f4dfada62e21e7d2937ecb25427289f4d5843ec26e7424f7a",
+    "upper_fabric": "f18813c48c73c13974ba41e4c2f739d1c0916be0f66d6ba596165e725110199f",
+    "upper_pattern": "c0f4203f6962df2861a75ff50bc3e36c4b000f1b5fb96c772fdf03ed7a323c3c",
+    "waist_accessories": "5033f0315c7a2a89020354ab2b79e183fb8d770817f4946513590c1f23967984",
+    "wrist_wearing": "89727f73dd91e11bfa6e80fd91aa7fa8d69504906acddfff7fa6b2fb2b51bd76"
+  },
+  "protocol": "dfmm-product-group-disjoint-matched-7k-v1",
+  "run_name": "fashionclip2-dfmm18-image-lr-matched7k-product-disjoint-v1-20260809",
+  "source_sha256": {
+    "baseline_module": "8f1ad891562b330906dc9b41559fe4861f42293afa0de26bdd0bca4114fd9e75",
+    "development_predictions": "9d8329aca275d6af5a450d82079154b13397955c769d25a1a466ec692a8b0e5a",
+    "protocol": "597669ab055c6491fd1349c0b396111de4f34c32a52a4bf092f7ab1f2df4138c",
+    "runner": "9de308d7ce2ec514af30303625d23814eac777f3e99a90f662a5ecc4ffd386a1",
+    "scorer": "bb48a9229f461daf0321df764b9e1a09d702df3c8fafa5fddf0c242a1950956b",
+    "training_audit": "7b0b2c2c70940339b35e0d6a08075b23a0833ab325fb0f0c0b092bd1f2657bbc"
+  },
+  "status": "training_committed",
+  "test_label_rows_loaded": 0,
+  "weight_fit_partition": "train",
+  "weight_fit_rows": 7000
+}
