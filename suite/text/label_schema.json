@@ -1,0 +1,52 @@
+{
+  "entity_types": [
+    "GARMENT_TYPE",
+    "MATERIAL",
+    "COLOR",
+    "PATTERN",
+    "SILHOUETTE",
+    "FIT",
+    "NECKLINE",
+    "SLEEVE",
+    "HEMLINE",
+    "BRAND",
+    "OCCASION",
+    "AESTHETIC",
+    "DETAIL"
+  ],
+  "bio_labels": [
+    "O",
+    "B-GARMENT_TYPE",
+    "I-GARMENT_TYPE",
+    "B-MATERIAL",
+    "I-MATERIAL",
+    "B-COLOR",
+    "I-COLOR",
+    "B-PATTERN",
+    "I-PATTERN",
+    "B-SILHOUETTE",
+    "I-SILHOUETTE",
+    "B-FIT",
+    "I-FIT",
+    "B-NECKLINE",
+    "I-NECKLINE",
+    "B-SLEEVE",
+    "I-SLEEVE",
+    "B-HEMLINE",
+    "I-HEMLINE",
+    "B-BRAND",
+    "I-BRAND",
+    "B-OCCASION",
+    "I-OCCASION",
+    "B-AESTHETIC",
+    "I-AESTHETIC",
+    "B-DETAIL",
+    "I-DETAIL"
+  ],
+  "annotation": "rule-based silver labels from open sources (no LLM)",
+  "sources": [
+    "livostyle",
+    "fashionpedia_synthetic",
+    "fashionstylist (optional)"
+  ]
+}
