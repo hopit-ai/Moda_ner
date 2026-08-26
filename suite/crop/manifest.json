@@ -1,0 +1,72 @@
+{
+  "benchmark_id": "fashionpedia-2020-val-moda-oracle-crop-v1",
+  "protocol": "Official Fashionpedia val2020 garment boxes; MODA mapping; oracle crops",
+  "not_comparable_to": "Fashionpedia detection + localized-attribute AP_IoU+F1",
+  "annotation_source": "<local-path>",
+  "annotation_sha256": "f831f415edad12d52acde8b138fe7ebd1592b57bf0dcd6a3b63ba8cabd208223",
+  "official_native_attributes": 294,
+  "official_native_categories": 46,
+  "official_images": 1158,
+  "garment_instances": 4688,
+  "unique_image_groups": 1158,
+  "evaluated_fields": [
+    "master_category",
+    "category",
+    "sub_category",
+    "silhouette",
+    "hemline",
+    "sleeve_length",
+    "sleeve_shape",
+    "neckline",
+    "collar_presence",
+    "collar_style",
+    "waist_type",
+    "material",
+    "surface_treatment",
+    "pattern",
+    "closure_type"
+  ],
+  "field_support": {
+    "category": 4688,
+    "closure_type": 1080,
+    "collar_presence": 294,
+    "collar_style": 287,
+    "hemline": 1729,
+    "master_category": 4688,
+    "material": 135,
+    "neckline": 1126,
+    "pattern": 1994,
+    "silhouette": 1994,
+    "sleeve_length": 912,
+    "sleeve_shape": 855,
+    "sub_category": 1594,
+    "surface_treatment": 756,
+    "waist_type": 1102
+  },
+  "observed_value_classes": {
+    "category": 27,
+    "closure_type": 8,
+    "collar_presence": 1,
+    "collar_style": 9,
+    "hemline": 10,
+    "master_category": 7,
+    "material": 10,
+    "neckline": 23,
+    "pattern": 23,
+    "silhouette": 23,
+    "sleeve_length": 5,
+    "sleeve_shape": 13,
+    "sub_category": 98,
+    "surface_treatment": 20,
+    "waist_type": 6
+  },
+  "training_overlap": {
+    "checked": true,
+    "image_id_count": 0,
+    "file_name_count": 0
+  },
+  "artifacts": {
+    "benchmark": "benchmark.jsonl",
+    "images_s3_prefix": "<internal-store>"
+  }
+}

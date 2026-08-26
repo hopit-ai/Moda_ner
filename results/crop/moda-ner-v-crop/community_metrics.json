@@ -1,0 +1,227 @@
+{
+  "protocol": "Fashionpedia 2020 val; official boxes; MODA mapping; oracle crops",
+  "rows": 4688,
+  "unique_image_groups": 1158,
+  "attribute_fields": [
+    "closure_type",
+    "collar_presence",
+    "collar_style",
+    "hemline",
+    "material",
+    "neckline",
+    "pattern",
+    "silhouette",
+    "sleeve_length",
+    "sleeve_shape",
+    "sub_category",
+    "surface_treatment",
+    "waist_type"
+  ],
+  "point_metrics": {
+    "category_accuracy": 0.8812,
+    "master_category_accuracy": 0.9172,
+    "attribute_micro_precision": 0.6102,
+    "attribute_micro_recall": 0.6395,
+    "attribute_micro_f1": 0.6245,
+    "attribute_field_macro_f1": 0.603
+  },
+  "cluster_bootstrap_95ci": {
+    "category_accuracy": {
+      "low": 0.871,
+      "high": 0.8912
+    },
+    "master_category_accuracy": {
+      "low": 0.909,
+      "high": 0.9256
+    },
+    "attribute_micro_precision": {
+      "low": 0.6003,
+      "high": 0.62
+    },
+    "attribute_micro_recall": {
+      "low": 0.6292,
+      "high": 0.6497
+    },
+    "attribute_micro_f1": {
+      "low": 0.6151,
+      "high": 0.634
+    },
+    "attribute_field_macro_f1": {
+      "low": 0.5903,
+      "high": 0.6152
+    }
+  },
+  "bootstrap_samples": 10000,
+  "structure": {
+    "raw_structure_validity": 1.0,
+    "schema_compliance": 0.5749,
+    "exact_match_on_all_mapped_fields": 0.4913
+  },
+  "per_field": {
+    "category": {
+      "value_precision": 0.8812,
+      "value_recall": 0.8812,
+      "value_f1": 0.8812,
+      "applicability_precision": 1.0,
+      "applicability_recall": 1.0,
+      "applicability_f1": 1.0,
+      "support": 4688,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "closure_type": {
+      "value_precision": 0.7133,
+      "value_recall": 0.7972,
+      "value_f1": 0.753,
+      "applicability_precision": 0.7771,
+      "applicability_recall": 0.8685,
+      "applicability_f1": 0.8203,
+      "support": 1080,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "collar_presence": {
+      "value_precision": 0.7466,
+      "value_recall": 0.7415,
+      "value_f1": 0.744,
+      "applicability_precision": 0.7466,
+      "applicability_recall": 0.7415,
+      "applicability_f1": 0.744,
+      "support": 294,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "collar_style": {
+      "value_precision": 0.66,
+      "value_recall": 0.3449,
+      "value_f1": 0.4531,
+      "applicability_precision": 0.88,
+      "applicability_recall": 0.4599,
+      "applicability_f1": 0.6041,
+      "support": 287,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "hemline": {
+      "value_precision": 0.5966,
+      "value_recall": 0.675,
+      "value_f1": 0.6334,
+      "applicability_precision": 0.8701,
+      "applicability_recall": 0.9844,
+      "applicability_f1": 0.9237,
+      "support": 1729,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "master_category": {
+      "value_precision": 0.9172,
+      "value_recall": 0.9172,
+      "value_f1": 0.9172,
+      "applicability_precision": 1.0,
+      "applicability_recall": 1.0,
+      "applicability_f1": 1.0,
+      "support": 4688,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "material": {
+      "value_precision": 0.4821,
+      "value_recall": 0.3699,
+      "value_f1": 0.4186,
+      "applicability_precision": 0.6562,
+      "applicability_recall": 0.4667,
+      "applicability_f1": 0.5455,
+      "support": 146,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "neckline": {
+      "value_precision": 0.5005,
+      "value_recall": 0.4387,
+      "value_f1": 0.4676,
+      "applicability_precision": 0.9271,
+      "applicability_recall": 0.8126,
+      "applicability_f1": 0.8661,
+      "support": 1126,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "pattern": {
+      "value_precision": 0.8358,
+      "value_recall": 0.8295,
+      "value_f1": 0.8326,
+      "applicability_precision": 0.9656,
+      "applicability_recall": 0.9584,
+      "applicability_f1": 0.962,
+      "support": 1994,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "silhouette": {
+      "value_precision": 0.5493,
+      "value_recall": 0.5502,
+      "value_f1": 0.5497,
+      "applicability_precision": 0.975,
+      "applicability_recall": 0.9764,
+      "applicability_f1": 0.9757,
+      "support": 1994,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "sleeve_length": {
+      "value_precision": 0.8169,
+      "value_recall": 0.7971,
+      "value_f1": 0.8069,
+      "applicability_precision": 0.9281,
+      "applicability_recall": 0.9057,
+      "applicability_f1": 0.9168,
+      "support": 912,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "sleeve_shape": {
+      "value_precision": 0.692,
+      "value_recall": 0.6596,
+      "value_f1": 0.6754,
+      "applicability_precision": 0.9166,
+      "applicability_recall": 0.8737,
+      "applicability_f1": 0.8946,
+      "support": 855,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "sub_category": {
+      "value_precision": 0.5921,
+      "value_recall": 0.5866,
+      "value_f1": 0.5893,
+      "applicability_precision": 0.8714,
+      "applicability_recall": 0.8632,
+      "applicability_f1": 0.8673,
+      "support": 1594,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "surface_treatment": {
+      "value_precision": 0.3591,
+      "value_recall": 0.5125,
+      "value_f1": 0.4223,
+      "applicability_precision": 0.6339,
+      "applicability_recall": 0.7421,
+      "applicability_f1": 0.6837,
+      "support": 880,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    },
+    "waist_type": {
+      "value_precision": 0.4345,
+      "value_recall": 0.569,
+      "value_f1": 0.4927,
+      "applicability_precision": 0.7145,
+      "applicability_recall": 0.9356,
+      "applicability_f1": 0.8102,
+      "support": 1102,
+      "judged_rows": 4688,
+      "state_accuracy": null
+    }
+  }
+}
