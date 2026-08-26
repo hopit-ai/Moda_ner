@@ -211,9 +211,9 @@ Two of the four tracks use research-only datasets. Any weights trained on those 
 
 ## What you can download
 
-The table above shows our strongest checkpoints. The published weights are not always those exact checkpoints. Where they differ, the model card reports both results, so a downloaded model should be expected to match the model card rather than the table.
+For `crop`, the published weights are the same checkpoint that produced the number in the table above, and they are MIT-licensed and usable commercially. Download it, score it, and you should get 0.6300.
 
-For `catalog` and `fullbody`, the published weights are non-commercial because their evaluation datasets are research-only. For `crop`, the weights are MIT-licensed and can be used commercially, but we intentionally publish a checkpoint that is not our strongest. We prefer to state that plainly rather than have users discover it later through a scoring run.
+For `catalog` and `fullbody`, the published weights are non-commercial, because the datasets they were evaluated against are research-only. That restriction binds us too: those exact weights are not part of our paid product. Where any published checkpoint differs from the one in the table, the model card reports both numbers, so trust the card over the table.
 
 ## Run your own model
 

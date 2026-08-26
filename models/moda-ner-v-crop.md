@@ -13,14 +13,17 @@ no equivalent labels.
 
 | | Attribute micro-F1 (crop track) |
 |---|---:|
-| **This released checkpoint** | **TBD at upload** |
-| Best internal checkpoint | 0.6300 |
-| Strongest external open baseline | 0.6245 |
-| Zero-shot open VLM reference | 0.1805 |
+| **This released checkpoint** | **0.6300** |
+| Same architecture on a frozen FashionSigLIP encoder | 0.6245 |
+| Zero-shot open VLM reference (Qwen3-VL-8B) | 0.1805 |
+| Zero-shot FashionSigLIP text prototypes | 0.1817 |
 
-The released checkpoint is a strong open baseline and is deliberately not our strongest; both
-figures are stated so nothing is implied. Weak fields: material, surface treatment, collar
-style, neckline, waist type.
+These are the weights that produced our published number: nothing is held back on this route.
+Field-macro F1 is 0.6074, category accuracy 0.8825, master-category accuracy 0.9215.
+
+Weak fields, stated because the micro average hides them: material 0.4148, plus surface
+treatment, collar style, neckline and waist type. A headline of 0.6300 does not mean every
+field is usable.
 
 **Attribution.** The annotations behind this track are licensed CC BY 4.0 and require credit:
 Jia et al., *Fashionpedia: Ontology, Segmentation, and an Attribute Localization Dataset*,
