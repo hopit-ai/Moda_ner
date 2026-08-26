@@ -23,7 +23,7 @@ For example, Fashionpedia provides expert garment-level annotations, but not col
 
 We could have mapped everything into one label space and reported one headline score. We considered it several times. We abandoned the idea because every mapping would embed a modeling decision. A system that performs well on flat product images but fails on street photography could still look good in an averaged result.
 
-Instead, we built three tracks, three test sets, and three metrics. We do not average them into one number. A system is only as useful as its weakest important component.
+Instead, we built four tracks, four test sets, and four metrics. We do not average them into one number. A system is only as useful as its weakest important component.
 
 ## What the suite contains
 
@@ -35,11 +35,14 @@ It has four parts.
 
 | Track | Frozen test set | Input | Leakage unit |
 |---|---:|---|---|
-| Fashionpedia MODA-15 | 4,688 garment crops from 1,158 images | Garment crop supplied by the evaluator | Source image |
-| Shopping100k-10 | 9,995 catalogue images; 61,384 eligible fields | Catalogue product image | Image |
-| DFMM-18 | 5,000 images across 1,751 product groups | Full-body photo | Product group |
+| `crop` | 4,688 garment crops from 1,158 images | Garment crop supplied by the evaluator | Source image |
+| `catalog` | 9,995 catalogue images; 61,384 eligible fields | Catalogue product image | Image |
+| `fullbody` | 5,000 images across 1,751 product groups | Full-body photo | Product group |
+| `text` | 1,071 rows (765 standard, 306 hard) | Product title or description | Row |
 
 **Manifest builders.** Some source datasets are restricted, so we do not redistribute them. Instead, users download them from the official source under its terms. Our builders reconstruct the exact test split from record IDs and checksums. If a local dataset copy differs from ours, the build stops instead of silently evaluating against a different dataset.
+
+The `text` track is the exception. Its labels are ours rather than a third party's, so its splits ship in the repository directly and it runs with no external download. It is also the one track with no accompanying model: we publish the benchmark and our score on it, and keep the checkpoint. If you want to beat us at span extraction, the track is right there.
 
 **Scorers and uncertainty estimates.** Each track has a strict scorer and uses 10,000 paired bootstrap resamples, clustered at the correct leakage unit. This produces uncertainty intervals that account for related examples—for instance, multiple garment crops from one source image.
 
@@ -76,7 +79,7 @@ The workflow has five steps.
 Before a model runs, the track builder pins the dataset version, checksums, records, groups, split roles, output vocabulary, aliases, labeling rules, metric, bootstrap method, and seed.
 
 ```
-python -m suite.fullbody.build_manifest --source data/dfmm
+python -m suite.fullbody.build_manifest --source <your local copy>
 # manifest: 5,000 test images, 1,751 product groups, 18 fields, sha256=...
 ```
 
@@ -177,7 +180,7 @@ We are improving the suite in four directions.
 
 **More full-size comparisons.** Current external comparisons include FashionCLIP, FashionSigLIP, one open VLM, and one cost-gated commercial model. We want to evaluate at least five additional modern open VLMs at full row counts, not merely at a preliminary checkpoint.
 
-**A fourth track.** We have built a streaming iMaterialist track for pattern and neckline. It fingerprints and deduplicates examples without persisting an image corpus. It will only be included if at least 2,000 deduplicated source URLs remain available; otherwise, we will drop it and report why.
+**A fifth track.** We have built a streaming track for pattern and neckline. It fingerprints and deduplicates examples without persisting an image corpus. It will only be included if at least 2,000 deduplicated source URLs remain available; otherwise, we will drop it and report why.
 
 **An independently administered holdout.** The strongest possible test set is one we neither build nor administer. That is the most direct way to address the concern that a benchmark author may design a test they pass.
 
@@ -191,13 +194,13 @@ We will publish the protocol, splits, scorers, bootstrap code, frozen prediction
 
 What remains closed is the output of applying the measurement process to particular data: calibrated field-level thresholds, routing that chooses a head for a declared schema, and retailer-specific taxonomy mappings. These are accumulated, data-specific decisions. They are also the practical work customers are paying us to do.
 
-Two of the three tracks are based on research-only datasets, so weights trained on them are non-commercial. We will respect those terms. Those exact weights are not part of our paid product, either. The components needed to reproduce the evaluation—protocols, scorers, splits, and prediction files—do not carry that restriction.
+Two of the four tracks are based on research-only datasets, so weights trained on them are non-commercial. We will respect those terms. Those exact weights are not part of our paid product, either. The components needed to reproduce the evaluation—protocols, scorers, splits, and prediction files—do not carry that restriction.
 
 ## Run your own model
 
 Freeze a checkpoint. Generate predictions without labels on the same IDs. Commit the prediction hash. Score each track. Report the paired confidence interval against our published predictions.
 
-Everything needed is in the repository.
+The suite opens one track at a time — `crop` first, then `catalog`, `fullbody` and `text` over the following week — so check the availability table in the repository for what is runnable today.
 
 If another team beats us under the protocol, we want to know. The alternative is learning from a customer after a taxonomy mismatch has quietly removed fourteen points from a production route. We have had that conversation with ourselves enough times to know that the evaluation harness is not overhead. It is how we keep the unknowns visible.
 
