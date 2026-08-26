@@ -83,8 +83,11 @@ the systems themselves are not. In practice a Pro engagement is a model fine-tun
 on the customer's own catalogue, which is both more accurate on their taxonomy and free of any
 research-licence dependency. [Talk to us](https://hopit.ai).
 
-Weights are heads and adapters on the already-public MIT encoder
+Weights are heads and adapters on our own already-public MIT encoder,
 [`HopitAI/moda-fashion-distilled`](https://huggingface.co/HopitAI/moda-fashion-distilled).
+No third-party encoder is loaded at inference. FashionSigLIP appears in this work as a
+distillation teacher and as the baseline we measure against, never as the served model —
+each card's Provenance section says which.
 Where a published checkpoint is not our strongest, the model card states both figures.
 
 **On the non-commercial routes.** Two tracks are evaluated against research-only corpora whose
