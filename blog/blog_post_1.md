@@ -50,7 +50,7 @@ The `crop` track covers fifteen fields from a published set of allowed values.
 | Neck | `neckline`, `collar_presence`, `collar_style` | v-neck, cowl, halter |
 | Surface | `material`, `surface_treatment`, `pattern` | denim, distressed, floral |
 | Construction | `closure_type` | zip-up, button, wrap |
-| *Not in this track* | *colour, fit* | *the expert labels behind `crop` do not cover them; the `catalog` route does* |
+| *Not scored here* | *colour, fit* | *absent from this dataset's labels. The model predicts both, and is scored on them, in the `catalog` track* |
 
 `catalog` uses ten fields, including colour and fit. `fullbody` uses eighteen, with an explicit N/A option. `text` identifies thirteen entity types in product copy.
 
