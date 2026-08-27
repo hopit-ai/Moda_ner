@@ -66,7 +66,7 @@ Telling a coat from a dress is close to solved. Telling denim from twill is not:
 
 **The backbone was tested rather than assumed.** We compared a general SigLIP-2 encoder against a fashion-pretrained one under an identical development protocol. SigLIP-2 reached 0.6018 against 0.6163. That settled it for about eleven cents of compute, before anyone had to argue.
 
-**The encoder is ours, and this is worth being precise about.** An earlier ladder of checkpoints put our heads on a frozen third-party fashion encoder. We distilled that system into our own encoder, which is what serves today. The third-party encoder appears twice in this work — once as the distillation teacher during training, once as the comparator on the `crop` row — and never as the model being served.
+**The encoder is ours, and this is worth being precise about.** An earlier ladder of checkpoints put our heads on a frozen third-party fashion encoder. We distilled that system into our own encoder, which is what serves today. The third-party encoder appears twice in this work  -  once as the distillation teacher during training, once as the comparator on the `crop` row  -  and never as the model being served.
 
 ## What we are releasing
 
