@@ -23,13 +23,23 @@ Scores: Tier-1 macro-F1 `0.691671`, Tier-2 N/A-F1 `0.663655`, Tier-3 visible mac
 `0.578509`, against `0.594298` / `0.608772` / `0.496860` for the comparator. Differences and
 their intervals are in the bootstrap file.
 
-## Status of the scorer
+## Reproduce our numbers
 
-The scoring code for this track currently lives inside a cloud execution wrapper and has not
-yet been extracted into a standalone module. Until it is, the artifacts above let you inspect
-every prediction and every published score, but not recompute them locally with one command
-the way `crop` and `catalog` allow. That extraction is the next piece of work on this track,
-and we would rather say so than imply parity.
+```bash
+python -m suite.fullbody.score \
+  --labels <your rebuilt shadow split> \
+  --predictions results/fullbody/moda-ner-v-fullbody/predictions.jsonl \
+  --comparator-predictions results/fullbody/fashionclip-matched/predictions.jsonl \
+  --system-id moda_v7 --comparator-id fashionclip \
+  --output /tmp/recomputed.json
+```
+
+That regenerates all six three-tier scores and all three paired confidence intervals exactly
+as published, including the 10,000-sample bootstrap clustered by product group.
+
+Unlike `crop` and `catalog`, this scorer needs `numpy` and `torch`: the paired bootstrap is
+vectorised, and we kept the original implementation rather than rewriting it so that the
+numbers match the published run rather than approximating it.
 
 ## Licence note
 

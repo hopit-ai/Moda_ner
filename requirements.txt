@@ -1,0 +1,4 @@
+# The crop, catalog and text scorers need nothing beyond the standard library.
+# The fullbody scorer vectorises its paired bootstrap, so that track alone needs:
+numpy>=1.24
+torch>=2.0

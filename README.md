@@ -107,7 +107,7 @@ than three you can't.
 |---|---|---|---|
 | crop | `suite/crop/` | `moda-ner-v-crop` (MIT) | ready — reproduces 0.6300 |
 | catalog | `suite/catalog/` | `moda-ner-v-catalog` (CC BY-NC 4.0) | ready — reproduces 0.829235 |
-| fullbody | `suite/fullbody/` | `moda-ner-v-fullbody` (CC BY-NC 4.0) | predictions and scores ready; scorer extraction pending |
+| fullbody | `suite/fullbody/` | `moda-ner-v-fullbody` (CC BY-NC 4.0) | ready — reproduces all six scores and three intervals |
 | text | `suite/text/` | none — model not distributed | scorer now; builder pending |
 
 No gold labels are committed here, on any track. Each track's builder reconstructs its split
