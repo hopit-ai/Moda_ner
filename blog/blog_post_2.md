@@ -45,23 +45,25 @@ The `catalog` and `fullbody` comparator is FashionCLIP 2.0 with matched supervis
 
 The real third-party `crop` baselines are zero-shot systems at 0.1805 and 0.1817. Neither was built for this task, which is why we do not make much of the gap.
 
-## What about the frontier models?
+## What about the large vision-language models?
 
-It is the first question people ask, so here is what we have and why we do not treat it as a result.
+It is the first question people ask, so here is what we ran and what it does and does not show.
 
-We ran a cost-gated checkpoint against a commercial vision-language model: 100 rows shared across all three tracks, with a continuation rule fixed in advance. It lost on every track.
+We tested **Gemini 3.5 Flash** in August 2026 on 100 rows shared across all three tracks, with a continuation rule fixed before the run: keep paying only if it stays competitive. It did not.
 
-| Track | Commercial VLM | MODA |
+| Track (100-row checkpoint) | Gemini 3.5 Flash | MODA |
 |---|---:|---:|
 | `crop` attribute micro-F1 | 0.3624 | **0.6667** |
 | `catalog` field-macro set F1 | 0.5830 | **0.8057** |
 | `fullbody` Tier-1 macro-F1 | 0.3522 | **0.4482** |
 
-The gate failed, so we did not buy the remaining 900 calls.
+The gate failed, so we stopped and did not buy the remaining 900 calls.
 
-We report that as a spending decision, not a benchmark. A hundred rows is not a finding, any more than the twenty-seven rows in the first post were. The same run showed why: on colour alone the model appeared to lead 0.7302 to 0.6296, from 27 eligible examples. Tested again on 400 balanced rows it scored 0.5537 against our 0.6245, a paired interval of [-0.1180, -0.0228]. The lead did not survive contact with a larger sample.
+Three honest qualifications. A hundred rows is a checkpoint, not a benchmark - the same standard that made us discard a twenty-seven-row result in the first post applies here to our own favour. Flash is the cost-optimised tier rather than the top one, so this says nothing about what a frontier-tier model would do. And a prompt-only model competing against a schema-routed system trained for this exact task is not a fair fight in either direction; it is a question about whether you need a specialist at all.
 
-A full-scale frontier comparison, run on complete tracks rather than a checkpoint, is the first thing on our list. Until then we say what we measured and how little of it there was.
+That same run showed why the sample size caveat matters. On colour alone Gemini appeared to lead 0.7302 to 0.6296 - from 27 eligible examples. Tested again on 400 balanced rows it scored 0.5537 against our 0.6245, a paired interval of [-0.1180, -0.0228]. The lead did not survive a larger sample.
+
+Running five or more modern models on complete tracks is the first thing on our list. Until that happens, this is what we measured and how little of it there was.
 
 ## The headline number is not the whole story
 
