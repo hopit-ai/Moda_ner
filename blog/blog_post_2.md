@@ -108,10 +108,12 @@ Two tracks are evaluated against research-only corpora whose terms extend to der
 
 We are not holding back a better model. The published `crop` checkpoint is the checkpoint that produced 0.6300. Download it, score it, and you should reproduce that number.
 
-Running one takes a route name and a folder:
+Running one takes three commands from a fresh clone:
 
 ```bash
-python models/inference.py --route crop --model-dir . --images photo.jpg
+pip install -r requirements-inference.txt
+huggingface-cli download HopitAI/moda-ner-v-crop --local-dir ./moda-ner-v-crop
+python models/inference.py --route crop --model-dir ./moda-ner-v-crop --images photo.jpg
 ```
 
 Each route expects a different kind of picture. `crop` wants a single garment already cut out, `catalog` a clean product shot, `fullbody` a person. Feeding a route the wrong kind of image is the most common reason results look worse than the numbers above.
@@ -136,5 +138,12 @@ We regenerated every figure in this post this way before publishing. This includ
 Freeze your checkpoint. Predict on the same record IDs without reading labels. Commit the prediction hash. Score each track and report the paired interval against our published predictions.
 
 If another team beats us under this protocol, we want to know. It is better to find a weakness in a reproducible test than in a customer's production pipeline.
+
+## Where everything lives
+
+- Code, scorers, prediction files and hashes: [github.com/hopit-ai/Moda_ner](https://github.com/hopit-ai/Moda_ner)
+- Benchmark tables and protocol: [hopit-ai.github.io/Moda_ner](https://hopit-ai.github.io/Moda_ner/)
+- Weights: [MODA_NER(V) Crop](https://huggingface.co/HopitAI/moda-ner-v-crop) (MIT), [Catalog](https://huggingface.co/HopitAI/moda-ner-v-catalog) and [Full-body](https://huggingface.co/HopitAI/moda-ner-v-fullbody) (CC BY-NC 4.0)
+- Both our benchmark suites: [hopit-ai.github.io](https://hopit-ai.github.io/)
 
 *Next: what none of this tells you about your own catalogue.*
