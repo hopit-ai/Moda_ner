@@ -14,9 +14,12 @@
 <meta property="og:title" content="MODA_NER: open fashion attribute extraction benchmark and models">
 <meta property="og:description" content="Four separate tracks, never averaged. Predictions hashed before labels open. Every number recomputes from the shipped prediction files, including the runs we lose.">
 <meta property="og:url" content="https://hopit-ai.github.io/Moda_ner/">
+<meta property="og:image" content="https://hopit.ai/images/runway.png">
+<meta property="og:image:alt" content="MODA_NER open fashion attribute extraction benchmark">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MODA_NER: open fashion attribute extraction benchmark">
 <meta name="twitter:description" content="Four tracks, never averaged. Predictions hashed before labels open. Losses published alongside wins.">
+<meta name="twitter:image" content="https://hopit.ai/images/runway.png">
 
 <script type="application/ld+json">
 {
@@ -42,6 +45,65 @@
       "license": "https://opensource.org/licenses/MIT",
       "author": {"@id": "https://hopit-ai.github.io/Moda_ner/#org"},
       "keywords": "fashion attribute extraction, product attributes, catalogue enrichment, applicability, benchmark, reproducibility"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://hopit-ai.github.io/Moda_ner/#suite",
+      "name": "MODA General Attribute Suite",
+      "description": "A four-track evaluation suite for fashion attribute extraction. The crop track scores 15 fields over 4,688 localized garment crops drawn from 1,158 source images. The catalog track scores 10 fields including colour and fit over 9,995 catalogue product images. The fullbody track scores 18 fields with an explicit not-applicable class over 5,000 full-body photos grouped into 1,751 products. The text track scores 13 entity types over 1,071 rows of product copy. Tracks are never averaged into a single score.",
+      "url": "https://hopit-ai.github.io/Moda_ner/",
+      "creator": {"@id": "https://hopit-ai.github.io/Moda_ner/#org"},
+      "license": "https://opensource.org/licenses/MIT",
+      "isAccessibleForFree": true,
+      "keywords": "fashion attribute extraction, product attributes, applicability, catalogue enrichment, benchmark, evaluation suite",
+      "measurementTechnique": "Manifest frozen before inference; predictions committed by SHA-256 hash before labels are opened; fail-closed scoring; 10,000-sample paired cluster bootstrap; conjunctive promotion gate requiring a positive confidence interval lower bound on every required track.",
+      "variableMeasured": ["category", "silhouette", "hemline", "waist type", "sleeve length", "sleeve shape", "neckline", "collar presence", "collar style", "material", "surface treatment", "pattern", "closure type", "colour", "fit"]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://hopit-ai.github.io/Moda_ner/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is fashion attribute extraction?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Reading a fashion image into structured product data: category, colour, fit, neckline, sleeve length, collar style, pattern, material and closure. Retailers use it to populate catalogues, power faceted search and filters, drive recommendations and run trend analysis. The hard part is not producing a believable answer but knowing whether that answer is reliable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does MODA_NER use four separate tracks instead of one score?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No single public dataset covers fashion attributes at the needed breadth, and combining them would hide too much. A model can be strong on clean catalogue product shots and weak on full-body images yet still look good in an average. Each track is reported separately: crop for localized garment crops, catalog for colour and fit on product images, fullbody for attributes that may be absent or out of view, and text for product copy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does applicability mean in attribute extraction?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Whether an attribute applies to the garment at all. Trousers have no neckline, and an attribute hidden behind an arm is not visible. An unobservable field is not a negative example, so the fullbody track scores the applicability decision separately from the value: a model that invents a neckline for trousers should not get credit for confidence."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can MODA_NER results be reproduced?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The suite ships the scorers, the manifest builders, the prediction files and their SHA-256 hashes. Gold labels are never redistributed: you obtain each source corpus under its own terms and the builder recreates the frozen split from record IDs and checksums, then the scorer recomputes the published number from the shipped predictions. The crop and catalog scorers need only the Python standard library."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which MODA_NER models are open and which can be used commercially?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The crop model is MIT licensed with open code and is commercially usable, and it is the exact checkpoint that produced the published score. The catalog and full-body models are CC BY-NC 4.0, because they are evaluated against research-only corpora whose terms reach derived data. That restriction binds Hopit AI too: those weights are not part of the paid product. The text model's benchmark is published but its weights are not distributed."
+          }
+        }
+      ]
     }
   ]
 }
