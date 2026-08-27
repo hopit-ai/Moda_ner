@@ -1,0 +1,7 @@
+# Running a published route. The scorers need far less; see requirements.txt.
+torch>=2.0
+open_clip_torch>=2.24
+safetensors>=0.4
+joblib>=1.3
+numpy>=1.24
+pillow>=10.0

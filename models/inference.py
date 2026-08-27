@@ -1,14 +1,15 @@
-"""Run a MODA_NER(V) route over images and print attributes as JSON.
+"""Extract fashion attributes from images with a published MODA_NER(V) route.
 
-One file, no repository imports, so it works from a model download alone:
+    python inference.py --route crop     --model-dir . --images photo.jpg
+    python inference.py --route catalog  --model-dir . --images ./folder --output out.jsonl
+    python inference.py --route fullbody --model-dir . --images ./folder
 
-    python inference.py --model-dir . --images photo.jpg
-    python inference.py --model-dir . --images ./folder --output out.jsonl
+You choose the route, because each one expects a different kind of picture and
+feeding the wrong kind is the most common reason results look worse than the
+published numbers. Crop wants a single garment already cut out. Catalog wants a
+clean product shot. Fullbody wants a person.
 
-Each route expects a different kind of picture. Crop wants a single garment
-already cut out, catalog wants a clean product shot, fullbody wants a person.
-Feeding a route the wrong kind of image is the most common reason results look
-worse than the published numbers.
+Needs: torch, open_clip_torch, safetensors, joblib, numpy, pillow.
 """
 
 from __future__ import annotations
@@ -33,46 +34,41 @@ def collect_images(paths: list[Path]) -> list[Path]:
     return out
 
 
-def load_route(model_dir: Path):
-    """Load the encoder, the per-field heads and their calibrated thresholds."""
-    try:
-        import torch  # noqa: F401
-    except ImportError:  # pragma: no cover
-        raise SystemExit("inference needs torch and transformers: pip install torch transformers pillow")
-
-    vocab_path = model_dir / "vocabulary.json"
-    thresholds_path = model_dir / "thresholds.json"
-    if not vocab_path.exists():
-        raise SystemExit(f"no vocabulary.json in {model_dir}: is this a MODA_NER route directory?")
-
-    vocabulary = json.loads(vocab_path.read_text())
-    thresholds = json.loads(thresholds_path.read_text()) if thresholds_path.exists() else {}
-    return vocabulary, thresholds
-
-
 def main() -> None:
     ap = argparse.ArgumentParser(description="Extract fashion attributes from images.")
-    ap.add_argument("--model-dir", type=Path, default=Path("."),
-                    help="directory holding the downloaded route")
-    ap.add_argument("--images", type=Path, nargs="+", required=True,
-                    help="image files or directories")
-    ap.add_argument("--output", type=Path, help="write JSONL here instead of stdout")
+    ap.add_argument("--route", required=True, choices=["crop", "catalog", "fullbody"])
+    ap.add_argument("--model-dir", type=Path, default=Path("."))
+    ap.add_argument("--images", type=Path, nargs="+", required=True)
+    ap.add_argument("--device", default="auto", help="auto, cpu, cuda or mps")
+    ap.add_argument("--output", type=Path)
     args = ap.parse_args()
 
     images = collect_images(args.images)
     if not images:
         raise SystemExit("no images found")
 
-    vocabulary, thresholds = load_route(args.model_dir)
-    fields = list(vocabulary) if isinstance(vocabulary, dict) else []
-    print(f"loaded route from {args.model_dir} with {len(fields)} fields, "
-          f"{len(images)} image(s) to process", file=sys.stderr)
+    try:
+        from suite._model import ROUTES
+    except ImportError:
+        raise SystemExit(
+            "run this from a checkout of the Moda_ner repository, or install its "
+            "requirements first: pip install -r requirements-inference.txt"
+        )
 
-    raise SystemExit(
-        "This is the packaging skeleton. The forward pass is wired per route at "
-        "publication time, because each route pairs a different head set with the "
-        "shared encoder. See the route README for the loading snippet."
-    )
+    backend_cls = ROUTES[args.route]
+    print(f"loading {args.route} route from {args.model_dir}", file=sys.stderr)
+    backend = backend_cls(args.model_dir, args.device)
+
+    sink = args.output.open("w") if args.output else sys.stdout
+    try:
+        for path in images:
+            record = {"image": str(path), "route": args.route,
+                      "attributes": backend.predict(path)}
+            sink.write(json.dumps(record) + "\n")
+    finally:
+        if args.output:
+            sink.close()
+            print(f"wrote {len(images)} rows to {args.output}", file=sys.stderr)
 
 
 if __name__ == "__main__":
