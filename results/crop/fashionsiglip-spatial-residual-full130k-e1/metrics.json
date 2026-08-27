@@ -1,448 +1,447 @@
 {
-  "batch_size": 64,
-  "calibration_rows": 16133,
-  "development": {
-    "attribute_field_macro_f1": 0.6480479351193508,
-    "attribute_micro_f1": 0.6502356902356903,
-    "attribute_micro_precision": 0.6230320549217984,
-    "attribute_micro_recall": 0.6799233889139252,
-    "category_accuracy": {
-      "category": 0.8823458574181118,
-      "master_category": 0.9216040462427746
-    },
-    "counts": {
-      "fn": 17046,
-      "fp": 21909,
-      "tp": 36210
-    },
-    "exact_all_fields": 0.457490366088632,
-    "per_field": {
-      "closure_type": {
-        "applicability": {
-          "f1": 0.8003030631020674,
-          "fn": 400,
-          "fp": 1445,
-          "precision": 0.7189809412679891,
-          "predicted": 5142,
-          "recall": 0.9023675860385648,
-          "support": 4097,
-          "tp": 3697
-        },
-        "f1": 0.7461846520186167,
-        "fn": 650,
-        "fp": 1695,
-        "oracle_applicability_value": {
-          "f1": 0.9187210153771052,
-          "fn": 333,
-          "fp": 333,
-          "precision": 0.9187210153771052,
-          "predicted": 4097,
-          "recall": 0.9187210153771052,
-          "support": 4097,
-          "tp": 3764
-        },
-        "precision": 0.6703617269544924,
-        "predicted": 5142,
-        "recall": 0.8413473273126678,
-        "support": 4097,
-        "tp": 3447
-      },
-      "collar_presence": {
-        "applicability": {
-          "f1": 0.8444881889763779,
-          "fn": 206,
-          "fp": 268,
-          "precision": 0.827652733118971,
-          "predicted": 1555,
-          "recall": 0.8620227729403884,
-          "support": 1493,
-          "tp": 1287
-        },
-        "f1": 0.8444881889763779,
-        "fn": 206,
-        "fp": 268,
-        "oracle_applicability_value": {
-          "f1": 1.0,
-          "fn": 0,
-          "fp": 0,
-          "precision": 1.0,
-          "predicted": 1493,
-          "recall": 1.0,
-          "support": 1493,
-          "tp": 1493
-        },
-        "precision": 0.827652733118971,
-        "predicted": 1555,
-        "recall": 0.8620227729403884,
-        "support": 1493,
-        "tp": 1287
-      },
-      "collar_style": {
-        "applicability": {
-          "f1": 0.7956989247311829,
-          "fn": 305,
-          "fp": 208,
-          "precision": 0.827671913835957,
-          "predicted": 1207,
-          "recall": 0.7661042944785276,
-          "support": 1304,
-          "tp": 999
-        },
-        "f1": 0.7017124651533254,
-        "fn": 423,
-        "fp": 326,
-        "oracle_applicability_value": {
-          "f1": 0.8197852760736196,
-          "fn": 235,
-          "fp": 235,
-          "precision": 0.8197852760736196,
-          "predicted": 1304,
-          "recall": 0.8197852760736196,
-          "support": 1304,
-          "tp": 1069
-        },
-        "precision": 0.7299088649544325,
-        "predicted": 1207,
-        "recall": 0.6756134969325154,
-        "support": 1304,
-        "tp": 881
-      },
-      "hemline": {
-        "applicability": {
-          "f1": 0.9150336146474037,
-          "fn": 260,
-          "fp": 928,
-          "precision": 0.8733105802047781,
-          "predicted": 7325,
-          "recall": 0.9609433678834309,
-          "support": 6657,
-          "tp": 6397
-        },
-        "f1": 0.625375482763553,
-        "fn": 2285,
-        "fp": 2953,
-        "oracle_applicability_value": {
-          "f1": 0.6857443292774523,
-          "fn": 2092,
-          "fp": 2092,
-          "precision": 0.6857443292774523,
-          "predicted": 6657,
-          "recall": 0.6857443292774523,
-          "support": 6657,
-          "tp": 4565
-        },
-        "precision": 0.5968600682593856,
-        "predicted": 7325,
-        "recall": 0.6567522908216914,
-        "support": 6657,
-        "tp": 4372
-      },
-      "material": {
-        "applicability": {
-          "f1": 0.5203619909502262,
-          "fn": 228,
-          "fp": 408,
-          "precision": 0.4581673306772908,
-          "predicted": 753,
-          "recall": 0.6020942408376964,
-          "support": 573,
-          "tp": 345
-        },
-        "f1": 0.40498034076015726,
-        "fn": 298,
-        "fp": 610,
-        "oracle_applicability_value": {
-          "f1": 0.7083333333333333,
-          "fn": 148,
-          "fp": 230,
-          "precision": 0.6661828737300436,
-          "predicted": 689,
-          "recall": 0.7561779242174629,
-          "support": 607,
-          "tp": 459
-        },
-        "precision": 0.33623503808487487,
-        "predicted": 919,
-        "recall": 0.5090609555189456,
-        "support": 607,
-        "tp": 309
-      },
-      "neckline": {
-        "applicability": {
-          "f1": 0.8616030434212252,
-          "fn": 392,
-          "fp": 663,
-          "precision": 0.8320243222700785,
-          "predicted": 3947,
-          "recall": 0.8933623503808488,
-          "support": 3676,
-          "tp": 3284
-        },
-        "f1": 0.48484848484848486,
-        "fn": 1828,
-        "fp": 2099,
-        "oracle_applicability_value": {
-          "f1": 0.558487486398259,
-          "fn": 1623,
-          "fp": 1623,
-          "precision": 0.558487486398259,
-          "predicted": 3676,
-          "recall": 0.558487486398259,
-          "support": 3676,
-          "tp": 2053
-        },
-        "precision": 0.4682036990119078,
-        "predicted": 3947,
-        "recall": 0.5027203482045702,
-        "support": 3676,
-        "tp": 1848
-      },
-      "pattern": {
-        "applicability": {
-          "f1": 0.9516892117012061,
-          "fn": 281,
-          "fp": 444,
-          "precision": 0.9414634146341463,
-          "predicted": 7585,
-          "recall": 0.9621395850175155,
-          "support": 7422,
-          "tp": 7141
-        },
-        "f1": 0.8534683814220031,
-        "fn": 1018,
-        "fp": 1181,
-        "oracle_applicability_value": {
-          "f1": 0.8934249528428995,
-          "fn": 791,
-          "fp": 791,
-          "precision": 0.8934249528428995,
-          "predicted": 7422,
-          "recall": 0.8934249528428995,
-          "support": 7422,
-          "tp": 6631
-        },
-        "precision": 0.8442979564930785,
-        "predicted": 7585,
-        "recall": 0.8628402047965508,
-        "support": 7422,
-        "tp": 6404
-      },
-      "silhouette": {
-        "applicability": {
-          "f1": 0.9587377038357431,
-          "fn": 205,
-          "fp": 420,
-          "precision": 0.9453196198411665,
-          "predicted": 7681,
-          "recall": 0.9725421912670774,
-          "support": 7466,
-          "tp": 7261
-        },
-        "f1": 0.5256486432957022,
-        "fn": 3485,
-        "fp": 3700,
-        "oracle_applicability_value": {
-          "f1": 0.5471470667023841,
-          "fn": 3381,
-          "fp": 3381,
-          "precision": 0.5471470667023841,
-          "predicted": 7466,
-          "recall": 0.5471470667023841,
-          "support": 7466,
-          "tp": 4085
-        },
-        "precision": 0.5182918890769431,
-        "predicted": 7681,
-        "recall": 0.5332172515403161,
-        "support": 7466,
-        "tp": 3981
-      },
-      "sleeve_length": {
-        "applicability": {
-          "f1": 0.9237913138486753,
-          "fn": 249,
-          "fp": 309,
-          "precision": 0.916282850176104,
-          "predicted": 3691,
-          "recall": 0.9314238501790141,
-          "support": 3631,
-          "tp": 3382
-        },
-        "f1": 0.8134389511062551,
-        "fn": 653,
-        "fp": 713,
-        "oracle_applicability_value": {
-          "f1": 0.8741393555494354,
-          "fn": 457,
-          "fp": 457,
-          "precision": 0.8741393555494354,
-          "predicted": 3631,
-          "recall": 0.8741393555494354,
-          "support": 3631,
-          "tp": 3174
-        },
-        "precision": 0.8068274180438906,
-        "predicted": 3691,
-        "recall": 0.8201597356100248,
-        "support": 3631,
-        "tp": 2978
-      },
-      "sleeve_shape": {
-        "applicability": {
-          "f1": 0.9080188679245284,
-          "fn": 310,
-          "fp": 314,
-          "precision": 0.9074837949322333,
-          "predicted": 3394,
-          "recall": 0.9085545722713865,
-          "support": 3390,
-          "tp": 3080
-        },
-        "f1": 0.7441037735849055,
-        "fn": 866,
-        "fp": 870,
-        "oracle_applicability_value": {
-          "f1": 0.812094395280236,
-          "fn": 637,
-          "fp": 637,
-          "precision": 0.812094395280236,
-          "predicted": 3390,
-          "recall": 0.812094395280236,
-          "support": 3390,
-          "tp": 2753
-        },
-        "precision": 0.7436652916912198,
-        "predicted": 3394,
-        "recall": 0.744542772861357,
-        "support": 3390,
-        "tp": 2524
-      },
-      "sub_category": {
-        "applicability": {
-          "f1": 0.8151226434218529,
-          "fn": 973,
-          "fp": 851,
-          "precision": 0.8253284072249589,
-          "predicted": 4872,
-          "recall": 0.8051661994393272,
-          "support": 4994,
-          "tp": 4021
-        },
-        "f1": 0.5986215284816542,
-        "fn": 2041,
-        "fp": 1919,
-        "oracle_applicability_value": {
-          "f1": 0.6942330796956347,
-          "fn": 1527,
-          "fp": 1527,
-          "precision": 0.6942330796956347,
-          "predicted": 4994,
-          "recall": 0.6942330796956347,
-          "support": 4994,
-          "tp": 3467
-        },
-        "precision": 0.6061165845648604,
-        "predicted": 4872,
-        "recall": 0.5913095714857829,
-        "support": 4994,
-        "tp": 2953
-      },
-      "surface_treatment": {
-        "applicability": {
-          "f1": 0.7838798893717899,
-          "fn": 613,
-          "fp": 1028,
-          "precision": 0.7432567432567433,
-          "predicted": 4004,
-          "recall": 0.8292003343549735,
-          "support": 3589,
-          "tp": 2976
-        },
-        "f1": 0.521612332048745,
-        "fn": 1686,
-        "fp": 2907,
-        "oracle_applicability_value": {
-          "f1": 0.6453845295233842,
-          "fn": 1299,
-          "fp": 1878,
-          "precision": 0.6062067519396099,
-          "predicted": 4769,
-          "recall": 0.6899761336515513,
-          "support": 4190,
-          "tp": 2891
-        },
-        "precision": 0.4627610423211976,
-        "predicted": 5411,
-        "recall": 0.5976133651551313,
-        "support": 4190,
-        "tp": 2504
-      },
-      "waist_type": {
-        "applicability": {
-          "f1": 0.7941146208457659,
-          "fn": 470,
-          "fp": 1531,
-          "precision": 0.7159554730983302,
-          "predicted": 5390,
-          "recall": 0.8914298914298914,
-          "support": 4329,
-          "tp": 3859
-        },
-        "f1": 0.5601399320917789,
-        "fn": 1607,
-        "fp": 2668,
-        "oracle_applicability_value": {
-          "f1": 0.7200277200277199,
-          "fn": 1212,
-          "fp": 1212,
-          "precision": 0.72002772002772,
-          "predicted": 4329,
-          "recall": 0.72002772002772,
-          "support": 4329,
-          "tp": 3117
-        },
-        "precision": 0.5050092764378479,
-        "predicted": 5390,
-        "recall": 0.6287826287826288,
-        "support": 4329,
-        "tp": 2722
-      }
-    },
-    "per_field_f1": {
-      "closure_type": 0.7461846520186167,
-      "collar_presence": 0.8444881889763779,
-      "collar_style": 0.7017124651533254,
-      "hemline": 0.625375482763553,
-      "material": 0.40498034076015726,
-      "neckline": 0.48484848484848486,
-      "pattern": 0.8534683814220031,
-      "silhouette": 0.5256486432957022,
-      "sleeve_length": 0.8134389511062551,
-      "sleeve_shape": 0.7441037735849055,
-      "sub_category": 0.5986215284816542,
-      "surface_treatment": 0.521612332048745,
-      "waist_type": 0.5601399320917789
-    },
-    "rows": 16608
+ "batch_size": 64,
+ "calibration_rows": 16133,
+ "development": {
+  "attribute_field_macro_f1": 0.6480479351193508,
+  "attribute_micro_f1": 0.6502356902356903,
+  "attribute_micro_precision": 0.6230320549217984,
+  "attribute_micro_recall": 0.6799233889139252,
+  "category_accuracy": {
+   "category": 0.8823458574181118,
+   "master_category": 0.9216040462427746
   },
-  "development_rows": 16608,
-  "epochs": 1,
-  "global_steps": 2037,
-  "head_learning_rate": 0.0002,
-  "history": [
-    {
-      "epoch": 1,
-      "mean_loss": 0.9094460640225155
-    }
-  ],
-  "init_model_dir": "/mnt/s3/fashion_vision/models/conditional-attribute-classifier/fashionsiglip-conditional-heads-full130k-last4-e2-a100-v1-20260806",
-  "model_name": "hf-hub:Marqo/marqo-fashionSigLIP",
-  "pretrained": null,
-  "spatial_residual": true,
-  "train_rows": 130318,
-  "train_vision": false,
-  "unfreeze_last_blocks": 4,
-  "use_spatial_tokens": true,
-  "vision_learning_rate": 5e-06,
-  "wall_seconds": 326.47164906399996
+  "counts": {
+   "fn": 17046,
+   "fp": 21909,
+   "tp": 36210
+  },
+  "exact_all_fields": 0.457490366088632,
+  "per_field": {
+   "closure_type": {
+    "applicability": {
+     "f1": 0.8003030631020674,
+     "fn": 400,
+     "fp": 1445,
+     "precision": 0.7189809412679891,
+     "predicted": 5142,
+     "recall": 0.9023675860385648,
+     "support": 4097,
+     "tp": 3697
+    },
+    "f1": 0.7461846520186167,
+    "fn": 650,
+    "fp": 1695,
+    "oracle_applicability_value": {
+     "f1": 0.9187210153771052,
+     "fn": 333,
+     "fp": 333,
+     "precision": 0.9187210153771052,
+     "predicted": 4097,
+     "recall": 0.9187210153771052,
+     "support": 4097,
+     "tp": 3764
+    },
+    "precision": 0.6703617269544924,
+    "predicted": 5142,
+    "recall": 0.8413473273126678,
+    "support": 4097,
+    "tp": 3447
+   },
+   "collar_presence": {
+    "applicability": {
+     "f1": 0.8444881889763779,
+     "fn": 206,
+     "fp": 268,
+     "precision": 0.827652733118971,
+     "predicted": 1555,
+     "recall": 0.8620227729403884,
+     "support": 1493,
+     "tp": 1287
+    },
+    "f1": 0.8444881889763779,
+    "fn": 206,
+    "fp": 268,
+    "oracle_applicability_value": {
+     "f1": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "precision": 1.0,
+     "predicted": 1493,
+     "recall": 1.0,
+     "support": 1493,
+     "tp": 1493
+    },
+    "precision": 0.827652733118971,
+    "predicted": 1555,
+    "recall": 0.8620227729403884,
+    "support": 1493,
+    "tp": 1287
+   },
+   "collar_style": {
+    "applicability": {
+     "f1": 0.7956989247311829,
+     "fn": 305,
+     "fp": 208,
+     "precision": 0.827671913835957,
+     "predicted": 1207,
+     "recall": 0.7661042944785276,
+     "support": 1304,
+     "tp": 999
+    },
+    "f1": 0.7017124651533254,
+    "fn": 423,
+    "fp": 326,
+    "oracle_applicability_value": {
+     "f1": 0.8197852760736196,
+     "fn": 235,
+     "fp": 235,
+     "precision": 0.8197852760736196,
+     "predicted": 1304,
+     "recall": 0.8197852760736196,
+     "support": 1304,
+     "tp": 1069
+    },
+    "precision": 0.7299088649544325,
+    "predicted": 1207,
+    "recall": 0.6756134969325154,
+    "support": 1304,
+    "tp": 881
+   },
+   "hemline": {
+    "applicability": {
+     "f1": 0.9150336146474037,
+     "fn": 260,
+     "fp": 928,
+     "precision": 0.8733105802047781,
+     "predicted": 7325,
+     "recall": 0.9609433678834309,
+     "support": 6657,
+     "tp": 6397
+    },
+    "f1": 0.625375482763553,
+    "fn": 2285,
+    "fp": 2953,
+    "oracle_applicability_value": {
+     "f1": 0.6857443292774523,
+     "fn": 2092,
+     "fp": 2092,
+     "precision": 0.6857443292774523,
+     "predicted": 6657,
+     "recall": 0.6857443292774523,
+     "support": 6657,
+     "tp": 4565
+    },
+    "precision": 0.5968600682593856,
+    "predicted": 7325,
+    "recall": 0.6567522908216914,
+    "support": 6657,
+    "tp": 4372
+   },
+   "material": {
+    "applicability": {
+     "f1": 0.5203619909502262,
+     "fn": 228,
+     "fp": 408,
+     "precision": 0.4581673306772908,
+     "predicted": 753,
+     "recall": 0.6020942408376964,
+     "support": 573,
+     "tp": 345
+    },
+    "f1": 0.40498034076015726,
+    "fn": 298,
+    "fp": 610,
+    "oracle_applicability_value": {
+     "f1": 0.7083333333333333,
+     "fn": 148,
+     "fp": 230,
+     "precision": 0.6661828737300436,
+     "predicted": 689,
+     "recall": 0.7561779242174629,
+     "support": 607,
+     "tp": 459
+    },
+    "precision": 0.33623503808487487,
+    "predicted": 919,
+    "recall": 0.5090609555189456,
+    "support": 607,
+    "tp": 309
+   },
+   "neckline": {
+    "applicability": {
+     "f1": 0.8616030434212252,
+     "fn": 392,
+     "fp": 663,
+     "precision": 0.8320243222700785,
+     "predicted": 3947,
+     "recall": 0.8933623503808488,
+     "support": 3676,
+     "tp": 3284
+    },
+    "f1": 0.48484848484848486,
+    "fn": 1828,
+    "fp": 2099,
+    "oracle_applicability_value": {
+     "f1": 0.558487486398259,
+     "fn": 1623,
+     "fp": 1623,
+     "precision": 0.558487486398259,
+     "predicted": 3676,
+     "recall": 0.558487486398259,
+     "support": 3676,
+     "tp": 2053
+    },
+    "precision": 0.4682036990119078,
+    "predicted": 3947,
+    "recall": 0.5027203482045702,
+    "support": 3676,
+    "tp": 1848
+   },
+   "pattern": {
+    "applicability": {
+     "f1": 0.9516892117012061,
+     "fn": 281,
+     "fp": 444,
+     "precision": 0.9414634146341463,
+     "predicted": 7585,
+     "recall": 0.9621395850175155,
+     "support": 7422,
+     "tp": 7141
+    },
+    "f1": 0.8534683814220031,
+    "fn": 1018,
+    "fp": 1181,
+    "oracle_applicability_value": {
+     "f1": 0.8934249528428995,
+     "fn": 791,
+     "fp": 791,
+     "precision": 0.8934249528428995,
+     "predicted": 7422,
+     "recall": 0.8934249528428995,
+     "support": 7422,
+     "tp": 6631
+    },
+    "precision": 0.8442979564930785,
+    "predicted": 7585,
+    "recall": 0.8628402047965508,
+    "support": 7422,
+    "tp": 6404
+   },
+   "silhouette": {
+    "applicability": {
+     "f1": 0.9587377038357431,
+     "fn": 205,
+     "fp": 420,
+     "precision": 0.9453196198411665,
+     "predicted": 7681,
+     "recall": 0.9725421912670774,
+     "support": 7466,
+     "tp": 7261
+    },
+    "f1": 0.5256486432957022,
+    "fn": 3485,
+    "fp": 3700,
+    "oracle_applicability_value": {
+     "f1": 0.5471470667023841,
+     "fn": 3381,
+     "fp": 3381,
+     "precision": 0.5471470667023841,
+     "predicted": 7466,
+     "recall": 0.5471470667023841,
+     "support": 7466,
+     "tp": 4085
+    },
+    "precision": 0.5182918890769431,
+    "predicted": 7681,
+    "recall": 0.5332172515403161,
+    "support": 7466,
+    "tp": 3981
+   },
+   "sleeve_length": {
+    "applicability": {
+     "f1": 0.9237913138486753,
+     "fn": 249,
+     "fp": 309,
+     "precision": 0.916282850176104,
+     "predicted": 3691,
+     "recall": 0.9314238501790141,
+     "support": 3631,
+     "tp": 3382
+    },
+    "f1": 0.8134389511062551,
+    "fn": 653,
+    "fp": 713,
+    "oracle_applicability_value": {
+     "f1": 0.8741393555494354,
+     "fn": 457,
+     "fp": 457,
+     "precision": 0.8741393555494354,
+     "predicted": 3631,
+     "recall": 0.8741393555494354,
+     "support": 3631,
+     "tp": 3174
+    },
+    "precision": 0.8068274180438906,
+    "predicted": 3691,
+    "recall": 0.8201597356100248,
+    "support": 3631,
+    "tp": 2978
+   },
+   "sleeve_shape": {
+    "applicability": {
+     "f1": 0.9080188679245284,
+     "fn": 310,
+     "fp": 314,
+     "precision": 0.9074837949322333,
+     "predicted": 3394,
+     "recall": 0.9085545722713865,
+     "support": 3390,
+     "tp": 3080
+    },
+    "f1": 0.7441037735849055,
+    "fn": 866,
+    "fp": 870,
+    "oracle_applicability_value": {
+     "f1": 0.812094395280236,
+     "fn": 637,
+     "fp": 637,
+     "precision": 0.812094395280236,
+     "predicted": 3390,
+     "recall": 0.812094395280236,
+     "support": 3390,
+     "tp": 2753
+    },
+    "precision": 0.7436652916912198,
+    "predicted": 3394,
+    "recall": 0.744542772861357,
+    "support": 3390,
+    "tp": 2524
+   },
+   "sub_category": {
+    "applicability": {
+     "f1": 0.8151226434218529,
+     "fn": 973,
+     "fp": 851,
+     "precision": 0.8253284072249589,
+     "predicted": 4872,
+     "recall": 0.8051661994393272,
+     "support": 4994,
+     "tp": 4021
+    },
+    "f1": 0.5986215284816542,
+    "fn": 2041,
+    "fp": 1919,
+    "oracle_applicability_value": {
+     "f1": 0.6942330796956347,
+     "fn": 1527,
+     "fp": 1527,
+     "precision": 0.6942330796956347,
+     "predicted": 4994,
+     "recall": 0.6942330796956347,
+     "support": 4994,
+     "tp": 3467
+    },
+    "precision": 0.6061165845648604,
+    "predicted": 4872,
+    "recall": 0.5913095714857829,
+    "support": 4994,
+    "tp": 2953
+   },
+   "surface_treatment": {
+    "applicability": {
+     "f1": 0.7838798893717899,
+     "fn": 613,
+     "fp": 1028,
+     "precision": 0.7432567432567433,
+     "predicted": 4004,
+     "recall": 0.8292003343549735,
+     "support": 3589,
+     "tp": 2976
+    },
+    "f1": 0.521612332048745,
+    "fn": 1686,
+    "fp": 2907,
+    "oracle_applicability_value": {
+     "f1": 0.6453845295233842,
+     "fn": 1299,
+     "fp": 1878,
+     "precision": 0.6062067519396099,
+     "predicted": 4769,
+     "recall": 0.6899761336515513,
+     "support": 4190,
+     "tp": 2891
+    },
+    "precision": 0.4627610423211976,
+    "predicted": 5411,
+    "recall": 0.5976133651551313,
+    "support": 4190,
+    "tp": 2504
+   },
+   "waist_type": {
+    "applicability": {
+     "f1": 0.7941146208457659,
+     "fn": 470,
+     "fp": 1531,
+     "precision": 0.7159554730983302,
+     "predicted": 5390,
+     "recall": 0.8914298914298914,
+     "support": 4329,
+     "tp": 3859
+    },
+    "f1": 0.5601399320917789,
+    "fn": 1607,
+    "fp": 2668,
+    "oracle_applicability_value": {
+     "f1": 0.7200277200277199,
+     "fn": 1212,
+     "fp": 1212,
+     "precision": 0.72002772002772,
+     "predicted": 4329,
+     "recall": 0.72002772002772,
+     "support": 4329,
+     "tp": 3117
+    },
+    "precision": 0.5050092764378479,
+    "predicted": 5390,
+    "recall": 0.6287826287826288,
+    "support": 4329,
+    "tp": 2722
+   }
+  },
+  "per_field_f1": {
+   "closure_type": 0.7461846520186167,
+   "collar_presence": 0.8444881889763779,
+   "collar_style": 0.7017124651533254,
+   "hemline": 0.625375482763553,
+   "material": 0.40498034076015726,
+   "neckline": 0.48484848484848486,
+   "pattern": 0.8534683814220031,
+   "silhouette": 0.5256486432957022,
+   "sleeve_length": 0.8134389511062551,
+   "sleeve_shape": 0.7441037735849055,
+   "sub_category": 0.5986215284816542,
+   "surface_treatment": 0.521612332048745,
+   "waist_type": 0.5601399320917789
+  },
+  "rows": 16608
+ },
+ "development_rows": 16608,
+ "epochs": 1,
+ "global_steps": 2037,
+ "head_learning_rate": 0.0002,
+ "history": [
+  {
+   "epoch": 1,
+   "mean_loss": 0.9094460640225155
+  }
+ ],
+ "model_name": "hf-hub:Marqo/marqo-fashionSigLIP",
+ "pretrained": null,
+ "spatial_residual": true,
+ "train_rows": 130318,
+ "train_vision": false,
+ "unfreeze_last_blocks": 4,
+ "use_spatial_tokens": true,
+ "vision_learning_rate": 5e-06,
+ "wall_seconds": 326.47164906399996
 }
