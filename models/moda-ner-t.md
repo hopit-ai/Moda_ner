@@ -58,11 +58,11 @@ On a retailer diagnostic mapping title-derived garment-type spans onto a retaile
 | Terminal title n-grams | **0.2667** | **0.3050** | **1.000** |
 | This model, calibrated | 0.2200 | 0.2244 | 0.400 |
 
-Those figures are H&M only, 300 rows. The diagnostic also covered 300 ASOS rows, which we
-exclude: ASOS `product_type` arrives from an API rather than being derivable from the title,
-so neither route can recover it and both score zero. Including those rows would halve both
-aggregates and make the comparison look like a finding about the models when it is a fact
-about the source.
+Those figures come from one retailer's catalogue, 300 rows. The diagnostic also covered 300
+rows from a second retailer whose `product_type` values arrive from an API rather than being
+derivable from the title, so neither route can recover them and both score zero. We exclude
+those: pooling them would halve both aggregates and make a property of the source look like a
+property of the models.
 
 Two different tasks are in play. Extracting a span is not the same as producing a retailer's
 own taxonomy value, and this model was built for the former. But if the second is what you
