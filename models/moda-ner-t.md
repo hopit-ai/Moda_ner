@@ -50,20 +50,24 @@ unmeasurable, or unscored, and the average does not show you that.
 
 ## What this model is not for
 
-On a 600-row retailer diagnostic mapping title-derived garment-type spans onto retailer
+On a retailer diagnostic mapping title-derived garment-type spans onto a retailer's own
 `product_type` metadata, this model loses to a trivial baseline:
 
 | Route | Exact accuracy | Mean token F1 | Coverage |
 |---|---:|---:|---:|
-| Terminal title n-grams | **0.1333** | **0.4037** | **1.000** |
-| This model, calibrated | 0.1100 | 0.1793 | 0.5217 |
-| Previous checkpoint | 0.0817 | 0.1510 | 0.6867 |
+| Terminal title n-grams | **0.2667** | **0.3050** | **1.000** |
+| This model, calibrated | 0.2200 | 0.2244 | 0.400 |
 
-Those are two different tasks. Extracting a span is not the same as producing a retailer's
-own product taxonomy value, and this model was built for the former. But if the second task
-is what you need, take the n-gram baseline and skip the model. Aligning an extractor to a
-particular retailer's ontology is domain adaptation work, and no general checkpoint does it
-for you.
+Those figures are H&M only, 300 rows. The diagnostic also covered 300 ASOS rows, which we
+exclude: ASOS `product_type` arrives from an API rather than being derivable from the title,
+so neither route can recover it and both score zero. Including those rows would halve both
+aggregates and make the comparison look like a finding about the models when it is a fact
+about the source.
+
+Two different tasks are in play. Extracting a span is not the same as producing a retailer's
+own taxonomy value, and this model was built for the former. But if the second is what you
+need, take the n-gram baseline and skip the model. Aligning an extractor to a particular
+retailer's ontology is domain adaptation work, and no general checkpoint does it for you.
 
 ## Evidence class
 
