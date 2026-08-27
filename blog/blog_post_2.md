@@ -86,15 +86,15 @@ Telling a coat from a dress is close to solved. Telling denim from twill is not:
 
 ## The design choices behind the model
 
-**One sequence became many heads.** The Florence-2 system in the first post generated every attribute in one autoregressive response. That made unrelated fields interfere with one another, let common labels crowd out rare ones, and gave the model no way to abstain. We replaced it with a frozen vision encoder and separate heads for each field.
+The Florence-2 system in the first post generated every attribute in one autoregressive response. Unrelated fields interfered with one another, common labels crowded out rare ones, and the model had no way to abstain. We replaced it with a frozen vision encoder and separate heads for each field.
 
-**Applicability is its own decision.** Every conditional field has a binary head that asks, "Does this apply here?" before a value head runs. We score this separately in the `fullbody` track. A model that invents a neckline for trousers should not get credit for confidence.
+Applicability became its own decision. Every conditional field has a binary head that asks whether the attribute applies at all, and it runs before any value head. We score that separately in the `fullbody` track. A model that invents a neckline for trousers should not get credit for confidence.
 
-**Thresholds are calibrated, not guessed.** Calibration happens on a split that never touches development or test data. Multi-label fields such as material use an asymmetric focal loss, with balancing capped so common positives do not swamp rare ones.
+Thresholds are calibrated rather than guessed, on a split that never touches development or test data. Multi-label fields such as material use an asymmetric focal loss, with balancing capped so common positives do not swamp rare ones.
 
-**The backbone was tested rather than assumed.** With an identical development protocol, general SigLIP-2 scored 0.6018 and the fashion-pretrained option scored 0.6163. The experiment cost about eleven cents and settled the decision before it became an argument.
+We tested the backbone rather than assuming it. Under an identical development protocol, general SigLIP-2 scored 0.6018 and the fashion-pretrained option 0.6163. The experiment cost about eleven cents and settled the decision before it became an argument.
 
-**The served encoder is ours.** Earlier checkpoints used our heads with a frozen third-party fashion encoder. We distilled that system into our own encoder, which serves today. The third-party encoder appears only as a distillation teacher during training and as the `crop` comparator, never as the served model.
+The served encoder is ours. Earlier checkpoints paired our heads with a frozen third-party fashion encoder, and we distilled that system into our own encoder, which serves today. The third-party encoder appears only twice: as a distillation teacher during training, and as the `crop` comparator. It is never the model being served.
 
 ## What we are releasing
 
