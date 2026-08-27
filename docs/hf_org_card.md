@@ -1,3 +1,12 @@
+---
+title: README
+emoji: 👗
+colorFrom: indigo
+colorTo: gray
+sdk: static
+pinned: false
+---
+
 # Hopit AI
 
 World models for fashion: search, retrieval, ranking, and multimodal reasoning.
