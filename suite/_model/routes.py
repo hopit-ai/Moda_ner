@@ -18,22 +18,59 @@ from typing import Any
 from .package import ModaGeneralPackage
 
 
-class LocalRoute:
-    """Point a backend at a plain downloaded model directory.
+class _FlatPath:
+    """A package subpath resolved against a flat published model folder.
 
-    The backends were written against a multi-route package layout. A published
-    route is a single flat folder, so this adapts one to the other.
+    The backends address a multi-route package layout, so they ask for paths like
+    ``schemas/dfmm_18/encoder/vocabulary.json``. A published route is one flat
+    folder, so the subpath is retried with the layout-only directories removed.
+    A literal path wins whenever it exists, which keeps a real package working.
     """
 
-    def __init__(self, model_dir: str | Path, schema_dirname: str) -> None:
-        self.root = Path(model_dir).resolve().parent
-        self._schema_dirname = schema_dirname
-        target = self.root / "schemas" / schema_dirname
-        if not target.exists():
-            self.root = Path(model_dir).resolve()
+    # Directories that exist only in the package layout, never in a published folder.
+    _LAYOUT_ONLY = frozenset({"schemas", "encoder", "base"})
 
-    def __truediv__(self, other):  # pragma: no cover - path shim
-        return self.root / other
+    def __init__(self, model_dir, schema_dirname=None, parts=()):
+        self._base = Path(model_dir).resolve()
+        self._schema_dirname = schema_dirname
+        self._parts = tuple(parts)
+
+    def __truediv__(self, other):
+        return _FlatPath(self._base, self._schema_dirname,
+                         self._parts + Path(str(other)).parts)
+
+    def _resolved(self) -> Path:
+        literal = self._base.joinpath(*self._parts)
+        if literal.exists():
+            return literal
+        skip = set(self._LAYOUT_ONLY)
+        if self._schema_dirname:
+            skip.add(self._schema_dirname)
+        return self._base.joinpath(*(part for part in self._parts if part not in skip))
+
+    # The slice of the Path surface the backends and their loaders actually use.
+    def __fspath__(self) -> str:
+        return str(self._resolved())
+
+    def __str__(self) -> str:
+        return str(self._resolved())
+
+    def exists(self) -> bool:
+        return self._resolved().exists()
+
+    def read_text(self, *args, **kwargs) -> str:
+        return self._resolved().read_text(*args, **kwargs)
+
+
+class LocalRoute:
+    """Stand in for a package when the weights are a plain downloaded folder.
+
+    Backends read ``package.root``, so that attribute carries the adapter.
+    """
+
+    def __init__(self, model_dir, schema_dirname=None) -> None:
+        self.root = _FlatPath(model_dir, schema_dirname)
+
 
 CropBackend = None  # rebound below
 
@@ -67,12 +104,32 @@ def _load_rgb(image: Any) -> Any:
     raise TypeError("image must be a PIL image, bytes, or a local filesystem path")
 
 
+# The catalog heads sit on the shared encoder instead of carrying a copy of it, so a
+# published folder holds only the heads. Fall back to our public encoder repository
+# rather than duplicating 800 MB of identical weights into every route.
+SHARED_ENCODER_REPO = "HopitAI/moda-fashion-distilled"
+
+
+def _base_encoder_files(package: ModaGeneralPackage) -> tuple[Any, Any]:
+    config = package.root / "base/open_clip_config.json"
+    weights = package.root / "base/open_clip_model.safetensors"
+    if config.exists() and weights.exists():
+        return config, weights
+    from huggingface_hub import hf_hub_download
+
+    return (
+        Path(hf_hub_download(SHARED_ENCODER_REPO, "open_clip_config.json")),
+        Path(hf_hub_download(SHARED_ENCODER_REPO, "open_clip_model.safetensors")),
+    )
+
+
 def _base_model(package: ModaGeneralPackage, device: str) -> tuple[Any, Any]:
     import open_clip
     import torch
     from safetensors.torch import load_file
 
-    config = json.loads((package.root / "base/open_clip_config.json").read_text())
+    config_path, weights_path = _base_encoder_files(package)
+    config = json.loads(config_path.read_text())
     preprocess = config["preprocess_cfg"]
     model, _, transform = open_clip.create_model_and_transforms(
         "ViT-B-16-SigLIP",
@@ -82,9 +139,7 @@ def _base_model(package: ModaGeneralPackage, device: str) -> tuple[Any, Any]:
         image_interpolation=str(preprocess["interpolation"]),
         image_resize_mode=str(preprocess["resize_mode"]),
     )
-    model.load_state_dict(
-        load_file(package.root / "base/open_clip_model.safetensors"), strict=True
-    )
+    model.load_state_dict(load_file(weights_path), strict=True)
     model.requires_grad_(False).eval().to(torch.device(device))
     return model, transform
 
@@ -117,6 +172,8 @@ def _predict_dfmm_head(head: Any, features: Any) -> Any:
 
 
 class _FashionpediaBackend:
+    package_dirname = "fashionpedia_moda15"
+
     def __init__(self, package: ModaGeneralPackage, device: str) -> None:
         import torch
         from safetensors.torch import load_file
@@ -124,7 +181,7 @@ class _FashionpediaBackend:
         from .contract import AttributeVocabulary
         from .architecture import FashionSiglipAttributeClassifier
 
-        self.device = torch.device(device)
+        self.device = torch.device(_resolve_device(device))
         model_dir = package.root / "schemas/fashionpedia_moda15"
         self.vocabulary = AttributeVocabulary.from_dict(
             json.loads((model_dir / "vocabulary.json").read_text())
@@ -180,12 +237,14 @@ class _FashionpediaBackend:
 
 
 class _Shopping100kBackend:
+    package_dirname = "shopping100k_10"
+
     def __init__(self, package: ModaGeneralPackage, device: str) -> None:
         import torch
         from safetensors.torch import load_file
 
-        self.device = torch.device(device)
-        self.model, self.transform = _base_model(package, device)
+        self.device = torch.device(_resolve_device(device))
+        self.model, self.transform = _base_model(package, self.device)
         schema = json.loads(
             (package.root / "schemas/shopping100k_10/schema.json").read_text()
         )
@@ -220,6 +279,8 @@ class _Shopping100kBackend:
 
 
 class _DfmmBackend:
+    package_dirname = "dfmm_18"
+
     def __init__(self, package: ModaGeneralPackage, device: str) -> None:
         import joblib
         import torch
@@ -228,7 +289,7 @@ class _DfmmBackend:
         from .contract import AttributeVocabulary
         from .architecture import FashionSiglipAttributeClassifier
 
-        self.device = torch.device(device)
+        self.device = torch.device(_resolve_device(device))
         root = package.root / "schemas/dfmm_18"
         model_root = root / "encoder"
         vocabulary = AttributeVocabulary.from_dict(

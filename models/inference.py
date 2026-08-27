@@ -19,6 +19,9 @@ import json
 import sys
 from pathlib import Path
 
+# Running this file directly puts models/ on sys.path, not the repository root.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
 
 
@@ -49,6 +52,7 @@ def main() -> None:
 
     try:
         from suite._model import ROUTES
+        from suite._model.routes import LocalRoute
     except ImportError:
         raise SystemExit(
             "run this from a checkout of the Moda_ner repository, or install its "
@@ -57,7 +61,9 @@ def main() -> None:
 
     backend_cls = ROUTES[args.route]
     print(f"loading {args.route} route from {args.model_dir}", file=sys.stderr)
-    backend = backend_cls(args.model_dir, args.device)
+    backend = backend_cls(
+        LocalRoute(args.model_dir, backend_cls.package_dirname), args.device
+    )
 
     sink = args.output.open("w") if args.output else sys.stdout
     try:

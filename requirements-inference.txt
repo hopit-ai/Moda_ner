@@ -5,3 +5,8 @@ safetensors>=0.4
 joblib>=1.3
 numpy>=1.24
 pillow>=10.0
+# The catalog route fetches the shared encoder when its folder does not carry one.
+huggingface_hub>=0.20
+# The fullbody heads are pickled scikit-learn estimators; unpickling needs the library,
+# and a version far from the one that wrote them (1.5) will warn or refuse.
+scikit-learn>=1.5,<1.7
