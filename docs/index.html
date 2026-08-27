@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MODA_NER: open fashion attribute extraction benchmark and models | Hopit AI</title>
+<meta name="description" content="MODA_NER is an open benchmark and model family for fashion attribute extraction by Hopit AI. Four tracks covering garment crops, catalogue images, applicability-aware full-body photos and product text. Predictions committed by hash before labels open; every published number recomputes from shipped prediction files.">
+<link rel="canonical" href="https://hopit-ai.github.io/Moda_ner/">
+<link rel="alternate" type="text/plain" href="/Moda_ner/llms.txt" title="llms.txt">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MODA_NER by Hopit AI">
+<meta property="og:title" content="MODA_NER: open fashion attribute extraction benchmark and models">
+<meta property="og:description" content="Four separate tracks, never averaged. Predictions hashed before labels open. Every number recomputes from the shipped prediction files, including the runs we lose.">
+<meta property="og:url" content="https://hopit-ai.github.io/Moda_ner/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MODA_NER: open fashion attribute extraction benchmark">
+<meta name="twitter:description" content="Four tracks, never averaged. Predictions hashed before labels open. Losses published alongside wins.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://hopit-ai.github.io/Moda_ner/#org",
+      "name": "Hopit AI",
+      "url": "https://hopit.ai",
+      "knowsAbout": ["fashion attribute extraction","product attribute extraction","computer vision","named entity recognition","e-commerce catalogue enrichment"],
+      "sameAs": ["https://github.com/hopit-ai","https://huggingface.co/HopitAI","https://hopit-ai.github.io/Moda/"]
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://hopit-ai.github.io/Moda_ner/#software",
+      "name": "MODA_NER",
+      "alternateName": "MODA General Attribute Suite",
+      "description": "An open benchmark and model family for fashion attribute extraction. Four tracks: localized garment crops, catalogue product images, applicability-aware full-body photos, and product text. Predictions are committed by hash before labels are opened, scorers fail closed, and promotion requires a positive paired confidence interval on every required track.",
+      "codeRepository": "https://github.com/hopit-ai/Moda_ner",
+      "url": "https://hopit-ai.github.io/Moda_ner/",
+      "programmingLanguage": "Python",
+      "license": "https://opensource.org/licenses/MIT",
+      "author": {"@id": "https://hopit-ai.github.io/Moda_ner/#org"},
+      "keywords": "fashion attribute extraction, product attributes, catalogue enrichment, applicability, benchmark, reproducibility"
+    }
+  ]
+}
+</script>
+
+<style>
+:root{--bg:#fff;--fg:#12151a;--muted:#5b6472;--line:#e3e7ec;--accent:#3b4ee0;--code:#f5f6f8;--win:#0f7b4a;--warn:#8a5a00}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1115;--fg:#e7eaee;--muted:#9aa3b0;--line:#252a32;--accent:#8f9cff;--code:#161a21;--win:#4ec98a;--warn:#d6a03a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;line-height:1.65}
+main{max-width:960px;margin:0 auto;padding:48px 20px 96px}
+h1{font-size:28px;letter-spacing:-.02em;margin:0 0 8px}
+h2{font-size:17px;margin:44px 0 12px;padding-top:20px;border-top:1px solid var(--line)}
+h3{font-size:14px;margin:26px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+p{margin:0 0 14px;max-width:74ch}
+a{color:var(--accent)}
+.lede{font-size:15px;color:var(--muted);max-width:74ch;margin-bottom:22px}
+.nav{display:flex;gap:14px;flex-wrap:wrap;margin:0 0 28px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:14px 0 18px;font-size:13px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;white-space:nowrap}
+th{color:var(--muted);font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:.05em}
+td.n,th.n{text-align:right}
+.win{color:var(--win);font-weight:600}
+.warn{color:var(--warn)}
+code,pre{background:var(--code);border-radius:4px}
+code{padding:1px 5px;font-size:12.5px}
+pre{padding:14px 16px;overflow-x:auto;font-size:12.5px;border:1px solid var(--line)}
+blockquote{margin:14px 0;padding:12px 16px;border-left:3px solid var(--accent);background:var(--code);max-width:74ch}
+.note{color:var(--muted);font-size:12.5px;max-width:74ch}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+</style>
+</head>
+<body>
+<main>
+
+<h1>MODA_NER</h1>
+<p class="lede">An open benchmark and model family for fashion attribute extraction. Four tracks, never averaged. Predictions are hashed before labels are opened, scorers fail closed, and the runs we lose are published next to the ones we win.</p>
+
+<div class="nav">
+<a href="https://github.com/hopit-ai/Moda_ner">Repository</a> ·
+<a href="https://huggingface.co/HopitAI">Models</a> ·
+<a href="https://github.com/hopit-ai/Moda_ner/blob/main/REPRODUCE.md">Reproduce</a> ·
+<a href="https://github.com/hopit-ai/Moda">MODA retrieval</a> ·
+<a href="https://hopit.ai">Hopit AI</a>
+</div>
+
+<h2>The claim, in full</h2>
+<blockquote>MODA General is the best of the named open systems evaluated under the frozen public MODA General Attribute Suite, spanning localized garment crops, catalog product images, color and fit, and applicability-aware full-body attributes.</blockquote>
+<p class="note">Not world-best, not universal state of the art, not human-gold quality, not production readiness. The claim was frozen over the three image tracks; the text track was added afterwards and is deliberately outside it, because no external system has yet been evaluated on it under identical conditions.</p>
+
+<h2>Four tracks</h2>
+<p>No single public dataset covers fashion attributes at the breadth a catalogue needs, and forcing several into one label space hides exactly the trade-off that matters. So the tracks stay separate and the scores are never averaged.</p>
+<table>
+<tr><th>Track</th><th>Input</th><th class="n">Frozen test</th><th>Resampled by</th><th>Colour</th><th>Fit</th><th>"Not applicable"</th></tr>
+<tr><td><code>crop</code></td><td>cropped garment</td><td class="n">4,688 crops / 1,158 images</td><td>source image</td><td>no</td><td>no</td><td>partial</td></tr>
+<tr><td><code>catalog</code></td><td>product image</td><td class="n">9,995 images / 61,384 cells</td><td>image</td><td>yes</td><td>yes</td><td>no</td></tr>
+<tr><td><code>fullbody</code></td><td>full-body photo</td><td class="n">5,000 images / 1,751 groups</td><td>product group</td><td>no</td><td>no</td><td>yes, explicit</td></tr>
+<tr><td><code>text</code></td><td>title or description</td><td class="n">1,071 rows</td><td>row</td><td>yes</td><td>yes</td><td>n/a</td></tr>
+</table>
+<p class="note">Colour and fit, the two attributes merchandisers ask about first, exist in only two of the four. Exactly one attribute is present in all four: neckline. It is also the field that has cost us the most, because two sources can divide it differently and nothing warns you.</p>
+
+<h2>Results</h2>
+<table>
+<tr><th>Track</th><th>What the score measures</th><th class="n">MODA</th><th class="n">Comparator</th><th class="n">95% interval</th><th>Recompute</th></tr>
+<tr><td><code>crop</code></td><td>share of predictions matching exactly, 15 fields</td><td class="n win">0.6300</td><td class="n">0.6245</td><td class="n">[+0.0014, +0.0097]</td><td>yes</td></tr>
+<tr><td><code>catalog</code></td><td>score per field, averaged over 10 fields</td><td class="n win">0.8292</td><td class="n">0.6657</td><td class="n">[+0.1595, +0.1676]</td><td>yes</td></tr>
+<tr><td><code>fullbody</code> overall</td><td>score per field, averaged over 18 fields</td><td class="n win">0.6917</td><td class="n">0.5943</td><td class="n">[+0.0891, +0.1053]</td><td>yes</td></tr>
+<tr><td><code>fullbody</code> knows when not to answer</td><td>reliability of saying an attribute is absent</td><td class="n win">0.6637</td><td class="n">0.6088</td><td class="n">[+0.0433, +0.0657]</td><td>yes</td></tr>
+<tr><td><code>fullbody</code> when visible</td><td>the 18-field average on present attributes</td><td class="n win">0.5785</td><td class="n">0.4969</td><td class="n">[+0.0723, +0.0905]</td><td>yes</td></tr>
+</table>
+<p class="note"><strong>Do not read across rows.</strong> Different images, different fields, different metrics. Ten catalogue fields on clean studio photos is an easier problem than fifteen on a cropped garment; 0.8292 is not "better" than 0.6300. Each row compares one system against one comparator on one track and says nothing else.</p>
+<p class="note">Comparators: on <code>catalog</code> and <code>fullbody</code>, FashionCLIP 2.0 with matched supervised heads, a genuine external system. On <code>crop</code>, the 0.6245 is our own architecture on a frozen third-party encoder, so that row is an encoder ablation rather than a win over another vendor. The real third-party baselines there are zero-shot and score 0.1805 and 0.1817, on a task they were not built for, which is why we do not lean on the gap.</p>
+
+<h2>Per field, on <code>crop</code></h2>
+<p>The headline pools every attribute decision. It hides a spread of more than fifty points, and the spread is what determines whether this is usable in your pipeline.</p>
+<table>
+<tr><th>Field</th><th class="n">F1</th><th class="n">Labelled cases</th><th>Field</th><th class="n">F1</th><th class="n">Labelled cases</th></tr>
+<tr><td><code>master_category</code></td><td class="n">0.9215</td><td class="n">4,688</td><td><code>sub_category</code></td><td class="n">0.5966</td><td class="n">1,594</td></tr>
+<tr><td><code>category</code></td><td class="n">0.8825</td><td class="n">4,688</td><td><code>silhouette</code></td><td class="n">0.5535</td><td class="n">1,994</td></tr>
+<tr><td><code>pattern</code></td><td class="n">0.8356</td><td class="n">1,994</td><td><code>waist_type</code></td><td class="n">0.5002</td><td class="n">1,102</td></tr>
+<tr><td><code>sleeve_length</code></td><td class="n">0.8073</td><td class="n">912</td><td><code>neckline</code></td><td class="n warn">0.4650</td><td class="n">1,126</td></tr>
+<tr><td><code>closure_type</code></td><td class="n">0.7545</td><td class="n">1,080</td><td><code>collar_style</code></td><td class="n warn">0.4566</td><td class="n">287</td></tr>
+<tr><td><code>collar_presence</code></td><td class="n">0.7508</td><td class="n">294</td><td><code>surface_treatment</code></td><td class="n warn">0.4398</td><td class="n">880</td></tr>
+<tr><td><code>sleeve_shape</code></td><td class="n">0.6787</td><td class="n">855</td><td><code>material</code></td><td class="n warn">0.4148</td><td class="n">146</td></tr>
+<tr><td><code>hemline</code></td><td class="n">0.6428</td><td class="n">1,729</td><td colspan="3"></td></tr>
+</table>
+<p class="note">Taking F1 0.75 as a working line, six of fifteen fields are safe to populate automatically and nine need a review step. On <strong>49.66%</strong> of garments every one of the fifteen fields is right. Telling a coat from a dress is close to solved; telling denim from twill is not.</p>
+
+<h2>Models</h2>
+<table>
+<tr><th>Model</th><th>Input</th><th>Weights</th><th>Commercial use</th></tr>
+<tr><td><strong>MODA_NER(V) Crop</strong> <code>moda-ner-v-crop</code></td><td>cropped garment</td><td>MIT</td><td>permitted</td></tr>
+<tr><td><strong>MODA_NER(V) Catalog</strong> <code>moda-ner-v-catalog</code></td><td>product image</td><td>CC BY-NC 4.0</td><td class="warn">non-commercial</td></tr>
+<tr><td><strong>MODA_NER(V) Full-body</strong> <code>moda-ner-v-fullbody</code></td><td>full-body photo</td><td>CC BY-NC 4.0</td><td class="warn">non-commercial</td></tr>
+<tr><td><strong>MODA_NER(T)</strong></td><td>product text</td><td>not distributed</td><td>&mdash;</td></tr>
+<tr><td><strong>MODA_NER Pro</strong></td><td>declared schema</td><td>hosted</td><td><a href="https://hopit.ai">talk to us</a></td></tr>
+</table>
+<p class="note">Two routes are evaluated against research-only corpora whose terms extend to derived data, so their weights are non-commercial. That restriction binds us as well: those exact weights are not part of Hopit's paid product. We are not holding back a better model either &mdash; the published <code>crop</code> checkpoint is the same one that produced 0.6300.</p>
+
+<h2>Reproduce</h2>
+<p>We do not redistribute source datasets or their labels. You obtain each corpus from its original source under that source's terms, and the builders reconstruct the frozen split from record IDs and checksums. What ships here is the protocol, the scorers, the uncertainty code, and our own prediction files with their hashes.</p>
+<pre>python -m suite.crop.score \
+  --gold &lt;your rebuilt split&gt; \
+  --predictions results/crop/moda-ner-v-crop/evaluation_predictions.jsonl \
+  --output /tmp/recomputed.json</pre>
+<p class="note">That regenerates 0.6300 exactly. Every published figure on this page has been recomputed from its shipped prediction file and matches, including all three <code>fullbody</code> confidence intervals from the 10,000-sample bootstrap clustered over 1,751 product groups.</p>
+
+<h3>Scoring your own model</h3>
+<p>Freeze your checkpoint. Predict on the same record IDs without reading labels. Commit the prediction hash. Score each track and report the paired interval against our published predictions. If you beat us under this protocol we would rather hear it than not.</p>
+
+<h2>How the harness stays honest</h2>
+<table>
+<tr><th>Rule</th><th>What it prevents</th></tr>
+<tr><td>Freeze the test before the model runs</td><td>the target moving while you measure</td></tr>
+<tr><td>Split and resample at the natural unit</td><td>near-duplicates inflating a score, and intervals that are too narrow</td></tr>
+<tr><td>Hash predictions before labels open</td><td>substituting a better file after seeing the answers</td></tr>
+<tr><td>Fail closed on missing or unknown rows</td><td>quietly dropping the cases a model got wrong</td></tr>
+<tr><td>Score "not visible" separately from "wrong"</td><td>rewarding a model that invents an attribute for every garment</td></tr>
+<tr><td>Require a positive interval on every track</td><td>a weak track hiding inside an average</td></tr>
+</table>
+
+<h2>What this does not tell you</h2>
+<p class="note">Every label here is dataset-native, not independent human gold; an independent annotation programme is committed and unfinished. A benchmark cannot prove that its taxonomy matches yours &mdash; on one external set a neckline vocabulary mismatch cost a production route fourteen points with no model regression at all. And a strong extraction score does not transfer to adjacent tasks: on mapping titles to a retailer's own product taxonomy, a terminal n-gram baseline beats our text model.</p>
+
+<footer>
+MODA_NER by <a href="https://hopit.ai">Hopit AI</a>. Code MIT; model weights carry per-route licences stated above.
+Sibling project: <a href="https://github.com/hopit-ai/Moda">MODA</a>, fashion retrieval.
+Annotations underlying the <code>crop</code> track are CC BY 4.0 &mdash; Jia et al., <em>Fashionpedia</em>, ECCV 2020.
+</footer>
+
+</main>
+</body>
+</html>

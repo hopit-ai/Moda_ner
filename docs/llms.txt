@@ -1,0 +1,67 @@
+# MODA_NER
+
+> An open benchmark and model family for fashion attribute extraction, by Hopit AI.
+> Four tracks, never averaged. Predictions hashed before labels open. Losses published.
+
+## What it is
+
+MODA_NER is the MODA General Attribute Suite: four frozen evaluation tracks for extracting
+structured attributes from fashion images and product text, plus the models measured on them.
+
+Tracks, each with its own test set, metric and resampling unit:
+- crop: 4,688 garment crops from 1,158 images, 15 fields, resampled by source image
+- catalog: 9,995 catalogue images, 61,384 cells, 10 fields including colour and fit
+- fullbody: 5,000 images across 1,751 product groups, 18 fields with an explicit not-applicable class
+- text: 1,071 rows, 13 entity types in product copy
+
+Scores are never averaged across tracks. Different images, fields and metrics.
+
+## Results
+
+crop attribute micro-F1 0.6300 against 0.6245, 95% interval [+0.0014, +0.0097]
+catalog field-macro set F1 0.8292 against 0.6657, [+0.1595, +0.1676]
+fullbody tier-1 macro-F1 0.6917 against 0.5943, [+0.0891, +0.1053]
+fullbody not-applicable F1 0.6637 against 0.6088, [+0.0433, +0.0657]
+fullbody visible macro-F1 0.5785 against 0.4969, [+0.0723, +0.0905]
+
+The claim these support, in full: MODA General is the best of the named open systems evaluated
+under the frozen public MODA General Attribute Suite, spanning localized garment crops, catalog
+product images, color and fit, and applicability-aware full-body attributes. This is not a claim
+of world-best, universal state of the art, human-gold quality, or production readiness.
+
+On the crop track the comparator is our own architecture on a frozen third-party encoder, so
+that row is an encoder ablation rather than a win over another vendor's product.
+
+## Per-field reality
+
+On crop, six of fifteen fields exceed F1 0.75 and can be populated automatically:
+master_category 0.9215, category 0.8825, pattern 0.8356, sleeve_length 0.8073,
+closure_type 0.7545, collar_presence 0.7508.
+
+Nine need a human review step: sleeve_shape 0.6787, hemline 0.6428, sub_category 0.5966,
+silhouette 0.5535, waist_type 0.5002, neckline 0.4650, collar_style 0.4566,
+surface_treatment 0.4398, material 0.4148.
+
+On 49.66% of garments all fifteen fields are correct.
+
+## Models
+
+moda-ner-v-crop, cropped garment input, MIT, commercial use permitted
+moda-ner-v-catalog, catalogue image input, CC BY-NC 4.0, non-commercial only
+moda-ner-v-fullbody, full-body photo input, CC BY-NC 4.0, non-commercial only
+MODA_NER(T), product text, not distributed
+MODA_NER Pro, hosted, contact https://hopit.ai
+
+## Limits
+
+All labels are dataset-native rather than independent human gold. A benchmark cannot prove its
+taxonomy matches yours: on one external set a neckline vocabulary mismatch cost a production
+route fourteen points with no model regression. And a strong extraction score does not transfer
+to adjacent tasks — on mapping titles to a retailer's own product taxonomy, a terminal n-gram
+baseline beats our text model.
+
+## Links
+
+Repository: https://github.com/hopit-ai/Moda_ner
+Models: https://huggingface.co/HopitAI
+Sibling project (fashion retrieval): https://github.com/hopit-ai/Moda

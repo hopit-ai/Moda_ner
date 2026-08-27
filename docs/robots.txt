@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hopit-ai.github.io/Moda_ner/sitemap.xml

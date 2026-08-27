@@ -6,7 +6,8 @@ frozen public tracks, competitors included, losses shown.</p>
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/Code-MIT-yellow.svg" alt="MIT"></a>
   <a href="https://huggingface.co/HopitAI"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Models-HopitAI-blue" alt="Hugging Face"></a>
-  <a href="https://github.com/hopit-ai/Moda"><img src="https://img.shields.io/badge/Sibling-MODA%20retrieval-0f7b4a" alt="MODA"></a>
+  <a href="https://hopit-ai.github.io/Moda_ner/"><img src="https://img.shields.io/badge/Benchmarks-four%20tracks-0f7b4a" alt="Benchmarks"></a>
+  <a href="https://github.com/hopit-ai/Moda"><img src="https://img.shields.io/badge/Sibling-MODA%20retrieval-blue" alt="MODA"></a>
 </p>
 
 > **Status: pre-launch.** The suite, results, and model cards land here ahead of the public
