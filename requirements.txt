@@ -2,3 +2,6 @@
 # The fullbody scorer vectorises its paired bootstrap, so that track alone needs:
 numpy>=1.24
 torch>=2.0
+
+# Rebuilding the text track's splits from their public sources:
+datasets>=2.14

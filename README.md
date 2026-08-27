@@ -109,7 +109,7 @@ than three you can't.
 | crop | `suite/crop/` | `moda-ner-v-crop` (MIT) | ready — reproduces 0.6300 |
 | catalog | `suite/catalog/` | `moda-ner-v-catalog` (CC BY-NC 4.0) | ready — reproduces 0.829235 |
 | fullbody | `suite/fullbody/` | `moda-ner-v-fullbody` (CC BY-NC 4.0) | ready — reproduces all six scores and three intervals |
-| text | `suite/text/` | none — model not distributed | scorer now; builder pending |
+| text | `suite/text/` | none — model not distributed | ready — builder regenerates the splits |
 
 No gold labels are committed here, on any track. Each track's builder reconstructs its split
 from the corpus's official source, under that source's own terms, so you obtain the data and
