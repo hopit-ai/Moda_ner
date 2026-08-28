@@ -6,7 +6,15 @@ source image, because one photograph yields several crops and they succeed and f
 
 ## Reproduce our headline number
 
-Everything needed ships here. No external download.
+Gold labels are not committed here, on this track or any other. Fashionpedia's annotations are
+CC BY 4.0, but its images are not ours to redistribute, so the split is rebuilt locally from
+`manifest.json`:
+
+```bash
+python -m suite.crop.build_manifest --output-dir suite/crop   # writes benchmark.jsonl
+```
+
+Then score against the predictions that ship with this repository:
 
 ```bash
 python -m suite.crop.score \

@@ -29,6 +29,33 @@ Every field has a fixed, published vocabulary: 21 silhouettes, 21 necklines, and
 
 Colour and fit are not included in `crop`, because its source annotations do not cover them. They are evaluated in `catalog`, which has ten fields. `fullbody` has eighteen fields and an explicit not-applicable class. `text` defines thirteen entity types in product copy, twelve of which appear in its test split.
 
+## What the benchmark is built on
+
+A benchmark is only as checkable as its sources, so here they are by name, with the sizes and
+the terms that come with them.
+
+| Track | Source | Size | Clustered at |
+|---|---|---|---|
+| `crop` | Fashionpedia | 4,688 crops across 1,158 source images | source image |
+| `catalog` | Shopping100k | 9,995 images, 61,384 eligible attribute cells | image |
+| `fullbody` | DeepFashion-MultiModal | 5,000 images across 1,751 product groups | product group |
+| `text` | `arturayupov/womens-fashion-catalog` and Fashionpedia-derived synthetic text | 1,071 rows, 765 standard and 306 hard | row |
+
+The clustering column is the part that is easy to get wrong. One photograph yields several
+crops and they succeed or fail together, so resampling them independently would report a
+confidence interval far narrower than the evidence supports. The same applies to a product
+with several photos. Each track clusters at the unit that actually repeats.
+
+The terms differ, and they decide what we can ship. Fashionpedia's annotations are CC BY 4.0,
+which is why the `crop` weights are MIT and commercially usable, and why the attribution is
+not optional: Jia et al., *Fashionpedia: Ontology, Segmentation, and an Attribute Localization
+Dataset*, ECCV 2020. Shopping100k and DeepFashion-MultiModal are research-only, and their
+terms reach derived data, which is what makes the `catalog` and `fullbody` weights
+non-commercial. The text track's two sources are MIT and CC BY respectively.
+
+We redistribute none of it. You obtain each corpus from its authors under their terms, and the
+builders in each track rebuild the frozen split from record IDs and checksums.
+
 ## Results
 
 | Track | What the score measures | MODA | Comparator | 95% interval |
