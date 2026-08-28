@@ -27,7 +27,7 @@ The `crop` track covers fifteen fields: three category levels (`master_category`
 
 Every field has a fixed, published vocabulary: 21 silhouettes, 21 necklines, and so on. A benchmark cannot fairly judge an answer if it does not state which answers are valid.
 
-Colour and fit are not included in `crop`, because its source annotations do not cover them. They are evaluated in `catalog`, which has ten fields. `fullbody` has eighteen fields and an explicit not-applicable class. `text` identifies thirteen entity types in product copy.
+Colour and fit are not included in `crop`, because its source annotations do not cover them. They are evaluated in `catalog`, which has ten fields. `fullbody` has eighteen fields and an explicit not-applicable class. `text` defines thirteen entity types in product copy, twelve of which appear in its test split.
 
 ## Results
 
@@ -110,6 +110,34 @@ The average hides a spread of more than fifty points.
 | `hemline` | 0.6428 | | |
 
 Telling a coat from a dress is close to solved. Telling denim from twill is not: material scores 0.4148 on 146 labelled cases, making it both the hardest field and the thinnest evidence. Read the field-level table before relying on the headline.
+
+## The text track, and the sharpest example of the same problem
+
+We have been quiet about `text` so far, which is unfair to it. It scores 0.8723 strict span F1
+on 1,071 rows of product copy, at 0.8838 precision and 0.8610 recall, and it is the highest
+headline number in the suite. It is also the clearest demonstration of why we do not trust
+headline numbers.
+
+Thirteen entity types are defined. Twelve have a test score; `BRAND` has no instances in the
+test split at all, which is itself worth knowing before anyone relies on it.
+
+| Entity | F1 | Entity | F1 |
+|---|---:|---|---:|
+| `FIT` | 1.0000 | `GARMENT_TYPE` | 0.8840 |
+| `HEMLINE` | 0.9892 | `NECKLINE` | 0.8571 |
+| `PATTERN` | 0.9767 | `DETAIL` | 0.6396 |
+| `MATERIAL` | 0.9513 | `COLOR` | 0.6341 |
+| `SLEEVE` | 0.9064 | `SILHOUETTE` | 0.1538 |
+| `OCCASION` | 0.9062 | `AESTHETIC` | 0.0000 |
+
+A headline of 0.8723 contains an entity the model gets right every time and an entity it never
+gets right at all. Split the schema the way the model actually behaves and the picture is
+plain: concrete entities score 0.8615, abstract ones 0.5150. Material and hemline are written
+on the label. Aesthetic and silhouette are judgements, and the model has not learned them from
+product copy.
+
+This track sits outside the claim on purpose. No external system has been evaluated on it
+under the same conditions, so there is nothing here to be best of.
 
 ## The design choices behind the model
 
