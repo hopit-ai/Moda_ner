@@ -65,6 +65,33 @@ That same run showed why the sample size caveat matters. On colour alone Gemini 
 
 Running five or more modern models on complete tracks is the first thing on our list. Until that happens, this is what we measured and how little of it there was.
 
+## What it costs to run
+
+Accuracy is one axis. Cost and latency separate the two approaches more sharply, and in the
+opposite direction to what the headline scores suggest.
+
+The thousand-row VLM run was budgeted before it started at a projected $18.21 per thousand
+images. That figure is an internal route estimate rather than a provider guarantee, which is
+why the gate was written as a hard spending ceiling rather than a forecast. We stopped at a
+hundred rows and spent about a tenth of it.
+
+The published routes have no per-call cost at all. You download the weights and run them on
+hardware you already have, so the marginal cost of the ten-thousandth image is electricity.
+On our own serving path, inference plus post-processing takes 0.0228 s at p95 for the
+full-body route at concurrency one, and the contract check that validates every response
+costs about 0.1 ms.
+
+That is the real shape of the decision. A prompt-only model is faster to start and cheaper at
+ten images. A specialist is cheaper at ten thousand and answers in tens of milliseconds
+rather than a network round trip.
+
+One thing worth stating plainly, because it is the obvious next question. Our hosted tier
+serves these same routes. For a given schema its accuracy is that route's published score,
+not a better one, and there is no private checkpoint held back. What it adds is the loop
+around the model: resolving a route from a caller-declared schema, per-field calibration, and
+mapping to a retailer's own taxonomy. The benchmark above is the evidence that the loop
+works, not a teaser for something stronger.
+
 ## The headline number is not the whole story
 
 On `crop`, 0.6300 means about 63% of individual attribute predictions match the label exactly. On 49.66% of garments, every one of the fifteen fields is right.
