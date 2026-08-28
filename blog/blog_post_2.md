@@ -77,6 +77,12 @@ Do not compare scores across rows. The tracks use different images, fields, and 
 
 The `catalog` and `fullbody` comparator is FashionCLIP 2.0 with matched supervised heads: a genuine external system. The `crop` row is different. Its 0.6245 comparator uses our architecture and training release, but a frozen third-party encoder instead of ours. It is an encoder experiment, not a win over another company's product.
 
+On `fullbody` the margin is not carried by a few fields. Scored field by field, our route
+beats FashionCLIP 2.0 on **seventeen of eighteen attributes**, by 0.3090 on `glasses` and
+0.2619 on `hat`. The one loss is `lower_fabric`, 0.3287 against 0.3329, on a field where both
+systems are close to useless. Both prediction files ship here, so that table is recomputable
+rather than assertable.
+
 The real third-party `crop` baselines are zero-shot systems at 0.1805 and 0.1817. Neither was built for this task, which is why we do not make much of the gap.
 
 ## What about the large vision-language models?
