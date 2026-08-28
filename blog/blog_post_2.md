@@ -66,6 +66,13 @@ builders in each track rebuild the frozen split from record IDs and checksums.
 | `fullbody`: knows when not to answer | Correctly identifies an absent attribute | **0.6637** | 0.6088 | [+0.0433, +0.0657] |
 | `fullbody`: when visible | The 18-field average where the attribute is present | **0.5785** | 0.4969 | [+0.0723, +0.0905] |
 
+Every number in that table came from the weights published on Hugging Face, not from an
+internal build. The three rows were produced by `moda-ner-v-crop`, `moda-ner-v-catalog` and
+`moda-ner-v-fullbody`, and the prediction files they were scored from ship in this repository.
+The catalogue heads were converted to safetensors for release and verified prediction-equivalent
+to the scored originals on 1,024 rows, with the receipt in the model folder. Our hosted tier
+serves these same routes, so its accuracy on a given schema is the same number, not a better one.
+
 Do not compare scores across rows. The tracks use different images, fields, and metrics. Ten catalogue fields on clean studio photos are an easier problem than fifteen fields on a cropped garment, so 0.8292 is not "better" than 0.6300. Each row compares one system with one comparator on one task.
 
 The `catalog` and `fullbody` comparator is FashionCLIP 2.0 with matched supervised heads: a genuine external system. The `crop` row is different. Its 0.6245 comparator uses our architecture and training release, but a frozen third-party encoder instead of ours. It is an encoder experiment, not a win over another company's product.
