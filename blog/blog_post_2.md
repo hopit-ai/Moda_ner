@@ -80,8 +80,10 @@ The `catalog` and `fullbody` comparator is FashionCLIP 2.0 with matched supervis
 On `fullbody` the margin is not carried by a few fields. Scored field by field, our route
 beats FashionCLIP 2.0 on **seventeen of eighteen attributes**, by 0.3090 on `glasses` and
 0.2619 on `hat`. The one loss is `lower_fabric`, 0.3287 against 0.3329, on a field where both
-systems are close to useless. Both prediction files ship here, so that table is recomputable
-rather than assertable.
+systems are close to useless. On `catalog` it is **all ten**, the widest gaps being `fabric`
+at 0.6693 against 0.3527 and `neckline` at 0.8337 against 0.5228. Averaged over the fields in
+each track, that is 31% and 19% better in relative terms. Both prediction files ship here, so
+those tables are recomputable rather than assertable.
 
 The real third-party `crop` baselines are zero-shot systems at 0.1805 and 0.1817. Neither was built for this task, which is why we do not make much of the gap.
 
@@ -202,6 +204,8 @@ The served encoder is ours. Earlier checkpoints paired our heads with a frozen t
 Two tracks are evaluated against research-only corpora whose terms extend to derived data, so the weights trained on them are non-commercial. That restriction applies to us too: those exact weights are not part of our paid product, and we verified before publishing that no serving path loads them.
 
 We are not holding back a better model. The published `crop` checkpoint is the checkpoint that produced 0.6300. Download it, score it, and you should reproduce that number.
+
+What is paid is MODA_NER Pro, and it is not a better checkpoint either. The open models tag in Fashionpedia's, Shopping100k's and DFMM's vocabularies, and nobody runs a catalogue on those. Pro is this same extraction trained on a customer's own products and mapped to their taxonomy, hosted, and licensed for commercial use.
 
 Running one takes three commands from a fresh clone:
 
