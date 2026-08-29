@@ -81,8 +81,9 @@ because anything sits there today.
 MODA_NER Pro is the hosted tier, and MODA_NER(T) is a text model we have built but are not
 distributing. In both cases the benchmark numbers are published alongside everything else;
 the systems themselves are not. In practice a Pro engagement is a model fine-tuned
-on the customer's own catalogue, which is both more accurate on their taxonomy and free of any
-research-licence dependency. [Talk to us](https://hopit.ai).
+on the customer's own catalogue and mapped to their taxonomy rather than the benchmarks' —
+the same extraction that beats FashionCLIP on all 10 catalogue attributes and 17 of 18 on
+full-body, by 31% and 19% on average. [Talk to us](https://hopit.ai).
 
 Weights are heads and adapters on our own already-public MIT encoder,
 [`HopitAI/moda-fashion-distilled`](https://huggingface.co/HopitAI/moda-fashion-distilled).

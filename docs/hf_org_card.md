@@ -50,10 +50,9 @@ Two of these are evaluated against research-only corpora whose terms reach deriv
 data, so their weights are non-commercial. That binds us too: those weights are not
 part of our paid product.
 
-MODA_NER Pro is the commercial tier: the same routes, fine-tuned on your catalogue and
-mapped to your taxonomy — 0.8292 field-macro F1 on catalogue product images, sixteen
-points clear of FashionCLIP, and 17 of 18 attributes beating it on full-body imagery.
-[Talk to us](https://hopit.ai).
+MODA_NER Pro beats FashionCLIP on all 10 catalogue attributes and 17 of 18 on
+full-body — 31% and 19% better on average — trained on your catalogue and mapped to
+your taxonomy, not the benchmarks'. [Talk to us](https://hopit.ai).
 
 Benchmarks: [hopit-ai.github.io/Moda_ner](https://hopit-ai.github.io/Moda_ner/) ·
 Code: [github.com/hopit-ai/Moda_ner](https://github.com/hopit-ai/Moda_ner)
