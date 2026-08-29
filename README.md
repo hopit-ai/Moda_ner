@@ -76,7 +76,7 @@ because anything sits there today.
 | **MODA_NER(V) — Catalog** `moda-ner-v-catalog` | `*` | catalogue image | CC BY-NC 4.0 | 0.8292 set-F1 |
 | **MODA_NER(V) — Full-body** `moda-ner-v-fullbody` | `*` | full-body photo | CC BY-NC 4.0 | 0.6917 T1 macro-F1 |
 | **MODA_NER(T)** | `***` | product text | not distributed | 0.8723 strict-span F1 |
-| **MODA_NER Pro** | `***` | hosted | not distributed | benchmarks published |
+| **MODA_NER Pro** | `***` | hosted | not distributed | 0.8292 / 0.6917 / 0.6300 |
 
 MODA_NER Pro is the hosted tier, and MODA_NER(T) is a text model we have built but are not
 distributing. In both cases the benchmark numbers are published alongside everything else;
