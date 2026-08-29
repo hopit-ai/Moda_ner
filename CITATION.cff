@@ -2,12 +2,13 @@ cff-version: 1.2.0
 message: "If you use this benchmark suite or its models, please cite it as below."
 title: "MODA General Attribute Suite"
 abstract: >-
-  A three-track public benchmark for fashion attribute extraction from images,
-  covering localized garment crops, catalog product images, and applicability-aware
-  full-body attributes. Each track has its own frozen test set, input contract, and
-  metric; predictions are committed by hash before labels are opened; scoring is
-  fail-closed and promotion requires a positive paired confidence interval on every
-  track.
+  A four-track public benchmark for fashion attribute extraction, covering localized
+  garment crops, catalog product images, applicability-aware full-body attributes, and
+  span extraction from product text. Each track has its own frozen test set, input
+  contract, metric, and leakage unit, and the tracks are never averaged; predictions
+  are committed by hash before labels are opened; scoring is fail-closed and promotion
+  requires a positive paired confidence interval on every track. The full-body track
+  follows the three-tier applicability framework of Shukla and Sonalkar (arXiv:2601.15711).
 type: software
 authors:
   - name: "Hopit AI"
