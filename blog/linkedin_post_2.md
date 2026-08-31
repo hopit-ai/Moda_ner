@@ -1,48 +1,37 @@
-# LinkedIn — blog post 2 (release post)
+# LinkedIn — post 2 (the numbers and the release)
 
-Post after the Substack URL is live. Paste the URL, then run it through LinkedIn's Post
-Inspector once to force a card refresh — the og:image changed since these URLs were last
-scraped.
+Written to continue the voice of post 1: no hashtags, no bullet arrows, numbers inline in
+prose, link in the comments rather than the body. Shorter than post 1.
+
+Run the URL through LinkedIn's Post Inspector once before posting — the og:image changed since
+these links were last scraped.
 
 ---
 
-We built the benchmark that judges our own fashion attribute models, then published it — along
-with every run we lost.
+As promised in Post 1, here are the numbers.
 
-Three models are out today. Here is what they do on frozen test sets, against FashionCLIP 2.0
-with matched supervised heads:
+Three models are out today, scored on frozen test sets that existed before the models did.
 
-→ Catalogue product images, 10 attributes: 0.8292 vs 0.6657. We win all 10 fields, by 31% on
-average.
-→ Full-body photos, 18 attributes: 0.6917 vs 0.5943. We win 17 of 18. The one we lose is
-lower_fabric, where honestly both systems are close to useless.
+On catalogue product images, across 10 attributes, we score 0.8292 against 0.6657 for
+FashionCLIP 2.0. On full-body photos, across 18 attributes, 0.6917 against 0.5943. Field by
+field, that is all 10 catalogue attributes and 17 of 18 on full-body. The one we lose is
+lower_fabric, where both systems are close to useless and neither deserves your trust.
 
-The numbers matter less than how they were produced.
+We are also publishing what did not work.
 
-Four tracks, never averaged — a model can be strong on clean product shots and weak on street
-photography, and one headline number lets the good result hide the bad one. Predictions are
-generated without labels and SHA-256 committed before the scorer opens anything. The scorer
-fails closed: an unknown value raises instead of being quietly dropped. Every interval is a
-10,000-sample paired bootstrap clustered at the unit that would actually leak.
+One of our own ideas scored +0.0095 over the baseline. Small, but real. Then we ran the
+control: instead of adding a second encoder, we made the original features wider by the same
+amount, at random. That scored +0.0096. The gain was width, not the idea. So we retracted it.
 
-We also score whether a model knows an attribute is *not visible* rather than inventing one.
-That is the difference between a catalogue you can populate unattended and one you cannot.
+Same instinct as the training run in Post 1. If you only check the number you were hoping for,
+you will ship it.
 
-And the prediction files ship — including the losses. Three zero-shot VLM runs that did not
-win. A concatenation result that looked like a real gain until a control showed it was just
-extra width, so we retracted it.
+We also ran Gemini 3.5 Flash against a stop rule fixed before the run. It did not stay
+competitive over the first 100 rows, so we stopped and did not buy the rest.
 
-Weights: one MIT, two CC BY-NC because their evaluation corpora are research-only. That
-restriction binds us too — those exact weights are not in our paid product, and we checked
-before publishing that no serving path loads them.
+Every prediction file ships with the models, hashes included, so you can recompute all of it
+rather than take our word.
 
-If you work on product data and want to argue with our numbers, the repository has the scorers,
-the split builders and our predictions. We would rather be corrected in public than in a
-customer's pipeline.
+Post 3 is about what none of this tells you about your own catalogue.
 
-[BLOG URL]
-
-Code: github.com/hopit-ai/Moda_ner
-Benchmarks: hopit-ai.github.io/Moda_ner
-
-#MachineLearning #ComputerVision #FashionTech #RetailAI #OpenSource
+Post link in comments.
