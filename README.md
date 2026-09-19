@@ -56,6 +56,14 @@ does not make every attribute production-perfect.
 
 ## Released models
 
+> **Fix, 2026-09-19.** Before this date, `models/inference.py` ran the **crop** and
+> **full-body** routes with the wrong image preprocessing: OpenAI-CLIP normalisation and a centre
+> crop, instead of the mean/std 0.5 squash the checkpoints were trained with. Their outputs did
+> not match the published benchmark predictions. On 64 held-out images, full-body matched on
+> none and crop on 16. If you ran either route before this date, pull the latest code and
+> re-run. The published benchmark numbers were produced correctly and are unchanged, and the
+> catalog route was not affected. `tests/test_route_preprocessing.py` now guards this.
+
 Two families. **MODA_NER(V)** works on images, **MODA_NER(T)** on product text. Names describe
 the input contract, never the corpus a model was measured against.
 

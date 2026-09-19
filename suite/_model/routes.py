@@ -123,6 +123,37 @@ def _base_encoder_files(package: ModaGeneralPackage) -> tuple[Any, Any]:
     )
 
 
+def _encoder_eval_transform(package: ModaGeneralPackage) -> Any:
+    """Eval transform the crop and full-body checkpoints were trained with.
+
+    Both routes are built as plain ``ViT-B-16-SigLIP`` with ``pretrained=None`` so the ~800 MB
+    shared encoder is not loaded only to be overwritten. That name carries no preprocess config,
+    so open_clip falls back to OpenAI-CLIP normalisation and a shortest-side resize plus centre
+    crop. The checkpoints were trained as ``hf-hub:HopitAI/moda-fashion-distilled``: mean and std
+    0.5, bicubic, ``squash``. The centre crop cut heads and feet off full-body photos; before this
+    fix the released full-body route matched its own published predictions on 0 of 64 held-out
+    images (glasses 9/64, hat 10/64), and the crop route on 16 of 64. Only the config is read here,
+    never the encoder weights. ``_base_model`` already does the same for the catalog route.
+    """
+    import open_clip
+
+    config_path = package.root / "base/open_clip_config.json"
+    if not config_path.exists():
+        from huggingface_hub import hf_hub_download
+
+        config_path = Path(hf_hub_download(SHARED_ENCODER_REPO, "open_clip_config.json"))
+    config = json.loads(config_path.read_text())
+    preprocess = config["preprocess_cfg"]
+    return open_clip.image_transform(
+        int(config["model_cfg"]["vision_cfg"]["image_size"]),
+        is_train=False,
+        mean=tuple(preprocess["mean"]),
+        std=tuple(preprocess["std"]),
+        interpolation=str(preprocess["interpolation"]),
+        resize_mode=str(preprocess["resize_mode"]),
+    )
+
+
 def _base_model(package: ModaGeneralPackage, device: str) -> tuple[Any, Any]:
     import open_clip
     import torch
@@ -199,6 +230,7 @@ class _FashionpediaBackend:
         )
         self.model.load_state_dict(load_file(model_dir / "model.safetensors"), strict=True)
         self.model.requires_grad_(False).eval().to(self.device)
+        self.model.preprocess_val = _encoder_eval_transform(package)
 
     def predict(self, image: Any) -> dict[str, Any]:
         import torch
@@ -309,6 +341,7 @@ class _DfmmBackend:
             load_file(model_root / "model.safetensors"), strict=True
         )
         self.model.requires_grad_(False).eval().to(self.device)
+        self.model.preprocess_val = _encoder_eval_transform(package)
         schema = json.loads((root / "schema.json").read_text())
         self.fields = tuple(schema["fields"])
         self.heads = {
