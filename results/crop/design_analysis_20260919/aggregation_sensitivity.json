@@ -1,0 +1,866 @@
+{
+  "question": "Does the crop-track ranking depend on micro vs field-macro aggregation?",
+  "gold": {
+    "path": "benchmark.jsonl (built locally with suite/crop/build_manifest.py)",
+    "sha256": "00a60391c5fdc39d4e900c957c5b758123c419f58cbad8c7f955f46fe8e04002",
+    "rows": 4688
+  },
+  "systems": {
+    "moda-ner-v-crop": {
+      "path": "results/crop/moda-ner-v-crop/evaluation_predictions.jsonl",
+      "sha256": "d32956218c555227175d719ed2f1c334a12d5e9089a1c960907983e5e289a2e3"
+    },
+    "fashionsiglip-spatial-residual": {
+      "path": "results/crop/fashionsiglip-spatial-residual-full130k-e1/evaluation_predictions.jsonl",
+      "sha256": "e53230ffc35a0b518194834feccb82404f7f311bf1eda871d7e9818e7a59fe0f"
+    },
+    "parent": {
+      "path": "results/crop/parent/evaluation_predictions.jsonl",
+      "sha256": "28a06a103b310a3fdced29d20e229dcb3f0b323a1869996e7bf3e56589875410"
+    },
+    "corrective": {
+      "path": "results/crop/corrective/evaluation_predictions.jsonl",
+      "sha256": "12b2202592f016e5e8ad741c6c6066637cf561843f9f0a9a7400eaf62be3cd01"
+    },
+    "fashionsiglip-zero-shot": {
+      "path": "results/crop/fashionsiglip-zero-shot/evaluation_predictions.jsonl",
+      "sha256": "3657f66b392c47223653f2c01e9f5104da80efa4d81aefa051871ddcbb468f40"
+    },
+    "qwen3vl-8b-zero-shot": {
+      "path": "results/crop/qwen3vl-8b-zero-shot/evaluation_predictions.jsonl",
+      "sha256": "bf74fdcd1530be1253478594acea7215f8662c7e6de4d48d07dace6022e91827"
+    }
+  },
+  "bootstrap": {
+    "samples": 10000,
+    "seed": 42,
+    "unit": "source image (the scorer's clustering unit)"
+  },
+  "pairs": [
+    {
+      "baseline": "corrective",
+      "candidate": "fashionsiglip-spatial-residual",
+      "delta": {
+        "attribute_micro_f1": 0.2134,
+        "attribute_field_macro_f1": 0.1848,
+        "category_accuracy": 0.2361,
+        "master_category_accuracy": -0.009
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": 0.2047,
+          "high": 0.2224
+        },
+        "attribute_field_macro_f1": {
+          "low": 0.1741,
+          "high": 0.1955
+        },
+        "category_accuracy": {
+          "low": 0.2226,
+          "high": 0.2498
+        },
+        "master_category_accuracy": {
+          "low": -0.017,
+          "high": -0.0011
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 1.0,
+        "attribute_field_macro_f1": 1.0,
+        "category_accuracy": 1.0,
+        "master_category_accuracy": 0.0142
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": 0.2362,
+        "closure_type": 0.3813,
+        "collar_presence": 0.1437,
+        "collar_style": 0.0764,
+        "hemline": 0.1165,
+        "master_category": -0.0089,
+        "material": 0.3946,
+        "neckline": 0.0799,
+        "pattern": 0.298,
+        "silhouette": 0.2088,
+        "sleeve_length": 0.0478,
+        "sleeve_shape": 0.0517,
+        "sub_category": 0.4019,
+        "surface_treatment": 0.0722,
+        "waist_type": 0.129
+      },
+      "seconds": 53.9
+    },
+    {
+      "baseline": "corrective",
+      "candidate": "fashionsiglip-zero-shot",
+      "delta": {
+        "attribute_micro_f1": -0.2293,
+        "attribute_field_macro_f1": -0.2387,
+        "category_accuracy": -0.0017,
+        "master_category_accuracy": -0.1628
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": -0.2376,
+          "high": -0.221
+        },
+        "attribute_field_macro_f1": {
+          "low": -0.2498,
+          "high": -0.2279
+        },
+        "category_accuracy": {
+          "low": -0.0183,
+          "high": 0.0153
+        },
+        "master_category_accuracy": {
+          "low": -0.1748,
+          "high": -0.1508
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 0.0,
+        "attribute_field_macro_f1": 0.0,
+        "category_accuracy": 0.4235,
+        "master_category_accuracy": 0.0
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": -0.0017,
+        "closure_type": -0.1911,
+        "collar_presence": -0.232,
+        "collar_style": -0.3558,
+        "hemline": -0.3682,
+        "master_category": -0.1627,
+        "material": 0.0369,
+        "neckline": -0.2522,
+        "pattern": -0.0466,
+        "silhouette": -0.22,
+        "sleeve_length": -0.6726,
+        "sleeve_shape": -0.4645,
+        "sub_category": 0.0453,
+        "surface_treatment": -0.1331,
+        "waist_type": -0.2495
+      },
+      "seconds": 54.4
+    },
+    {
+      "baseline": "corrective",
+      "candidate": "moda-ner-v-crop",
+      "delta": {
+        "attribute_micro_f1": 0.219,
+        "attribute_field_macro_f1": 0.1829,
+        "category_accuracy": 0.2395,
+        "master_category_accuracy": -0.0004
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": 0.2101,
+          "high": 0.2281
+        },
+        "attribute_field_macro_f1": {
+          "low": 0.172,
+          "high": 0.1941
+        },
+        "category_accuracy": {
+          "low": 0.2261,
+          "high": 0.2532
+        },
+        "master_category_accuracy": {
+          "low": -0.0082,
+          "high": 0.0072
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 1.0,
+        "attribute_field_macro_f1": 1.0,
+        "category_accuracy": 1.0,
+        "master_category_accuracy": 0.4517
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": 0.2396,
+        "closure_type": 0.3836,
+        "collar_presence": 0.1496,
+        "collar_style": 0.0444,
+        "hemline": 0.1264,
+        "master_category": -0.0004,
+        "material": 0.3413,
+        "neckline": 0.0659,
+        "pattern": 0.3045,
+        "silhouette": 0.2065,
+        "sleeve_length": 0.0472,
+        "sleeve_shape": 0.0617,
+        "sub_category": 0.4243,
+        "surface_treatment": 0.0878,
+        "waist_type": 0.1343
+      },
+      "seconds": 53.8
+    },
+    {
+      "baseline": "corrective",
+      "candidate": "parent",
+      "delta": {
+        "attribute_micro_f1": 0.1721,
+        "attribute_field_macro_f1": 0.1364,
+        "category_accuracy": 0.0482,
+        "master_category_accuracy": 0.0083
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": 0.1641,
+          "high": 0.1801
+        },
+        "attribute_field_macro_f1": {
+          "low": 0.1266,
+          "high": 0.1462
+        },
+        "category_accuracy": {
+          "low": 0.0398,
+          "high": 0.0567
+        },
+        "master_category_accuracy": {
+          "low": 0.0021,
+          "high": 0.0144
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 1.0,
+        "attribute_field_macro_f1": 1.0,
+        "category_accuracy": 1.0,
+        "master_category_accuracy": 0.9948
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": 0.0482,
+        "closure_type": 0.2997,
+        "collar_presence": 0.1492,
+        "collar_style": 0.0943,
+        "hemline": 0.1468,
+        "master_category": 0.0083,
+        "material": 0.3156,
+        "neckline": 0.0284,
+        "pattern": 0.3131,
+        "silhouette": 0.1358,
+        "sleeve_length": 0.0281,
+        "sleeve_shape": -0.1769,
+        "sub_category": 0.2466,
+        "surface_treatment": 0.1053,
+        "waist_type": 0.087
+      },
+      "seconds": 55.0
+    },
+    {
+      "baseline": "corrective",
+      "candidate": "qwen3vl-8b-zero-shot",
+      "delta": {
+        "attribute_micro_f1": -0.2306,
+        "attribute_field_macro_f1": -0.2181,
+        "category_accuracy": 0.058,
+        "master_category_accuracy": -0.1542
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": -0.239,
+          "high": -0.2221
+        },
+        "attribute_field_macro_f1": {
+          "low": -0.2288,
+          "high": -0.2073
+        },
+        "category_accuracy": {
+          "low": 0.0427,
+          "high": 0.0732
+        },
+        "master_category_accuracy": {
+          "low": -0.1662,
+          "high": -0.1421
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 0.0,
+        "attribute_field_macro_f1": 0.0,
+        "category_accuracy": 1.0,
+        "master_category_accuracy": 0.0
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": 0.0629,
+        "closure_type": -0.2208,
+        "collar_presence": -0.1911,
+        "collar_style": -0.2543,
+        "hemline": -0.3624,
+        "master_category": -0.1542,
+        "material": -0.0529,
+        "neckline": -0.2808,
+        "pattern": -0.3286,
+        "silhouette": -0.1338,
+        "sleeve_length": -0.5227,
+        "sleeve_shape": -0.1542,
+        "sub_category": -0.0285,
+        "surface_treatment": -0.2054,
+        "waist_type": -0.0996
+      },
+      "seconds": 54.5
+    },
+    {
+      "baseline": "fashionsiglip-spatial-residual",
+      "candidate": "fashionsiglip-zero-shot",
+      "delta": {
+        "attribute_micro_f1": -0.4427,
+        "attribute_field_macro_f1": -0.4235,
+        "category_accuracy": -0.2378,
+        "master_category_accuracy": -0.1538
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": -0.4517,
+          "high": -0.4339
+        },
+        "attribute_field_macro_f1": {
+          "low": -0.4358,
+          "high": -0.4111
+        },
+        "category_accuracy": {
+          "low": -0.2522,
+          "high": -0.2233
+        },
+        "master_category_accuracy": {
+          "low": -0.1653,
+          "high": -0.142
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 0.0,
+        "attribute_field_macro_f1": 0.0,
+        "category_accuracy": 0.0,
+        "master_category_accuracy": 0.0
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": -0.2379,
+        "closure_type": -0.5724,
+        "collar_presence": -0.3757,
+        "collar_style": -0.4322,
+        "hemline": -0.4847,
+        "master_category": -0.1538,
+        "material": -0.3577,
+        "neckline": -0.3321,
+        "pattern": -0.3446,
+        "silhouette": -0.4288,
+        "sleeve_length": -0.7204,
+        "sleeve_shape": -0.5162,
+        "sub_category": -0.3566,
+        "surface_treatment": -0.2053,
+        "waist_type": -0.3785
+      },
+      "seconds": 53.1
+    },
+    {
+      "baseline": "fashionsiglip-spatial-residual",
+      "candidate": "moda-ner-v-crop",
+      "delta": {
+        "attribute_micro_f1": 0.0056,
+        "attribute_field_macro_f1": -0.0019,
+        "category_accuracy": 0.0034,
+        "master_category_accuracy": 0.0085
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": 0.0014,
+          "high": 0.0098
+        },
+        "attribute_field_macro_f1": {
+          "low": -0.0077,
+          "high": 0.004
+        },
+        "category_accuracy": {
+          "low": -0.003,
+          "high": 0.0097
+        },
+        "master_category_accuracy": {
+          "low": 0.0027,
+          "high": 0.0144
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 0.9956,
+        "attribute_field_macro_f1": 0.2657,
+        "category_accuracy": 0.8478,
+        "master_category_accuracy": 0.9975
+      },
+      "aggregations_disagree_on_leader": true,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": false,
+      "per_field_value_f1_delta": {
+        "category": 0.0034,
+        "closure_type": 0.0023,
+        "collar_presence": 0.0059,
+        "collar_style": -0.032,
+        "hemline": 0.0099,
+        "master_category": 0.0085,
+        "material": -0.0533,
+        "neckline": -0.014,
+        "pattern": 0.0065,
+        "silhouette": -0.0023,
+        "sleeve_length": -0.0006,
+        "sleeve_shape": 0.01,
+        "sub_category": 0.0224,
+        "surface_treatment": 0.0156,
+        "waist_type": 0.0053
+      },
+      "seconds": 52.9
+    },
+    {
+      "baseline": "fashionsiglip-spatial-residual",
+      "candidate": "parent",
+      "delta": {
+        "attribute_micro_f1": -0.0413,
+        "attribute_field_macro_f1": -0.0484,
+        "category_accuracy": -0.1879,
+        "master_category_accuracy": 0.0173
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": -0.049,
+          "high": -0.0335
+        },
+        "attribute_field_macro_f1": {
+          "low": -0.0587,
+          "high": -0.0381
+        },
+        "category_accuracy": {
+          "low": -0.201,
+          "high": -0.1753
+        },
+        "master_category_accuracy": {
+          "low": 0.0097,
+          "high": 0.025
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 0.0,
+        "attribute_field_macro_f1": 0.0,
+        "category_accuracy": 0.0,
+        "master_category_accuracy": 1.0
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": -0.188,
+        "closure_type": -0.0816,
+        "collar_presence": 0.0055,
+        "collar_style": 0.0179,
+        "hemline": 0.0303,
+        "master_category": 0.0172,
+        "material": -0.079,
+        "neckline": -0.0515,
+        "pattern": 0.0151,
+        "silhouette": -0.073,
+        "sleeve_length": -0.0197,
+        "sleeve_shape": -0.2286,
+        "sub_category": -0.1553,
+        "surface_treatment": 0.0331,
+        "waist_type": -0.042
+      },
+      "seconds": 52.8
+    },
+    {
+      "baseline": "fashionsiglip-spatial-residual",
+      "candidate": "qwen3vl-8b-zero-shot",
+      "delta": {
+        "attribute_micro_f1": -0.444,
+        "attribute_field_macro_f1": -0.4028,
+        "category_accuracy": -0.1781,
+        "master_category_accuracy": -0.1453
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": -0.4534,
+          "high": -0.4349
+        },
+        "attribute_field_macro_f1": {
+          "low": -0.4151,
+          "high": -0.3908
+        },
+        "category_accuracy": {
+          "low": -0.191,
+          "high": -0.1652
+        },
+        "master_category_accuracy": {
+          "low": -0.1574,
+          "high": -0.1331
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 0.0,
+        "attribute_field_macro_f1": 0.0,
+        "category_accuracy": 0.0,
+        "master_category_accuracy": 0.0
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": -0.1733,
+        "closure_type": -0.6021,
+        "collar_presence": -0.3348,
+        "collar_style": -0.3307,
+        "hemline": -0.4789,
+        "master_category": -0.1453,
+        "material": -0.4475,
+        "neckline": -0.3607,
+        "pattern": -0.6266,
+        "silhouette": -0.3426,
+        "sleeve_length": -0.5705,
+        "sleeve_shape": -0.2059,
+        "sub_category": -0.4304,
+        "surface_treatment": -0.2776,
+        "waist_type": -0.2286
+      },
+      "seconds": 53.1
+    },
+    {
+      "baseline": "fashionsiglip-zero-shot",
+      "candidate": "moda-ner-v-crop",
+      "delta": {
+        "attribute_micro_f1": 0.4483,
+        "attribute_field_macro_f1": 0.4216,
+        "category_accuracy": 0.2413,
+        "master_category_accuracy": 0.1623
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": 0.4394,
+          "high": 0.4573
+        },
+        "attribute_field_macro_f1": {
+          "low": 0.4091,
+          "high": 0.4341
+        },
+        "category_accuracy": {
+          "low": 0.227,
+          "high": 0.2553
+        },
+        "master_category_accuracy": {
+          "low": 0.1505,
+          "high": 0.174
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 1.0,
+        "attribute_field_macro_f1": 1.0,
+        "category_accuracy": 1.0,
+        "master_category_accuracy": 1.0
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": 0.2413,
+        "closure_type": 0.5747,
+        "collar_presence": 0.3816,
+        "collar_style": 0.4002,
+        "hemline": 0.4946,
+        "master_category": 0.1623,
+        "material": 0.3044,
+        "neckline": 0.3181,
+        "pattern": 0.3511,
+        "silhouette": 0.4265,
+        "sleeve_length": 0.7198,
+        "sleeve_shape": 0.5262,
+        "sub_category": 0.379,
+        "surface_treatment": 0.2209,
+        "waist_type": 0.3838
+      },
+      "seconds": 53.1
+    },
+    {
+      "baseline": "fashionsiglip-zero-shot",
+      "candidate": "parent",
+      "delta": {
+        "attribute_micro_f1": 0.4014,
+        "attribute_field_macro_f1": 0.3751,
+        "category_accuracy": 0.0499,
+        "master_category_accuracy": 0.1711
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": 0.3923,
+          "high": 0.4106
+        },
+        "attribute_field_macro_f1": {
+          "low": 0.3624,
+          "high": 0.3879
+        },
+        "category_accuracy": {
+          "low": 0.0331,
+          "high": 0.0662
+        },
+        "master_category_accuracy": {
+          "low": 0.1587,
+          "high": 0.1829
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 1.0,
+        "attribute_field_macro_f1": 1.0,
+        "category_accuracy": 1.0,
+        "master_category_accuracy": 1.0
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": 0.0499,
+        "closure_type": 0.4908,
+        "collar_presence": 0.3812,
+        "collar_style": 0.4501,
+        "hemline": 0.515,
+        "master_category": 0.171,
+        "material": 0.2787,
+        "neckline": 0.2806,
+        "pattern": 0.3597,
+        "silhouette": 0.3558,
+        "sleeve_length": 0.7007,
+        "sleeve_shape": 0.2876,
+        "sub_category": 0.2013,
+        "surface_treatment": 0.2384,
+        "waist_type": 0.3365
+      },
+      "seconds": 56.0
+    },
+    {
+      "baseline": "fashionsiglip-zero-shot",
+      "candidate": "qwen3vl-8b-zero-shot",
+      "delta": {
+        "attribute_micro_f1": -0.0013,
+        "attribute_field_macro_f1": 0.0207,
+        "category_accuracy": 0.0597,
+        "master_category_accuracy": 0.0085
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": -0.008,
+          "high": 0.0056
+        },
+        "attribute_field_macro_f1": {
+          "low": 0.011,
+          "high": 0.0305
+        },
+        "category_accuracy": {
+          "low": 0.0463,
+          "high": 0.0729
+        },
+        "master_category_accuracy": {
+          "low": -0.003,
+          "high": 0.0199
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 0.3572,
+        "attribute_field_macro_f1": 0.9999,
+        "category_accuracy": 1.0,
+        "master_category_accuracy": 0.9237
+      },
+      "aggregations_disagree_on_leader": true,
+      "micro_ci_excludes_zero": false,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": 0.0646,
+        "closure_type": -0.0297,
+        "collar_presence": 0.0409,
+        "collar_style": 0.1015,
+        "hemline": 0.0058,
+        "master_category": 0.0085,
+        "material": -0.0898,
+        "neckline": -0.0286,
+        "pattern": -0.282,
+        "silhouette": 0.0862,
+        "sleeve_length": 0.1499,
+        "sleeve_shape": 0.3103,
+        "sub_category": -0.0738,
+        "surface_treatment": -0.0723,
+        "waist_type": 0.1499
+      },
+      "seconds": 60.6
+    },
+    {
+      "baseline": "moda-ner-v-crop",
+      "candidate": "parent",
+      "delta": {
+        "attribute_micro_f1": -0.0469,
+        "attribute_field_macro_f1": -0.0465,
+        "category_accuracy": -0.1913,
+        "master_category_accuracy": 0.0087
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": -0.0546,
+          "high": -0.0392
+        },
+        "attribute_field_macro_f1": {
+          "low": -0.0572,
+          "high": -0.036
+        },
+        "category_accuracy": {
+          "low": -0.204,
+          "high": -0.1789
+        },
+        "master_category_accuracy": {
+          "low": 0.0013,
+          "high": 0.0158
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 0.0,
+        "attribute_field_macro_f1": 0.0,
+        "category_accuracy": 0.0,
+        "master_category_accuracy": 0.9891
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": -0.1914,
+        "closure_type": -0.0839,
+        "collar_presence": -0.0004,
+        "collar_style": 0.0499,
+        "hemline": 0.0204,
+        "master_category": 0.0087,
+        "material": -0.0257,
+        "neckline": -0.0375,
+        "pattern": 0.0086,
+        "silhouette": -0.0707,
+        "sleeve_length": -0.0191,
+        "sleeve_shape": -0.2386,
+        "sub_category": -0.1777,
+        "surface_treatment": 0.0175,
+        "waist_type": -0.0473
+      },
+      "seconds": 60.4
+    },
+    {
+      "baseline": "moda-ner-v-crop",
+      "candidate": "qwen3vl-8b-zero-shot",
+      "delta": {
+        "attribute_micro_f1": -0.4496,
+        "attribute_field_macro_f1": -0.401,
+        "category_accuracy": -0.1815,
+        "master_category_accuracy": -0.1538
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": -0.4589,
+          "high": -0.4404
+        },
+        "attribute_field_macro_f1": {
+          "low": -0.4132,
+          "high": -0.389
+        },
+        "category_accuracy": {
+          "low": -0.194,
+          "high": -0.169
+        },
+        "master_category_accuracy": {
+          "low": -0.1659,
+          "high": -0.1418
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 0.0,
+        "attribute_field_macro_f1": 0.0,
+        "category_accuracy": 0.0,
+        "master_category_accuracy": 0.0
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": -0.1767,
+        "closure_type": -0.6044,
+        "collar_presence": -0.3407,
+        "collar_style": -0.2987,
+        "hemline": -0.4888,
+        "master_category": -0.1538,
+        "material": -0.3942,
+        "neckline": -0.3467,
+        "pattern": -0.6331,
+        "silhouette": -0.3403,
+        "sleeve_length": -0.5699,
+        "sleeve_shape": -0.2159,
+        "sub_category": -0.4528,
+        "surface_treatment": -0.2932,
+        "waist_type": -0.2339
+      },
+      "seconds": 59.3
+    },
+    {
+      "baseline": "parent",
+      "candidate": "qwen3vl-8b-zero-shot",
+      "delta": {
+        "attribute_micro_f1": -0.4027,
+        "attribute_field_macro_f1": -0.3545,
+        "category_accuracy": 0.0098,
+        "master_category_accuracy": -0.1625
+      },
+      "ci95": {
+        "attribute_micro_f1": {
+          "low": -0.4121,
+          "high": -0.3936
+        },
+        "attribute_field_macro_f1": {
+          "low": -0.3672,
+          "high": -0.342
+        },
+        "category_accuracy": {
+          "low": -0.0047,
+          "high": 0.0246
+        },
+        "master_category_accuracy": {
+          "low": -0.1745,
+          "high": -0.1505
+        }
+      },
+      "p_candidate_better": {
+        "attribute_micro_f1": 0.0,
+        "attribute_field_macro_f1": 0.0,
+        "category_accuracy": 0.9031,
+        "master_category_accuracy": 0.0
+      },
+      "aggregations_disagree_on_leader": false,
+      "micro_ci_excludes_zero": true,
+      "macro_ci_excludes_zero": true,
+      "per_field_value_f1_delta": {
+        "category": 0.0147,
+        "closure_type": -0.5205,
+        "collar_presence": -0.3403,
+        "collar_style": -0.3486,
+        "hemline": -0.5092,
+        "master_category": -0.1625,
+        "material": -0.3685,
+        "neckline": -0.3092,
+        "pattern": -0.6417,
+        "silhouette": -0.2696,
+        "sleeve_length": -0.5508,
+        "sleeve_shape": 0.0227,
+        "sub_category": -0.2751,
+        "surface_treatment": -0.3107,
+        "waist_type": -0.1866
+      },
+      "seconds": 55.3
+    }
+  ]
+}

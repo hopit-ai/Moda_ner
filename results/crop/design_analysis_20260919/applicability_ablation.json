@@ -1,0 +1,142 @@
+{
+  "question": "What does the crop route's applicability head earn, and under which scoring protocol?",
+  "model": {
+    "repo": "HopitAI/moda-ner-v-crop",
+    "weights_sha256": "0c4b9cd460b434b9455137c5dc7d4ee7fd8379f5e323761122f0282364835389",
+    "thresholds_sha256": "0d3a3998194dde4335d69d9762544515a7035cf4a73373dd0abd3b7db2995d58"
+  },
+  "gold_sha256": "00a60391c5fdc39d4e900c957c5b758123c419f58cbad8c7f955f46fe8e04002",
+  "guard": {
+    "rows_identical": 4598,
+    "rows": 4688,
+    "published_micro": 0.63,
+    "reproduced_micro": 0.6295,
+    "published_macro": 0.6074,
+    "reproduced_macro": 0.6073
+  },
+  "variants": {
+    "shipped": "released thresholds",
+    "uncalibrated": "applicability 0.5 on every field",
+    "applicability_off": "applicability 0.0 on every field"
+  },
+  "results": {
+    "exhaustive": {
+      "shipped": {
+        "point": {
+          "attribute_micro_f1": 0.6295,
+          "attribute_field_macro_f1": 0.6073,
+          "attribute_micro_precision": 0.6185,
+          "attribute_micro_recall": 0.641
+        }
+      },
+      "uncalibrated": {
+        "point": {
+          "attribute_micro_f1": 0.6262,
+          "attribute_field_macro_f1": 0.6061,
+          "attribute_micro_precision": 0.5939,
+          "attribute_micro_recall": 0.6623
+        },
+        "delta_vs_shipped": {
+          "attribute_micro_f1": -0.0033,
+          "attribute_field_macro_f1": -0.0012
+        },
+        "ci95": {
+          "attribute_micro_f1": {
+            "low": -0.0056,
+            "high": -0.0011
+          },
+          "attribute_field_macro_f1": {
+            "low": -0.0068,
+            "high": 0.0046
+          }
+        }
+      },
+      "applicability_off": {
+        "point": {
+          "attribute_micro_f1": 0.2696,
+          "attribute_field_macro_f1": 0.2634,
+          "attribute_micro_precision": 0.1669,
+          "attribute_micro_recall": 0.7014
+        },
+        "delta_vs_shipped": {
+          "attribute_micro_f1": -0.3599,
+          "attribute_field_macro_f1": -0.3438
+        },
+        "ci95": {
+          "attribute_micro_f1": {
+            "low": -0.3675,
+            "high": -0.3526
+          },
+          "attribute_field_macro_f1": {
+            "low": -0.3547,
+            "high": -0.3334
+          }
+        }
+      }
+    },
+    "annotated_only": {
+      "shipped": {
+        "point": {
+          "attribute_micro_f1": 0.6758,
+          "attribute_field_macro_f1": 0.6608,
+          "attribute_micro_precision": 0.7145,
+          "attribute_micro_recall": 0.641
+        }
+      },
+      "uncalibrated": {
+        "point": {
+          "attribute_micro_f1": 0.6849,
+          "attribute_field_macro_f1": 0.6832,
+          "attribute_micro_precision": 0.7092,
+          "attribute_micro_recall": 0.6623
+        },
+        "delta_vs_shipped": {
+          "attribute_micro_f1": 0.0092,
+          "attribute_field_macro_f1": 0.0223
+        },
+        "ci95": {
+          "attribute_micro_f1": {
+            "low": 0.0072,
+            "high": 0.0112
+          },
+          "attribute_field_macro_f1": {
+            "low": 0.0171,
+            "high": 0.0278
+          }
+        }
+      },
+      "applicability_off": {
+        "point": {
+          "attribute_micro_f1": 0.7022,
+          "attribute_field_macro_f1": 0.7082,
+          "attribute_micro_precision": 0.703,
+          "attribute_micro_recall": 0.7014
+        },
+        "delta_vs_shipped": {
+          "attribute_micro_f1": 0.0264,
+          "attribute_field_macro_f1": 0.0474
+        },
+        "ci95": {
+          "attribute_micro_f1": {
+            "low": 0.023,
+            "high": 0.0299
+          },
+          "attribute_field_macro_f1": {
+            "low": 0.04,
+            "high": 0.0552
+          }
+        }
+      }
+    }
+  },
+  "prediction_sha256": {
+    "shipped": "a583ee113c76b71482b6a397d2857cd4559a3a6f700a4d4366e75af44b4145f4",
+    "uncalibrated": "9f4f83813bbaf9450bf1a94863b116f8748efbbac70e367072ce92c5dc33bf70",
+    "applicability_off": "b31405cc003b5c4777e0e0663a8747ea1dc2f49bd13ce4a4d2bcf4b46a2b64b8"
+  },
+  "bootstrap": {
+    "samples": 10000,
+    "seed": 42,
+    "unit": "source image"
+  }
+}

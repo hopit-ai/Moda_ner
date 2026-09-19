@@ -47,6 +47,13 @@ python -m suite.crop.score \
 The comparison output carries paired image-clustered bootstrap intervals, which is the only
 number worth quoting.
 
+## Design analyses
+
+`suite/crop/analysis/` holds the three measurements in Section 6 of the resource report
+(arXiv:2609.13279, version 2): how the ranking depends on micro versus field-macro aggregation,
+what annotation sparsity costs each system, and how much of the score rests on the applicability
+decision. Receipts and a reproduction recipe: `results/crop/design_analysis_20260919/`.
+
 ## Images
 
 Not redistributed. `record_id` carries the Fashionpedia image id, so a local copy of the
