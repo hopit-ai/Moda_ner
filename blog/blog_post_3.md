@@ -43,7 +43,7 @@ That is a workflow design problem, not a model problem, and it is solvable. Popu
 
 ## Your taxonomy is not our taxonomy
 
-We tested against an independent labelled set and scored 0.7169. Our production route scored 0.5764 on the same images, about 14 points lower, because the two label systems divide necklines differently and our mapping between them lost a real distinction.
+We tested two of our own routes on an independent set, each image labelled by six annotators. One scored 0.7169, the other 0.6176, on the same images. The weaker one was actually better at pattern, sleeve length and collar. It collapsed on neckline alone, 0.05 against 0.81, because its neckline classifier was trained on Shopping100k and answered "square" for most images, while the test only accepts v-neck or round.
 
 Nothing had regressed. The vocabularies simply disagreed.
 
@@ -109,3 +109,5 @@ The answer falls out of the above rather than needing a pitch.
 Either way, the thing to insist on, from us or anyone else, is the same: a frozen test on your own data, predictions committed before labels are opened, and per-field numbers rather than an average. If a vendor will not give you that, the number they are quoting is not about your catalogue.
 
 *This is the last post in the series. The suite, the scorers and the released weights are in the repository, and we would rather hear that we are wrong than not hear it.*
+
+*Correction, 19 September 2026: this post originally gave our production route's score as 0.5764, about 14 points below the other route. One of that route's components had been run with the wrong image preprocessing; re-run correctly, the route scores 0.6176. The neckline finding is unchanged. Details in version 2 of the preprint, [arXiv:2609.13279](https://arxiv.org/abs/2609.13279).*

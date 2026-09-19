@@ -34,7 +34,7 @@ Each track answers a different question. A good result on one does not cover a w
 
 The disagreement between sources goes deeper than image type. Colour and fit, the two attributes merchandisers ask about first, appear in only two of the four tracks. Material appears in two. Exactly one field is present in all four: neckline.
 
-That field is also the one that has cost us the most. We evaluated against an independent labelled set of 1,110 images and scored 0.7169. Our production route scored 0.5764 on the same images, about 14 points lower. Nothing had regressed. The two datasets divide neckline categories differently, and our mapping between the label systems lost a real distinction.
+That field is also the one that has cost us the most. We evaluated two of our own routes against an independent labelled set of 1,110 images. One scored 0.7169. Our production route scored 0.6176 on the same images, about 10 points lower, even though it was the stronger of the two on pattern, sleeve length and collar. Nothing had regressed. It collapsed on neckline alone: its neckline classifier was trained on a dataset with many neckline styles and answered "square" for most images, while this test only accepts v-neck or round.
 
 This is the trap in fashion attribute data. Two sources both have a field called neckline, both appear to mean the same thing, and nothing warns you that they do not. A single averaged score cannot show this. Four tracks with different label systems at least make the disagreement visible.
 
@@ -93,3 +93,5 @@ The harness is not the product model. It is the way we make claims about any mod
 With the next post we publish the protocol, frozen splits, scorers, uncertainty code, prediction files, and hashes. We will not redistribute third-party datasets; users obtain them under the source dataset's terms and our builders recreate the frozen splits.
 
 Next: the results, the released models, and what the numbers actually mean.
+
+*Correction, 19 September 2026: this post originally gave our production route's score as 0.5764, about 14 points lower. One of that route's components had been run with the wrong image preprocessing; re-run correctly, the route scores 0.6176. The neckline finding is unchanged. Details in version 2 of the preprint, [arXiv:2609.13279](https://arxiv.org/abs/2609.13279).*
