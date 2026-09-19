@@ -63,6 +63,12 @@ does not make every attribute production-perfect.
 > none and crop on 16. If you ran either route before this date, pull the latest code and
 > re-run. The published benchmark numbers were produced correctly and are unchanged, and the
 > catalog route was not affected. `tests/test_route_preprocessing.py` now guards this.
+>
+> One figure in the preprint was produced with the same defect in the crop route: the external
+> comparison in §7 of [arXiv:2609.13279](https://arxiv.org/abs/2609.13279) v1, where the
+> supervised composite takes its collar field from the crop model. Re-run with the correct
+> preprocessing, that composite scores 0.6176 rather than 0.5764; the neckline finding is
+> unchanged. The correction will appear in v2.
 
 Two families. **MODA_NER(V)** works on images, **MODA_NER(T)** on product text. Names describe
 the input contract, never the corpus a model was measured against.
@@ -103,8 +109,9 @@ Where a published checkpoint is not our strongest, the model card states both fi
 **On the non-commercial routes.** Two tracks are evaluated against research-only corpora whose
 terms do not permit commercial use of models trained on them. We honour that, and it binds us
 too: those weights are not in Hopit's hosted product. For production we fine-tune on the
-customer's own catalogue, which raises accuracy on their taxonomy and yields a model with no
-dependency on research-licensed data.
+customer's own catalogue, which fits the model to their taxonomy and yields a model with no
+dependency on research-licensed data. How much that improves accuracy on a customer's
+catalogue is not yet measured; it will be, against a holdout frozen before training.
 
 ## What's available, and when
 

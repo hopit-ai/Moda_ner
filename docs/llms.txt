@@ -55,8 +55,8 @@ MODA_NER Pro, hosted, contact https://hopit.ai
 ## Limits
 
 All labels are dataset-native rather than independent human gold. A benchmark cannot prove its
-taxonomy matches yours: on one external set a neckline vocabulary mismatch cost a production
-route fourteen points with no model regression. And a strong extraction score does not transfer
+taxonomy matches yours: on one external set a neckline vocabulary mismatch left a production
+route ten points behind another of our routes on the same images, with no model regression. And a strong extraction score does not transfer
 to adjacent tasks — on mapping titles to a retailer's own product taxonomy, a terminal n-gram
 baseline beats our text model.
 
